@@ -1,0 +1,26 @@
+html, body {
+    height: 100%;
+}
+#Page1,
+#Page2{
+	height: 100%;
+}
+/********************		Header		********************/
+
+
+/********************		Content		********************/
+/**********			Homepage		**********/
+#homePage{
+	background-color: green;
+	height: calc(100% - 44px);
+	position: inherit;
+	width: 100%;
+}
+/**********			Stats page		**********/
+#statsPage{
+	background-color: red;
+	height: calc(100% - 44px);
+	position: inherit;
+	width: 100%;
+}
+
