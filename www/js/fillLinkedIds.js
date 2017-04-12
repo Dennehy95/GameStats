@@ -6,7 +6,9 @@ function getLinkedIds() {
 	var maxSize = 65535;
 		
 	db = openDatabase(shortName, version, displayName,maxSize);
-	
+	$("#linkedPSN").html("");
+	$("#linkedSteam").html("");
+	$("#linkedXbox").html("");
 	db.transaction(function(transaction){
 		transaction.executeSql('SELECT Username FROM Users WHERE System = "PSN";', [],
 		function(transaction, result) {
