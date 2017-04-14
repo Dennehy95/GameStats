@@ -44,7 +44,9 @@ function onBodyLoad(){
 		console.log('HE3RE');
 	  // you can uncomment this next line if you want the User table to be
 	//empty each time the application runs
-		//tx.executeSql( 'DROP TABLE Users',nullHandler,nullHandler);
+		
+		tx.executeSql( 'DROP TABLE Users',nullHandler,nullHandler); //******************
+		tx.executeSql( 'DROP TABLE Rocket_League',nullHandler,nullHandler); //**************
 
 	  // this line actually creates the table User if it does not exist
 	//and sets up the three columns and their types
@@ -58,55 +60,6 @@ function onBodyLoad(){
 
 }
 
-		// list the values in the database to the screen using jquery to
-		//update the #lbUsers element
-function ListDBValues() {
-	db = openDatabase(shortName, version, displayName,maxSize);
-	if (!window.openDatabase) {
-		alert('Databases are not supported in this browser.');
-		return;
-	}
-
-	// this line clears out any content in the #lbUsers element on the
-	//page so that the next few lines will show updated
-	// content and not just keep repeating lines
-	$('#lbUsers').html('');
-
-	// this next section will select all the content from the User table
-	//and then go through it row by row
-	// appending the UserId  FirstName  LastName to the  #lbUsers element
-	//on the page
-	//console.log(db.transaction);
-	db.transaction(function(transaction) {
-		transaction.executeSql('SELECT * FROM Users;', [],
-		function(transaction, result) {
-			if (result != null && result.rows != null) {
-				for (var i = 0; i < result.rows.length; i++) {
-					var row = result.rows.item(i);
-					//transaction.executeSql('SELECT Goals FROM Rocket_League WHERE PlayerName=' + row.Username +';', [],
-					console.log(row.UserId)
-					console.log(row.Username)
-					console.log(row.System)
-					console.log('**********')
-				}
-			}
-		},errorHandler);
-	},errorHandler,nullHandler);
-	
-	db.transaction(function(transaction) {
-		transaction.executeSql('SELECT Goals FROM Rocket_League WHERE PlayerName = "The Wet Gurkin";', [],
-		function(transaction, result) {
-			if (result != null && result.rows != null) {
-				for (var i = 0; i < result.rows.length; i++) {
-					var row = result.rows.item(i);
-					console.log(row.Goals)
-				}
-			}
-		},errorHandler);
-	},errorHandler,nullHandler);
-	getLinkedIds();
-	return;
-}
 
 // this is the function that puts values into the database using the
 //values from the text boxes on the screen
@@ -116,19 +69,24 @@ function AddValueToDB() {
 		alert('Databases are not supported in this browser.');
 		return;
 	}
-
-	// this is the section that actually inserts the values into the User
-	//table
-	db.transaction(function(transaction) {
-		transaction.executeSql('INSERT INTO Users(Username, System)VALUES (?,?)',[$('#txFirstName').val(), $('#txLastName').val()],nullHandler,errorHandler);
-		transaction.executeSql('INSERT INTO Rocket_League(PlayerName, System, Goals)VALUES (?,?,?)',[$('#txFirstName').val(), $('#txLastName').val(), 786],nullHandler,errorHandler);
-	});
-
+	
+	if($('#Username').val() !== ""){
+		db.transaction(function(transaction) {
+			transaction.executeSql('SELECT Username FROM Users WHERE Username = "'+ $('#Username').val() +'" AND System = "' + $('input[name=radio-choice-t-6]:checked').val() + '";', [],
+			function(transaction, result) {
+				if (result.rows.length == 0) {
+					transaction.executeSql('INSERT INTO Users(Username, System)VALUES (?,?)',[$('#Username').val(), $('input[name=radio-choice-t-6]:checked').val()],nullHandler,errorHandler);
+				//transaction.executeSql('INSERT INTO Rocket_League(PlayerName, System, Goals)VALUES (?,?,?)',[$('#Username').val(), $('input[name=radio-choice-t-6]:checked').val(), 786],nullHandler,errorHandler);
+				}
+			},errorHandler);
+		});
+	}
+	else{
+		alert('Username is empty');
+	}
 	// this calls the function that will show what is in the User table in
 	//the database
-	ListDBValues();
 	getLinkedIds();
-
 	return false;
 
 }

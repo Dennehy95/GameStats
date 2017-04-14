@@ -5,22 +5,48 @@ html, body {
 #Page2{
 	height: 100%;
 }
+
+h1{
+	font-family: "Simplifica", sans-serif;
+	text-shadow: none;
+}
+@font-face {
+  font-family: Simplifica;
+  src: local("Simplifica"),
+       url(SIMPLIFICATypeface.ttf);
+}
 /********************		Header		********************/
 
 
 /********************		Content		********************/
 /**********			Homepage		**********/
 #homePage{
-	background-color: green;
+	background-color: #FFFFFF;
 	height: calc(100% - 44px);
 	position: inherit;
 	width: 100%;
+}
+.addIdSection{
+	min-height: 20%;
+}
+.idListview{
+	margin: 0;
+}
+.systemSection{
+	min-height: 20%;
+}
+.systemTitle{
+	background-color: #22a301;
+	color: #FFFFFF;
+	margin: 0;
+	text-indent: 2%;
 }
 /**********			Stats page		**********/
 #statsPage{
-	background-color: red;
+	background-color: #0F5959;
 	height: calc(100% - 44px);
 	position: inherit;
 	width: 100%;
 }
+
 

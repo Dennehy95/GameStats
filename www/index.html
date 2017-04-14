@@ -61,6 +61,7 @@
 					reload    : false
 				});
 			});
+			console.log('getting')
 			getLinkedIds(); //Remove after testing. Only use in browser
 		}
 		function offlineTest(){
@@ -82,38 +83,44 @@
 
 <body onload="onLoad()">
 	<div data-role="page" id="Page1">
-		<div data-role="header" data-theme="b"> 
-			<h1>Home</h1> 
-		</div> 
+		<div data-role="header" data-theme="b">
+			<h1>Home</h1>
+		</div>
 		<div id='homePage'>
-			<h1>PSN Ids </h1>
-			<div id="linkedPSN" data-role="collapsible-set">
-				<div data-theme='b' data-role='collapsible'>
-					<h3>
-						<div>Dennehy50</div>
-					</h3>
-					<ul id="moo" data-role='listview'>
-						<li>Denen</li>
-						<li>Dene4bn</li>
-					</ul>
+			<div class='systemSection'>
+				<h1 class='systemTitle'>PSN Ids </h1>
+				<div id="linkedPSN" class='idListview' data-role="collapsible-set">
+					<div data-theme='b' data-role='collapsible'>
+						
+					</div>
+				</div>
+			</div>
+			<div class='systemSection'>
+				<h1 class='systemTitle'>Steam Ids</h1>
+				<div id="linkedSteam" class='idListview' data-role="collapsible-set">
 					
 				</div>
 			</div>
-			<h1>Steam Ids</h1>
-			<div id="linkedSteam" data-role="collapsible-set">
-				
+			<div class='systemSection'>
+				<h1 class='systemTitle'>Xbox Gamertags</h1>
+				<div id="linkedXbox" class='idListview' data-role="collapsible-set">
+					
+				</div>
 			</div>
-			<h1>Xbox Gamertags</h1>
-			<div id="linkedXbox" data-role="collapsible-set">
-				
+			<div class='addIdSection'>
+				<form>
+					<fieldset data-role="controlgroup" data-theme="b" data-type="horizontal">
+						<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6a" value='psn' checked="checked">
+						<label for="radio-choice-t-6a">PSN</label>
+						<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6b" value='steam'>
+						<label for="radio-choice-t-6b">Steam</label>
+						<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6c" value='xbox'>
+						<label for="radio-choice-t-6c">Xbox</label>
+					</fieldset>
+				</form>
+				<input id="Username" type="text" placeholder="Username">
+				<input type="button" value="Add record" onClick="AddValueToDB()">
 			</div>
-			<input id="txFirstName" type="text" placeholder="FirstName">
-			<input id="txLastName" type="text" placeholder="Last Name">
-			<input type="button" value="Add record" onClick="AddValueToDB()">
-			<input type="button" value="Refresh" onClick="ListDBValues()"> <br>
-			<br>
-			<span style="font-weight:bold;">Currently stored values:</span>
-			<span id="lbUsers"></span>
 		</div>
     </div>
 	
