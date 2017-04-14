@@ -18,11 +18,6 @@ function nullHandler(){};
 
 
 function onBodyLoad(){
-// global variables
-	
-	// This alert is used to make sure the application is loaded correctly
-	// you can comment this out once you have the application working
-	console.log("DEBUGGING: we are in the onBodyLoad() function");
 
 	if (!window.openDatabase) {
 	   // not all mobile devices support databases  if it does not, the 
@@ -37,16 +32,14 @@ function onBodyLoad(){
 	//object stored in variable db
 	
 	db = openDatabase(shortName, version, displayName,maxSize);
-	console.log('HE3RE');
 	// this line will try to create the table User in the database just
 	//created/openned
 	db.transaction(function(tx){
-		console.log('HE3RE');
 	  // you can uncomment this next line if you want the User table to be
 	//empty each time the application runs
 		
-		tx.executeSql( 'DROP TABLE Users',nullHandler,nullHandler); //******************
-		tx.executeSql( 'DROP TABLE Rocket_League',nullHandler,nullHandler); //**************
+		//tx.executeSql( 'DROP TABLE Users',nullHandler,nullHandler); //******************
+		//tx.executeSql( 'DROP TABLE Rocket_League',nullHandler,nullHandler); //**************
 
 	  // this line actually creates the table User if it does not exist
 	//and sets up the three columns and their types
@@ -55,7 +48,7 @@ function onBodyLoad(){
 	  // easily from the table.
 		//tx.executeSql('DROP TABLE User');
 		tx.executeSql( 'CREATE TABLE IF NOT EXISTS Users(UserId INTEGER NOT NULL PRIMARY KEY, Username varchar(50) NOT NULL, System varchar(30) NOT NULL)',[],nullHandler,errorHandler);
-		tx.executeSql( 'CREATE TABLE IF NOT EXISTS Rocket_League(PlayerName varchar(50) NOT NULL, System varchar(30), Goals INT)',[],nullHandler,errorHandler);
+		tx.executeSql( 'CREATE TABLE IF NOT EXISTS Rocket_League(PlayerName varchar(50) NOT NULL, System varchar(30), Active INT)',[],nullHandler,errorHandler);
 	},errorHandler,successCallBack);
 
 }
@@ -71,11 +64,12 @@ function AddValueToDB() {
 	}
 	
 	if($('#Username').val() !== ""){
+		Username = $('#Username').val().trim();
 		db.transaction(function(transaction) {
-			transaction.executeSql('SELECT Username FROM Users WHERE Username = "'+ $('#Username').val() +'" AND System = "' + $('input[name=radio-choice-t-6]:checked').val() + '";', [],
+			transaction.executeSql('SELECT Username FROM Users WHERE Username = "'+ Username +'" AND System = "' + $('input[name=radio-choice-t-6]:checked').val() + '";', [],
 			function(transaction, result) {
 				if (result.rows.length == 0) {
-					transaction.executeSql('INSERT INTO Users(Username, System)VALUES (?,?)',[$('#Username').val(), $('input[name=radio-choice-t-6]:checked').val()],nullHandler,errorHandler);
+					transaction.executeSql('INSERT INTO Users(Username, System)VALUES (?,?)',[Username, $('input[name=radio-choice-t-6]:checked').val()],nullHandler,errorHandler);
 				//transaction.executeSql('INSERT INTO Rocket_League(PlayerName, System, Goals)VALUES (?,?,?)',[$('#Username').val(), $('input[name=radio-choice-t-6]:checked').val(), 786],nullHandler,errorHandler);
 				}
 			},errorHandler);
