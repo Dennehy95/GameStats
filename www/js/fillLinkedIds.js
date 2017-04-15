@@ -79,7 +79,7 @@ function updateListOfGames(UserId, Username, System){
 				function(transaction, result) {
 					if(result.rows.length == 0){
 						console.log('adding');
-						transaction.executeSql('INSERT INTO Rocket_League(PlayerName, System, Active)VALUES (?,?,?)',[Username, System, 0],nullHandler,errorHandler);
+						transaction.executeSql('INSERT INTO Rocket_League(PlayerName, System, Active, Score, Ratio, Wins, Goals, Saves, Shots, Mvps, Assists, Mvpratio)VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',[Username, System, 0, 0.0, 0.0, 0, 0, 0, 0, 0, 0, 0.0],nullHandler,errorHandler);
 					}
 				},errorHandler);
 			},errorHandler,nullHandler);

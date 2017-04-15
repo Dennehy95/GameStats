@@ -40,6 +40,9 @@ function onBodyLoad(){
 		
 		//tx.executeSql( 'DROP TABLE Users',nullHandler,nullHandler); //******************
 		//tx.executeSql( 'DROP TABLE Rocket_League',nullHandler,nullHandler); //**************
+		/*76561198073672390 Steam
+		Harmen501 PSN
+		The Wet Gurkin Xbox*/
 
 	  // this line actually creates the table User if it does not exist
 	//and sets up the three columns and their types
@@ -48,7 +51,7 @@ function onBodyLoad(){
 	  // easily from the table.
 		//tx.executeSql('DROP TABLE User');
 		tx.executeSql( 'CREATE TABLE IF NOT EXISTS Users(UserId INTEGER NOT NULL PRIMARY KEY, Username varchar(50) NOT NULL, System varchar(30) NOT NULL)',[],nullHandler,errorHandler);
-		tx.executeSql( 'CREATE TABLE IF NOT EXISTS Rocket_League(PlayerName varchar(50) NOT NULL, System varchar(30), Active INT)',[],nullHandler,errorHandler);
+		tx.executeSql( 'CREATE TABLE IF NOT EXISTS Rocket_League(PlayerName varchar(50) NOT NULL, System varchar(30), Active INT, Score REAL, Ratio REAL, Wins INT, Goals INT, Saves INT, Shots INT, Mvps INT, Assists INT, Mvpratio REAL)',[],nullHandler,errorHandler);
 	},errorHandler,successCallBack);
 
 }

@@ -33,18 +33,32 @@ function displayRocketLeague(Username, System, Active){
 	if(Active == 0){
 		$("#statsPage").append(
 			"<div class='getStats'>" +
-				"<a class='getStatsButton ui-btn ui-corner-all' onclick='scrapeRocketLeague(\"" + Username + "\",\"" + System + "\")'>Get Stats</a>" +
+				"<a class='getStatsButton ui-btn ui-corner-all' onclick='sourceRocketLeague(\"" + Username + "\",\"" + System + "\")'>Get Stats</a>" +
 			"</div>"
 		);
 	}
-	
+
 	else if(Active == 1){
-		displayStatsRocketLeague();
+		displayStatsRocketLeague(Username, System);
 	}
 	$("#statsPageTitle").trigger("create");
 	$("#statsPage").trigger("create");
 }
 
-function displayStatsRocketLeague(){
-	
+function displayStatsRocketLeague(Username, System){
+	console.log('MOO!');
+	//db = openDatabase(shortName, version, displayName,maxSize);
+	db.transaction(function(transaction) {
+		transaction.executeSql('SELECT Score, Ratio, Wins, Goals, Saves, Shots, Mvps, Assists, Mvpratio FROM Rocket_League WHERE PlayerName = "'+ Username +'" AND System = "' + System +'";', [],
+		function(transaction, result) {
+			console.log(result.rows.item(0));
+			$("#statsPage").append(
+				"<div class='performance'>" +
+					"<h1>Score</h1> " +
+					"<h3>" + result.rows.item(0).Score + "</h3>"+
+				"</div>"
+			);
+		},errorHandler);
+	});
+	//$("#statsPage").trigger("create");
 }
