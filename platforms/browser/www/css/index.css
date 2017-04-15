@@ -16,9 +16,22 @@ h1{
        url(SIMPLIFICATypeface.ttf);
 }
 /********************		Header		********************/
+.headerHomepage,
+.headerStatsPage{
+	height: 8vh;
+}
+.homeIcon{
+	max-height: 100%;
+	padding: 25px 25px 25px 25px;
+}
 .ui-title.headerTitle{
-	font-size: 1.3em;
-	padding: .4em 0;
+	font-size: 4vh;
+    margin: 0;
+	height: 100%;
+	line-height: 200%; 
+    max-height: 100%;
+	padding: 0;
+	text-align: center;
 }
 
 /********************		Content		********************/
@@ -35,11 +48,28 @@ h1{
 .idListview{
 	margin: 0;
 }
+.noIdsTitle{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#45484d+0,000000+100;Black+3D+%231 */
+	background: #45484d; /* Old browsers */
+	background: -moz-linear-gradient(left,  #45484d 0%, #000000 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left,  #45484d 0%,#000000 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right,  #45484d 0%,#000000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=1 ); /* IE6-9 */
+	color: #FFFFFF;
+	font-size: 3vh;
+	height: 6vh;
+	margin: 0;
+	
+	
+}
 .systemSection{
-	min-height: 20%;
+	#min-height: 20%;
 }
 .systemTitle{
 	color: #FFFFFF;
+	font-size: 5vh;
+	height: 7vh;
+	line-height: 150%; 
 	margin: 0;
 	text-indent: 5%;
 }
@@ -67,12 +97,43 @@ h1{
 	background: linear-gradient(45deg,  #c2dbab 0%,#71db6b 15%,#86dd39 45%,#69bf28 75%,#74c13a 76%,#69bf28 79%,#76e01f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c2dbab', endColorstr='#76e01f',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
+.usernameList{
+	font-size: 4vh;
+	height: 100%;
+	line-height: 175%;
+	padding: 0 0 0 10%;
+}
+.usernameListTitle{
+	#height: 1;
+}
 /**********			Stats page		**********/
 #statsPage{
 	background-color: #0F5959;
 	height: calc(100% - 44px);
 	position: inherit;
 	width: 100%;
+}
+.gameList{
+	font-size: 3vh;
+}
+.getStats{
+    margin: 10%;
+    padding: 0 0 0 0;
+	text-decoration: none;
+}
+.getStatsButton{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff8307+0,ff9d35+11,ff9011+31,ffa24c+51,ff9319+73,ff9c32+87,ff7f04+100 */
+	background: #ff8307; /* Old browsers */
+	background: -moz-linear-gradient(left,  #ff8307 0%, #ff9d35 11%, #ff9011 31%, #ffa24c 51%, #ff9319 73%, #ff9c32 87%, #ff7f04 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left,  #ff8307 0%,#ff9d35 11%,#ff9011 31%,#ffa24c 51%,#ff9319 73%,#ff9c32 87%,#ff7f04 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right,  #ff8307 0%,#ff9d35 11%,#ff9011 31%,#ffa24c 51%,#ff9319 73%,#ff9c32 87%,#ff7f04 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8307', endColorstr='#ff7f04',GradientType=1 ); /* IE6-9 */
+	font-family: Simplifica;
+		src: local("Simplifica"),
+		url(SIMPLIFICATypeface.ttf);
+	border: none;
+	font-size: 8vh;
+	height: 10vh;
 }
 .statsPageUserInfo{
 	color: #FFFFFF;
@@ -100,5 +161,18 @@ h1{
 	background: -webkit-linear-gradient(45deg,  #c2dbab 0%,#71db6b 15%,#86dd39 45%,#69bf28 75%,#74c13a 76%,#69bf28 79%,#76e01f 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(45deg,  #c2dbab 0%,#71db6b 15%,#86dd39 45%,#69bf28 75%,#74c13a 76%,#69bf28 79%,#76e01f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c2dbab', endColorstr='#76e01f',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	height: 8vh;
+}
+.usernameTitle{
+	font-size: 5vh;
+	height: 100%;
+	line-height: 150%; 
+	max-height: 100%;
+}
+/********************		Jquery Overrides ********************/
+.ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-left.ui-btn-b.ui-icon-plus,
+.ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-left.ui-btn-b.ui-icon-minus{
+	height: 7vh;
+	padding: 0;
 }
 

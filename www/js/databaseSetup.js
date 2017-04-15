@@ -77,6 +77,7 @@ function AddValueToDB() {
 	}
 	else{
 		alert('Username is empty');
+		alert($('#panelButton').attr('class'));
 	}
 	// this calls the function that will show what is in the User table in
 	//the database
