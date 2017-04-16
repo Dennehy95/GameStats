@@ -169,6 +169,25 @@ h1{
 	line-height: 150%; 
 	max-height: 100%;
 }
+
+
+/**********			RocketLeague		**********/
+.performance{
+	height: 30vh;
+}
+.rankings{
+	height: 50vh;
+}
+.offenseStats,
+.supportStats,
+.winStats{
+	height: 100%;
+}
+.statsText{
+	margin: 0;
+}
+
+
 /********************		Jquery Overrides ********************/
 .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-left.ui-btn-b.ui-icon-plus,
 .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-left.ui-btn-b.ui-icon-minus{

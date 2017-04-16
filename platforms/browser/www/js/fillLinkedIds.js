@@ -8,7 +8,7 @@ function fillListOfGames(UserId, Username, System){
 			if(result.rows.length == 1){
 				$('#' + System + UserId).append(
 					"<li>" +
-						"<a class='gameList ui-btn ui-icon-carat-r ui-btn-icon-right' onclick='displayRocketLeague(\"" + Username + "\",\"" + System + "\",\"" + result.rows.item(0).Active + "\")'>Rocket League</a>" +
+						"<a class='gameList ui-btn ui-icon-carat-r ui-btn-icon-right' onclick='displayRocketLeague(\"" + Username + "\",\"" + System + "\")'>Rocket League</a>" +
 					"</li>"
 				).children().last().trigger("create");
 			}
@@ -64,6 +64,7 @@ function updateListOfGames(UserId, Username, System){
 
 	// Callback handler that will be called on success
 	request.done(function (response, textStatus, jqXHR){
+		console.log('updateListOfGames');
 		// Log a message to the console
 		var newStr = response
 		var newStr = newStr.substring(0, newStr.length-1); //Due to having an extra character appended
@@ -79,7 +80,7 @@ function updateListOfGames(UserId, Username, System){
 				function(transaction, result) {
 					if(result.rows.length == 0){
 						console.log('adding');
-						transaction.executeSql('INSERT INTO Rocket_League(PlayerName, System, Active, Score, Ratio, Wins, Goals, Saves, Shots, Mvps, Assists, Mvpratio)VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',[Username, System, 0, 0.0, 0.0, 0, 0, 0, 0, 0, 0, 0.0],nullHandler,errorHandler);
+						transaction.executeSql('INSERT INTO Rocket_League(PlayerName, System, Active, Ratio, Wins, Goals, Saves, Shots, Mvps, Assists, Mvpratio)VALUES (?,?,?,?,?,?,?,?,?,?,?)',[Username, System, 0, 0.0, 0, 0, 0, 0, 0, 0, 0.0],nullHandler,errorHandler);
 					}
 				},errorHandler);
 			},errorHandler,nullHandler);

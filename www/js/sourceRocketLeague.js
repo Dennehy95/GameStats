@@ -47,11 +47,10 @@ function sourceRocketLeague(Username, System){
 		//#var newStr = newStr.substring(0, newStr.length-1); //Due to having an extra character appended
 		
 		db.transaction(function(transaction){
-			console.log('adding');
-			transaction.executeSql('UPDATE Rocket_League SET Active = ?, Score = ?, Ratio = ?, Wins = ?, Goals = ?, Saves = ?, Shots = ?, Mvps = ?, Assists = ?, Mvpratio = ? WHERE PlayerName = ? AND System = ?',[1, performanceArray[0], performanceArray[1], performanceArray[2], performanceArray[3], performanceArray[4], performanceArray[5], performanceArray[6], performanceArray[7], performanceArray[8], Username, System],nullHandler,errorHandler);
+			transaction.executeSql('UPDATE Rocket_League SET Active = ?, Ratio = ?, Wins = ?, Goals = ?, Saves = ?, Shots = ?, Mvps = ?, Assists = ?, Mvpratio = ? WHERE PlayerName = ? AND System = ?',[1, performanceArray[0], performanceArray[1], performanceArray[2], performanceArray[3], performanceArray[4], performanceArray[5], performanceArray[6], performanceArray[7], Username, System],nullHandler,errorHandler);
 		},errorHandler,nullHandler);
+		displayRocketLeague(Username, System, 1)//re draw stats page
 	});
-		displayStatsRocketLeague(Username, System)//re draw stats page
 
 	// Callback handler that will be called on failure
 	request.fail(function (jqXHR, textStatus, errorThrown){
