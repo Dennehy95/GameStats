@@ -32,6 +32,7 @@ function fillListOfGames(UserId, Username, System){
 }
 
 function updateListOfGames(UserId, Username, System){
+	$('#loading-image').show();
 	db = openDatabase(shortName, version, displayName,maxSize);
 	/*$.get("http://www.dennehyobutternug.eu/gameStatsPython/checkGames.py", function(data) {
 		//$("#ajax_results").text(data);
@@ -56,6 +57,12 @@ function updateListOfGames(UserId, Username, System){
 	request = $.ajax({
 		url: "http://www.dennehyobutternug.eu/gameStatsPython/checkGames.py",
 		type: "post",
+		beforeSend: function(){
+			$('.ajax-loader').css("visibility", "visible");
+		},
+		complete: function(){
+			$('.ajax-loader').css("visibility", "hidden");
+		},
 		data: {
 			Username : Username,
 			System : System
