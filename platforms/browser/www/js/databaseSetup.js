@@ -51,9 +51,8 @@ function onBodyLoad(){
 	  // easily from the table.
 		//tx.executeSql('DROP TABLE User');
 		tx.executeSql( 'CREATE TABLE IF NOT EXISTS Users(UserId INTEGER NOT NULL PRIMARY KEY, Username varchar(50) NOT NULL, System varchar(30) NOT NULL)',[],nullHandler,errorHandler);
-		tx.executeSql( 'CREATE TABLE IF NOT EXISTS Rocket_League(PlayerName varchar(50) NOT NULL, System varchar(30), Active INT, Ratio REAL, Wins INT, Goals INT, Saves INT, Shots INT, Mvps INT, Assists INT, Mvpratio REAL)',[],nullHandler,errorHandler);
+		tx.executeSql( 'CREATE TABLE IF NOT EXISTS Rocket_League(PlayerName varchar(50) NOT NULL, System varchar(30), Active INT, Ratio REAL, Wins INT, Goals INT, Saves INT, Shots INT, Mvps INT, Assists INT, Mvpratio REAL, DuelRank varchar(30), DuelDivision varchar(30), DuelRating INT, DuelGames INT, DuelStreak varchar(30), DoublesRank varchar(30), DoublesDivision varchar(30), DoublesRating INT, DoublesGames INT, DoublesStreak varchar(30), StandardRank varchar(30),StandardDivision varchar(30), StandardRating INT, StandardGames INT, StandardStreak varchar(30),SoloStandardRank varchar(30),SoloStandardDivision varchar(30), SoloStandardRating INT, SoloStandardGames INT, SoloStandardStreak varchar(30), Time varchar(30))',[],nullHandler,errorHandler);
 	},errorHandler,successCallBack);
-
 }
 
 

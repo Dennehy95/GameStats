@@ -14,6 +14,7 @@ h1{
   font-family: Simplifica;
   src: local("Simplifica"),
        url(SIMPLIFICATypeface.ttf);
+	   
 }
 /********************		Header		********************/
 .headerHomepage,
@@ -172,19 +173,87 @@ h1{
 
 
 /**********			RocketLeague		**********/
+.getUpdatedStats.ui-btn.ui-btn-right.ui-corner-all{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff670f+0,ff670f+100;Orange+Flat+%231 */
+	background: #ff670f; /* Old browsers */
+	background: -moz-linear-gradient(left,  #ff670f 0%, #ff670f 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left,  #ff670f 0%,#ff670f 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right,  #ff670f 0%,#ff670f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff670f', endColorstr='#ff670f',GradientType=1 ); /* IE6-9 */
+
+	#color: #ffffff;
+	font-size: 3vh;
+	margin: 0;
+	padding: 1vh;
+	text-indent: 0;
+	text-shadow: none;
+
+}
 .performance{
-	height: 30vh;
+	height: 35vh;
+}
+.performanceRatings.ui-grid-b{
+	height: 100%;
 }
 .rankings{
-	height: 50vh;
+	height: 40vh;
 }
 .offenseStats,
 .supportStats,
 .winStats{
+	background-color: #333;
+	border-top: .5vh solid black;
+	color: #24a4f1;
+	font-family: Ubuntu;
+		src: local("ubuntu-font-family-0.83/Ubuntu-M"),
+		url(Ubuntu-M.ttf);
+	font-size: 4vh;
+	height: 33%;
+	text-align: center;
+	text-shadow: none;
+}
+.supportStats.ui-grid-a{
+	text-align: right;
+}
+.statsPageUpdate{
 	height: 100%;
+	color: #FFFFFF;
+	margin: 0;
+}
+.statsPageUpdateText{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,192b49+69,45484d+100 */
+	background: #000000; /* Old browsers */
+	background: -moz-linear-gradient(left,  #000000 0%, #192b49 69%, #45484d 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left,  #000000 0%,#192b49 69%,#45484d 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right,  #000000 0%,#192b49 69%,#45484d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#45484d',GradientType=1 ); /* IE6-9 */
+
+
+
+	font-size: 4vh;
+	height: 100%;
+	line-height: 200%; 
+	max-height: 100%;
+	text-indent: 2%;
 }
 .statsText{
 	margin: 0;
+}
+.statsText.statsValue{
+	color: #fff;
+}
+.statsText.ui-block-b{
+	text-align: left;
+}
+.ui-grid-a>.statsText.ui-block-a{
+	width: 55%;
+}
+.ui-grid-a>.statsText.ui-block-b{
+	width: 45%;
+}
+.update{
+	height: 8vh;
+	position: relative;
 }
 
 

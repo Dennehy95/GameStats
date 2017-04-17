@@ -56,33 +56,54 @@ function displayRocketLeague(Username, System){
 
 function displayStatsRocketLeague(Username, System){
 	//db = openDatabase(shortName, version, displayName,maxSize);
-	console.log('here2');
 	$("#statsPage").html("");
 	displayBasics(Username, System);
 	db.transaction(function(transaction) {
-		transaction.executeSql('SELECT Ratio, Wins, Goals, Saves, Shots, Mvps, Assists, Mvpratio FROM Rocket_League WHERE PlayerName = "'+ Username +'" AND System = "' + System +'";', [],
+		transaction.executeSql('SELECT Ratio, Wins, Goals, Saves, Shots, Mvps, Assists, Mvpratio, Time FROM Rocket_League WHERE PlayerName = "'+ Username +'" AND System = "' + System +'";', [],
 		function(transaction, result) {
 			console.log(result.rows.item(0));
 			$("#statsPage").append(
+				"<div class='update'>" +
+					"<h1 class='statsPageUpdate'>" +
+						"<div class='statsPageUpdateText'>Last Updated: " + result.rows.item(0).Time + "</dic>" +
+						"<a class='getUpdatedStats ui-btn ui-btn-right ui-corner-all' onclick='sourceRocketLeague(\"" + Username + "\",\"" + System + "\")'>Update</a>" +
+					"</h1>" +
+				"</div>" +
+				/*"<div data-role='header'>" +
+					"<h1 class='statsPageUpdate'>Accurate as of: </h1>" +
+					"<a data-role='button' data-icon='refresh' data-iconshadow='false' onclick='' class='ui-btn-right'>Update</a>" +
+				"</div>" +*/
 				"<div class='performance'>" +
-					"<div class='ui-grid-b'>" +
-						"<div class='offenseStats ui-block-a'>" +
-							"<p class='statsText'>Goals: " + result.rows.item(0).Goals + "</p>" +
-							"<p class='statsText'>Shots: " + result.rows.item(0).Shots + "</p>" +
-							"<p class='statsText'>Ratio: " + result.rows.item(0).Ratio + "%</p>" +
+					"<div class='performanceRatings ui-grid-b'>" +
+						"<div class='offenseStats ui-grid-b '>" +
+							"<div class='ui-block-a statsText'>Goals -<br>Shots -</div>" +
+							"<div class='ui-block-b statsText statsValue'>" +result.rows.item(0).Shots + "<br>" + result.rows.item(0).Goals + "</div>" +
+							"<div class='ui-block-c'>" +
+								"<div class='statsText'>Ratio<br></div>" +
+								"<div class='statsText statsValue'>" + result.rows.item(0).Ratio +"%</div>"+
+							"</div>" +
 						"</div>" +
-						"<div class='winStats ui-block-b'>" +
-						
+						"<div class='winStats ui-grid-b'>" +
+							"<div class='ui-block-a statsText'>Wins -<br>MVPs -</div>" +
+							"<div class='ui-block-b statsText statsValue'>" + result.rows.item(0).Wins + "<br>" +result.rows.item(0).Mvps + "</div>" +
+							"<div class='ui-block-c'>" +
+								"<div class='statsText'>Ratio<br></div>" +
+								"<div class='statsText statsValue'>" + result.rows.item(0).Mvpratio +"%</div>"+
+							"</div>" +
 						"</div>" +
-						"<div class='supportStats ui-block-c'>"+
-							
+						"<div class='supportStats ui-grid-a'>"+
+							"<div class='ui-block-a statsText'>Saves - <br>Assists - <br></div>" +
+							"<div class='ui-block-b statsText statsValue'>" + result.rows.item(0).Saves + "<br>" + result.rows.item(0).Assists + "</div>" +
 						"</div>" +
 					"</div>" +
-				"</div>" +
-				"<div class='rankings'>" +
-					"<h1>Rank</h1> " +
 				"</div>"
 			);
+			
+			$("#statsPage").append(
+				"<div class='rankings'>" +
+					
+				"</div>"
+				);
 		},errorHandler);
 	});
 	//$("#statsPage").trigger("create");

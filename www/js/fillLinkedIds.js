@@ -65,6 +65,7 @@ function updateListOfGames(UserId, Username, System){
 	// Callback handler that will be called on success
 	request.done(function (response, textStatus, jqXHR){
 		console.log('updateListOfGames');
+		console.log(response);
 		// Log a message to the console
 		var newStr = response
 		var newStr = newStr.substring(0, newStr.length-1); //Due to having an extra character appended
@@ -75,12 +76,13 @@ function updateListOfGames(UserId, Username, System){
 				"</li>").children().last().trigger("create");
 		}
 		*/
+			console.log('avail');
 			db.transaction(function(transaction){
 				transaction.executeSql('SELECT PlayerName FROM Rocket_League WHERE PlayerName = "' + Username + '" AND System = "' + System + '";', [],
 				function(transaction, result) {
 					if(result.rows.length == 0){
 						console.log('adding');
-						transaction.executeSql('INSERT INTO Rocket_League(PlayerName, System, Active, Ratio, Wins, Goals, Saves, Shots, Mvps, Assists, Mvpratio)VALUES (?,?,?,?,?,?,?,?,?,?,?)',[Username, System, 0, 0.0, 0, 0, 0, 0, 0, 0, 0.0],nullHandler,errorHandler);
+						transaction.executeSql('INSERT INTO Rocket_League(PlayerName, System, Active, Ratio, Wins, Goals, Saves, Shots, Mvps, Assists, Mvpratio, DuelRank, DuelDivision, DuelRating, DuelGames, DuelStreak, DoublesRank, DoublesDivision, DoublesRating, DoublesGames, DoublesStreak, StandardRank, StandardDivision, StandardRating, StandardGames ,StandardStreak, SoloStandardRank, SoloStandardDivision, SoloStandardRating, SoloStandardGames, SoloStandardStreak, Time)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',[Username, System, 0, 0.0, 0, 0, 0, 0, 0, 0, 0.0,'Unranked','No Division',0,0,0,'Unranked','No Division',0,0,0,'Unranked','No Division',0,0,0,'Unranked','No Division',0,0,0,'0000/00/00 00:00'],nullHandler,errorHandler);
 					}
 				},errorHandler);
 			},errorHandler,nullHandler);
