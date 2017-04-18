@@ -161,7 +161,7 @@ function displayStatsRocketLeague(Username, System){
 						"<div class='ui-block-b statsText'>"+ 
 							"<div class='RanksGoldTextRL'>Duel<br></div>" +
 							"<div class='RanksBlueTextRL'>" + result.rows.item(0).DuelRank +"<br></div>" +
-							"<div>" + result.rows.item(0).DuelDivision +"<br></div>" +
+							"<div class='RanksWhiteTextRL'>" + result.rows.item(0).DuelDivision +"<br></div>" +
 						"</div>" +
 						"<div class='ui-block-c statsText'>" +
 							"<div class='RanksBlueTextRL'>Rating<br></div>" +
@@ -178,7 +178,7 @@ function displayStatsRocketLeague(Username, System){
 						"<div class='ui-block-b statsText'>"+ 
 							"<div class='RanksGoldTextRL'>Doubles<br></div>" +
 							"<div class='RanksBlueTextRL'>" + result.rows.item(0).DoublesRank +"<br></div>" +
-							"<div>" + result.rows.item(0).DoublesDivision +"<br></div>" +
+							"<div class='RanksWhiteTextRL'>" + result.rows.item(0).DoublesDivision +"<br></div>" +
 						"</div>" +
 						"<div class='ui-block-c statsText'>" +
 							"<div class='RanksBlueTextRL'>Rating<br></div>" +
@@ -196,7 +196,7 @@ function displayStatsRocketLeague(Username, System){
 						"<div class='ui-block-b statsText'>"+ 
 							"<div class='RanksGoldTextRL'>Standard<br></div>" +
 							"<div class='RanksBlueTextRL'>" + result.rows.item(0).StandardRank +"<br></div>" +
-							"<div>" + result.rows.item(0).StandardDivision +"<br></div>" +
+							"<div class='RanksWhiteTextRL'>" + result.rows.item(0).StandardDivision +"<br></div>" +
 						"</div>" +
 						"<div class='ui-block-c statsText'>" +
 							"<div class='RanksBlueTextRL'>Rating<br></div>" +
@@ -213,7 +213,7 @@ function displayStatsRocketLeague(Username, System){
 						"<div class='ui-block-b statsText'>"+ 
 							"<div class='RanksGoldTextRL'>Solo Standard<br></div>" +
 							"<div class='RanksBlueTextRL'>" + result.rows.item(0).SoloStandardRank +"<br></div>" +
-							"<div>" + result.rows.item(0).SoloStandardDivision +"<br></div>" +
+							"<div class='RanksWhiteTextRL'>" + result.rows.item(0).SoloStandardDivision +"<br></div>" +
 						"</div>" +
 						"<div class='ui-block-c statsText'>" +
 							"<div class='RanksBlueTextRL'>Rating<br></div>" +

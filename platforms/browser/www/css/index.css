@@ -71,6 +71,11 @@ h1{
 .addIdSection{
 	min-height: 20%;
 }
+.gameList.ui-btn.ui-icon-carat-r.ui-btn-icon-right{
+	background-color: #333;
+    color: white;
+	padding: 1.5vh 1vh 1.5vh 3vh;
+}
 .idListview{
 	margin: 0;
 }
@@ -85,8 +90,21 @@ h1{
 	font-size: 3vh;
 	height: 6vh;
 	margin: 0;
-	
-	
+}
+h3.usernameListTitle.psn > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-left.ui-btn-b.ui-icon-plus,
+h3.usernameListTitle.psn > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-left.ui-btn-b.ui-icon-minus{
+	background-color: #2e4aa9;
+	border:0 ;
+}
+h3.usernameListTitle.steam > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-left.ui-btn-b.ui-icon-plus,
+h3.usernameListTitle.steam > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-left.ui-btn-b.ui-icon-minus{
+	background-color: #5bacc7;
+	border:0 ;
+}
+h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-left.ui-btn-b.ui-icon-plus,
+h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-left.ui-btn-b.ui-icon-minus{
+	background-color: #3aa737;
+	border:0 ;
 }
 .systemSection{
 	#min-height: 20%;
@@ -237,28 +255,35 @@ h1{
 }
 .RanksRL.ui-grid-c{
 	background-color: #333;
-	border-top: .3vh solid rgb(46, 97, 99);
+	border-top: .4vh solid #000;
 	color: #fff;
 	font-size: 3vh;
 	text-align: center;
 }
 .RanksBlueTextRL{
 	color: #24a4f1;
+    text-align: center;
 }
 .RanksGreenTextRL{
 	color: #00ff16;
+    text-align: center;
 }
 .RanksGoldTextRL{
 	color: #fbee3c;
+	text-align: center;
 }
 .RanksRedTextRL{
 	color: #fb1413;
+	text-align: center;
+}
+.RanksWhiteTextRL{
+	text-align: center;
 }
 .offenseStats,
 .supportStats,
 .winStats{
 	background-color: #333;
-	border-top: .3vh solid rgb(46, 97, 99);
+	border-top: .3vh solid #000;
 	color: #24a4f1;
 	font-size: 4vh;
 	height: 33%;

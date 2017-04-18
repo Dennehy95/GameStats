@@ -178,7 +178,7 @@ function getLinkedIds() {
 						var row = result.rows.item(i);
 						$("#linkedPSN").append(
 							"<div data-theme='b' data-role='collapsible'>" +
-								"<h3 class='usernameListTitle'>" +
+								"<h3 class='usernameListTitle psn'>" +
 									"<div class='usernameList'>" + row.Username + "</div>" +
 								"</h3>" +
 								"<ul id='psn" + row.UserId + "'data-role='listview'>"
@@ -218,7 +218,7 @@ function getLinkedIds() {
 						var row = result.rows.item(i);
 						$("#linkedSteam").append(
 							"<div data-theme='b' data-role='collapsible' >" +
-								"<h3 class='usernameListTitle'>" +
+								"<h3 class='usernameListTitle steam'>" +
 									"<div class='usernameList'>" + row.Username + "</div>" +
 								"</h3>" +
 								"<ul id='steam" + row.UserId + "'data-role='listview'>"
@@ -254,7 +254,7 @@ function getLinkedIds() {
 						var row = result.rows.item(i);
 						$("#linkedXbox").append(
 							"<div data-theme='b' data-role='collapsible' >" +
-								"<h3 class='usernameListTitle'>" +
+								"<h3 class='usernameListTitle xbox'>" +
 									"<div class='usernameList'>" + row.Username + "</div>" +
 								"</h3>" +
 								"<ul id='xbox" + row.UserId + "'data-role='listview'>"
