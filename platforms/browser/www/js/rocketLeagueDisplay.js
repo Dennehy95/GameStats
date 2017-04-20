@@ -158,7 +158,7 @@ function displayStatsRocketLeague(Username, System){
 			$("#statsPage").append(
 				"<div class='rankings'>" +
 					"<div class='RanksRL ui-grid-c'>" +
-						"<div class='ui-block-a statsText'><img class='RankImageRL' src='../img/" + result.rows.item(0).DuelRank +".png'</img></div>" +
+						"<div class='ui-block-a statsText'><img class='RankImageRL' src='img/" + result.rows.item(0).DuelRank +".png'</img></div>" +
 						"<div class='ui-block-b statsText'>"+ 
 							"<div class='RanksGoldTextRL'>Duel<br></div>" +
 							"<div class='RanksBlueTextRL'>" + result.rows.item(0).DuelRank +"<br></div>" +
@@ -175,7 +175,7 @@ function displayStatsRocketLeague(Username, System){
 						"</div>" +
 					"</div>" +
 					"<div class='RanksRL ui-grid-c'>" +
-						"<div class='ui-block-a statsText'><img class='RankImageRL' src='../img/" + result.rows.item(0).DoublesRank +".png'</img></div>" +		
+						"<div class='ui-block-a statsText'><img class='RankImageRL' src='img/" + result.rows.item(0).DoublesRank +".png'</img></div>" +
 						"<div class='ui-block-b statsText'>"+ 
 							"<div class='RanksGoldTextRL'>Doubles<br></div>" +
 							"<div class='RanksBlueTextRL'>" + result.rows.item(0).DoublesRank +"<br></div>" +
@@ -193,7 +193,7 @@ function displayStatsRocketLeague(Username, System){
 						//result.rows.item(0).DoublesGames + "<br>" + DoublesStreak +"</div>" +
 					"</div>" +
 					"<div class='RanksRL ui-grid-c'>" +
-						"<div class='ui-block-a statsText'><img class='RankImageRL' src='../img/" + result.rows.item(0).StandardRank +".png'</img></div>" +
+						"<div class='ui-block-a statsText'><img class='RankImageRL' src='img/" + result.rows.item(0).StandardRank +".png'</img></div>" +
 						"<div class='ui-block-b statsText'>"+ 
 							"<div class='RanksGoldTextRL'>Standard<br></div>" +
 							"<div class='RanksBlueTextRL'>" + result.rows.item(0).StandardRank +"<br></div>" +
@@ -210,7 +210,7 @@ function displayStatsRocketLeague(Username, System){
 						"</div>" +
 					"</div>" +
 					"<div class='RanksRL ui-grid-c'>" +
-						"<div class='ui-block-a statsText'><img class='RankImageRL' src='../img/" + result.rows.item(0).SoloStandardRank +".png'</img></div>" +
+						"<div class='ui-block-a statsText'><img class='RankImageRL' src='img/" + result.rows.item(0).SoloStandardRank +".png'</img></div>" +
 						"<div class='ui-block-b statsText'>"+ 
 							"<div class='RanksGoldTextRL'>Solo Standard<br></div>" +
 							"<div class='RanksBlueTextRL'>" + result.rows.item(0).SoloStandardRank +"<br></div>" +
