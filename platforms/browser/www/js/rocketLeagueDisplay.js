@@ -57,6 +57,7 @@ function displayRocketLeague(Username, System){
 function displayStatsRocketLeague(Username, System){
 	//db = openDatabase(shortName, version, displayName,maxSize);
 	$("#statsPage").html("");
+	$("#statsPageTitle").html("");
 	displayBasics(Username, System);
 	db.transaction(function(transaction) {
 		transaction.executeSql('SELECT Ratio, Wins, Goals, Saves, Shots, Mvps, Assists, Mvpratio, Time FROM Rocket_League WHERE PlayerName = "'+ Username +'" AND System = "' + System +'";', [],

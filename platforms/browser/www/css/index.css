@@ -41,6 +41,7 @@ h1{
 	margin: 0 auto;
 }
 
+#.ui-controlgroup-horizontal .ui-controlgroup-controls .ui-radio, float remove
 /********************		Header		********************/
 .headerHomepage,
 .headerStatsPage{
@@ -63,18 +64,27 @@ h1{
 /********************		Content		********************/
 /**********			Homepage		**********/
 #homePage{
-	background-color: #FFFFFF;
+	background-color: #333;
 	height: calc(100% - 44px);
 	position: inherit;
 	width: 100%;
 }
+#Username{
+	font-size: 3vh;
+}
 .addIdSection{
+	background-color: #333;
 	min-height: 20%;
 }
 .gameList.ui-btn.ui-icon-carat-r.ui-btn-icon-right{
 	background-color: #333;
+	border: none;
     color: white;
+	font-family: Ubuntu;
+		src: local("ubuntu-font-family-0.83/Ubuntu-M"),
+		url(Ubuntu-M.ttf);
 	padding: 1.5vh 1vh 1.5vh 3vh;
+	text-shadow: none;
 }
 .idListview{
 	margin: 0;
@@ -98,7 +108,7 @@ h3.usernameListTitle.psn > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-lef
 }
 h3.usernameListTitle.steam > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-left.ui-btn-b.ui-icon-plus,
 h3.usernameListTitle.steam > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-left.ui-btn-b.ui-icon-minus{
-	background-color: #5bacc7;
+	background-color: #3394b5;
 	border:0 ;
 }
 h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-left.ui-btn-b.ui-icon-plus,
@@ -109,13 +119,18 @@ h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-le
 .systemSection{
 	#min-height: 20%;
 }
-.systemTitle{
+.systemTitle,
+.idTitle{
 	color: #FFFFFF;
 	font-size: 5vh;
 	height: 7vh;
 	line-height: 150%; 
 	margin: 0;
 	text-indent: 5%;
+}
+.idTitle{
+	text-align: center;
+	background-color: #000;
 }
 .systemTitle.psn{
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#47a1ef+0,429aed+14,1283ed+31,268bef+50,2188ef+65,085edd+82 */
@@ -141,6 +156,54 @@ h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-le
 	background: linear-gradient(45deg,  #c2dbab 0%,#71db6b 15%,#86dd39 45%,#69bf28 75%,#74c13a 76%,#69bf28 79%,#76e01f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c2dbab', endColorstr='#76e01f',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
+.psn.ui-btn.ui-corner-all.ui-btn-inherit.ui-radio-on.ui-btn-active{
+	background-color: #2794f3;
+	font-size: 3vh;
+	text-align: center;
+}
+.psn.ui-btn.ui-corner-all.ui-btn-inherit.ui-radio-off{
+	font-size: 3vh;
+	text-align: center;
+}
+.steam.ui-btn.ui-corner-all.ui-btn-inherit.ui-radio-on.ui-btn-active{
+	background-color: #27bdf3;
+	font-size: 3vh;
+	text-align: center;
+}
+.steam.ui-btn.ui-corner-all.ui-btn-inherit.ui-radio-off{
+	font-size: 3vh;
+	text-align: center;
+}
+.xbox.ui-btn.ui-corner-all.ui-btn-inherit.ui-radio-on.ui-btn-active{
+	background-color: #4ac331;
+	font-size: 3vh;
+	text-align: center;
+}
+.xbox.ui-btn.ui-corner-all.ui-btn-inherit.ui-radio-off{
+	font-size: 3vh;
+	text-align: center;
+}
+.ui-block-a.systems,
+.ui-block-b.systems,
+.ui-block-c.systems{
+	width: 33%;
+}
+.ui-btn.ui-input-btn.ui-corner-all.ui-shadow{
+	font-size: 3vh;
+}
+.ui-input-text.input{
+	font-size: 3vh;
+}
+.ui-radio{
+	float: none !important;
+}
+.ui-grid-b.ui-controlgroup{
+	display: block;
+	margin: 0;
+}
+.ui-grid-b > .ui-controlgroup-controls {
+	display: block;
+}
 .usernameList{
 	font-size: 4vh;
 	height: 100%;
@@ -158,7 +221,11 @@ h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-le
 	width: 100%;
 }
 .gameList{
+	border: none;
 	font-size: 3vh;
+}
+.gamelistview.ui-listview{
+	border: none;
 }
 .getStats{
     margin: 10%;
@@ -255,7 +322,7 @@ h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-le
 }
 .RanksRL.ui-grid-c{
 	background-color: #333;
-	border-top: .4vh solid #000;
+	border-top: .3vh solid #000;
 	color: #fff;
 	font-size: 3vh;
 	text-align: center;
@@ -338,4 +405,6 @@ h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-le
 	height: 7vh;
 	padding: 0;
 }
-
+.ui-collapsible-content.ui-body-inherit{
+	border: none;
+}

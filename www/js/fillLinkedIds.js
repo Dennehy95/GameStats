@@ -27,12 +27,12 @@ function fillListOfGames(UserId, Username, System){
 					"</li>"
 				).children().last().trigger("create");
 			}
+			console.log('done.');
 		},errorHandler);
 	},errorHandler,nullHandler);
 }
 
 function updateListOfGames(UserId, Username, System){
-	$('#loading-image').show();
 	db = openDatabase(shortName, version, displayName,maxSize);
 	/*$.get("http://www.dennehyobutternug.eu/gameStatsPython/checkGames.py", function(data) {
 		//$("#ajax_results").text(data);
@@ -61,6 +61,7 @@ function updateListOfGames(UserId, Username, System){
 			$('.ajax-loader').css("visibility", "visible");
 		},
 		complete: function(){
+			console.log('complete');
 			$('.ajax-loader').css("visibility", "hidden");
 		},
 		data: {
@@ -94,6 +95,7 @@ function updateListOfGames(UserId, Username, System){
 				},errorHandler);
 			},errorHandler,nullHandler);
 		}
+		console.log('done?');
 		fillListOfGames(UserId, Username, System);
 	});
 
@@ -181,7 +183,7 @@ function getLinkedIds() {
 								"<h3 class='usernameListTitle psn'>" +
 									"<div class='usernameList'>" + row.Username + "</div>" +
 								"</h3>" +
-								"<ul id='psn" + row.UserId + "'data-role='listview'>"
+								"<ul id='psn" + row.UserId + "'data-role='listview' class='gamelistview'>"
 						);
 						fillListOfGames(row.UserId, row.Username, "psn");					
 						$("#linkedPSN").append(
@@ -221,7 +223,7 @@ function getLinkedIds() {
 								"<h3 class='usernameListTitle steam'>" +
 									"<div class='usernameList'>" + row.Username + "</div>" +
 								"</h3>" +
-								"<ul id='steam" + row.UserId + "'data-role='listview'>"
+								"<ul id='steam" + row.UserId + "'data-role='listview' class='gamelistview'>"
 						);
 						fillListOfGames(row.UserId, row.Username, "steam");						
 						$("#linkedSteam").append(
@@ -257,7 +259,7 @@ function getLinkedIds() {
 								"<h3 class='usernameListTitle xbox'>" +
 									"<div class='usernameList'>" + row.Username + "</div>" +
 								"</h3>" +
-								"<ul id='xbox" + row.UserId + "'data-role='listview'>"
+								"<ul id='xbox" + row.UserId + "'data-role='listview' class='gamelistview'>"
 						);
 						fillListOfGames(row.UserId, row.Username, "xbox");
 						$("#linkedXbox").append(

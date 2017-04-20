@@ -66,6 +66,9 @@
 			function onlineTest(){
 				getLinkedIds(); //phone runs here
 			}
+			//if ($('input[name=radio-choice-t-6]:checked').is(':checked')) {
+			//	
+			//}
 		</script>
 		<script src="js/jquery-2.1.4.min.js" type="text/javascript"></script>
 		<script src="js/jquery-ui.min.js" type="text/javascript"></script>
@@ -105,14 +108,22 @@
 					</div>
 				</div>
 				<div class='addIdSection'>
+					<h1 class='idTitle'>Add Id</h1>
 					<form>
-						<fieldset data-role="controlgroup" data-theme="b" data-type="horizontal">
-							<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6a" value='psn' checked="checked">
-							<label for="radio-choice-t-6a">PSN</label>
-							<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6b" value='steam'>
-							<label for="radio-choice-t-6b">Steam</label>
-							<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6c" value='xbox'>
-							<label for="radio-choice-t-6c">Xbox</label>
+						<!--data-role="controlgroup" data-theme="b" data-type="horizontal"-->
+						<fieldset class="ui-grid-b" data-role="controlgroup" data-theme="b" data-type="horizontal">
+							<div class="ui-block-a systems">
+								<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6a" value='psn' checked="checked">
+								<label for="radio-choice-t-6a" class='psn'>PSN</label>
+							</div>
+							<div class="ui-block-b systems">
+								<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6b" value='steam'>
+								<label for="radio-choice-t-6b" class='steam'>Steam</label>
+							</div>
+							<div class="ui-block-c systems">
+								<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6c" value='xbox'>
+								<label for="radio-choice-t-6c" class='xbox'>Xbox</label>
+							</div>
 						</fieldset>
 					</form>
 					<input id="Username" type="text" placeholder="Username">
