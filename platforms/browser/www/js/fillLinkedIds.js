@@ -6,29 +6,41 @@ function fillListOfGames(UserId, Username, System){
 		transaction.executeSql('SELECT Active FROM Rocket_League WHERE PlayerName = "' + Username + '" AND System = "' + System + '";', [],
 		function(transaction, result) {
 			if(result.rows.length == 1){
-				$('#' + System + UserId).append(
+				$('#' + System + UserId).prepend(
 					"<li>" +
 						"<a class='gameList ui-btn ui-icon-carat-r ui-btn-icon-right' onclick='displayRocketLeague(\"" + Username + "\",\"" + System + "\")'>Rocket League</a>" +
 					"</li>"
 				).children().last().trigger("create");
 			}
-			var count = $("#" + System + UserId +" li").length;
-			if(count == 0){
-				$('#' + System + UserId).append(
-					"<li>" +
-						"<a class='gameList ui-btn ui-icon-carat-r ui-btn-icon-right' onclick='updateListOfGames(\"" + UserId + "\",\"" + Username +"\",\"" + System + "\")'>Search For Games</a>" +
-					"</li>"
-				).children().last().trigger("create");
-			}
-			else{
-				$('#' + System + UserId).append(
-					"<li>" +
-						"<a class='gameList ui-btn ui-icon-carat-r ui-btn-icon-right' onclick='updateListOfGames(\"" + UserId + "\",\"" + Username +"\",\"" + System + "\")'>Search For More Games</a>" +
-					"</li>"
-				).children().last().trigger("create");
-			}
 			console.log('done.');
 		},errorHandler);
+		
+		transaction.executeSql('SELECT Active FROM Siege WHERE PlayerName = "' + Username + '" AND System = "' + System + '";', [],
+		function(transaction, result) {
+			if(result.rows.length == 1){
+				$('#' + System + UserId).prepend(
+					"<li>" +
+						"<a class='gameList ui-btn ui-icon-carat-r ui-btn-icon-right' onclick='displaySiege(\"" + Username + "\",\"" + System + "\")'>Rainbow Six Siege</a>" +
+					"</li>"
+				).children().last().trigger("create");
+			}
+		},errorHandler);
+		var count = $("#" + System + UserId +" li").length;
+		if(count == 0){
+			$('#' + System + UserId).append(
+				"<li>" +
+					"<a class='gameList ui-btn ui-icon-carat-r ui-btn-icon-right' onclick='updateListOfGames(\"" + UserId + "\",\"" + Username +"\",\"" + System + "\")'>Search For Games</a>" +
+				"</li>"
+			).children().last().trigger("create");
+		}
+		else{
+			$('#' + System + UserId).append(
+				"<li>" +
+					"<a class='gameList ui-btn ui-icon-carat-r ui-btn-icon-right' onclick='updateListOfGames(\"" + UserId + "\",\"" + Username +"\",\"" + System + "\")'>Search For More Games</a>" +
+				"</li>"
+			).children().last().trigger("create");
+		}
+		
 	},errorHandler,nullHandler);
 }
 
@@ -50,6 +62,8 @@ function updateListOfGames(UserId, Username, System){
 			console.log("Data: " + data + "\nStatus: " + status);
 		}
 	});*/
+	
+	//$(urlfetch )
 	var request;
 	if (request) {
 		request.abort();
@@ -72,19 +86,27 @@ function updateListOfGames(UserId, Username, System){
 
 	// Callback handler that will be called on success
 	request.done(function (response, textStatus, jqXHR){
+		
+		str = response;
+		//str = str.replace(/(\r\n|\n|\r)/gm,"");
+		//str = str.replace(/\s\s+/g, '#');
+		console.log(str);
+		
+		var availability = str.split(',');
+		console.log(availability);
+		
 		console.log('updateListOfGames');
-		console.log(response);
 		// Log a message to the console
-		var newStr = response
-		var newStr = newStr.substring(0, newStr.length-1); //Due to having an extra character appended
-		if(newStr == 'Available'){	//So add game
+		var rocketLeagueAvailable = availability[0]
+		var siegeAvailable = availability[1]
+		var siegeAvailable = siegeAvailable.substring(0, siegeAvailable.length-1); //Due to having an extra character appended
+		if(rocketLeagueAvailable == 'Available'){	//So add game
 		/*	$('#' + System + UserId).append(
 				"<li>" +
 					"<a class='ui-btn ui-icon-carat-r ui-btn-icon-right' onclick=''>Rocket League</a>" +
 				"</li>").children().last().trigger("create");
 		}
 		*/
-			console.log('avail');
 			db.transaction(function(transaction){
 				transaction.executeSql('SELECT PlayerName FROM Rocket_League WHERE PlayerName = "' + Username + '" AND System = "' + System + '";', [],
 				function(transaction, result) {
@@ -94,6 +116,20 @@ function updateListOfGames(UserId, Username, System){
 					}
 				},errorHandler);
 			},errorHandler,nullHandler);
+		}
+		if(siegeAvailable == 'Available'){
+			db.transaction(function(transaction){
+				transaction.executeSql('SELECT PlayerName FROM Siege WHERE PlayerName = "' + Username + '" AND System = "' + System + '";', [],
+				function(transaction, result) {
+					if(result.rows.length == 0){
+						console.log('adding');
+						transaction.executeSql('INSERT INTO Siege(PlayerName, System, Active, Time)VALUES (?,?,?,?)',[Username, System, 0,'0000/00/00 00:00'],nullHandler,errorHandler);
+					}
+				},errorHandler);
+			},errorHandler,nullHandler);
+		}
+		else{
+			console.log('nosiege');
 		}
 		console.log('done?');
 		fillListOfGames(UserId, Username, System);

@@ -1,6 +1,6 @@
-function displayBasics(Username, System){
+function displayBasics(Username, System, Game){
 	$("#statsPageTitle").append(
-		"<h1 id='gameTitle' class='headerTitle ui-title' role='heading'>Rocket League</h1>"
+		"<h1 id='gameTitle' class='headerTitle ui-title' role='heading'>" + Game + "</h1>"
 	);
 	if(System == 'psn'){
 		$("#statsPage").append(
@@ -33,7 +33,7 @@ function displayRocketLeague(Username, System){
 		reload    : false
 	});
 	
-	displayBasics(Username, System);
+	displayBasics(Username, System, "Rocket League");
 	
 	db.transaction(function(transaction){
 		transaction.executeSql('SELECT Active FROM Rocket_League WHERE PlayerName = "' + Username + '" AND System = "' + System + '";', [],
@@ -58,7 +58,7 @@ function displayStatsRocketLeague(Username, System){
 	//db = openDatabase(shortName, version, displayName,maxSize);
 	$("#statsPage").html("");
 	$("#statsPageTitle").html("");
-	displayBasics(Username, System);
+	displayBasics(Username, System, "Rocket League");
 	db.transaction(function(transaction) {
 		transaction.executeSql('SELECT Ratio, Wins, Goals, Saves, Shots, Mvps, Assists, Mvpratio, Time FROM Rocket_League WHERE PlayerName = "'+ Username +'" AND System = "' + System +'";', [],
 		function(transaction, result) {
