@@ -41,7 +41,7 @@
 			function onLoad() {
 				document.addEventListener("deviceready", onDeviceReady, false);
 			}
-
+			var activeSystem = 'Home';
 			// Cordova is loaded and it is now safe to make calls Cordova methods
 			//
 			function onDeviceReady() {
@@ -49,22 +49,217 @@
 				onBodyLoad();
 				document.addEventListener("offline", offlineTest, false);
 				document.addEventListener("online", onlineTest, false);
-				 
+				
+				document.addEventListener('backbutton', function(e) {
+					if(activeSystem == 'Home' || activeSystem == 'PSN' || activeSystem == 'Steam' || activeSystem == 'Xbox'){
+						navigator.app.exitApp();
+					}
+					else if(activeSystem == 'InPSN'){
+						goPSN('pop');
+					}
+					else if(activeSystem == 'InSteam'){
+						goSteam('pop');
+					}
+					else if(activeSystem == 'InXbox'){
+						goXbox('pop');
+					}
+				});
+					
+				$("#Page1").swipeleft(function() {
+					goPSN('left');
+				});
+				$("#Page1").swiperight(function() {
+					goXbox('right');
+				});
+				
 				$("#Page2").swiperight(function() {
+					if(activeSystem == 'PSN'){
+						goHome('right');
+					}
+					else if(activeSystem == 'Steam'){
+						goPSN('right');
+					}
+					else if(activeSystem == 'Xbox'){
+						goSteam('right');
+					}
+				});
+				$("#Page2").swipeleft(function() {
+					if(activeSystem == 'PSN'){
+						goSteam('left');
+					}
+					else if(activeSystem == 'Steam'){
+						goXbox('left');
+					}
+					else if(activeSystem == 'Xbox'){
+						goHome('left');
+					}
+				});
+				$('#psnAddForm').on('submit', function(e) {
+					e.preventDefault();
+					AddValueToDB('psn');
+					$('#psnAddID').popup('close'); 
+				});
+				$('#steamAddForm').on('submit', function(e) {
+					e.preventDefault();
+					AddValueToDB('steam');
+					$('#steamAddID').popup('close'); 
+				});
+				$('#xboxAddForm').on('submit', function(e) {
+					e.preventDefault();
+					AddValueToDB('xbox');
+					$('#xboxAddID').popup('close'); 
+				});
+				console.log('getting')
+				getLinkedIds(); //Remove after testing. Only use in browser
+			}
+			function goPSN(direction){
+				if(direction == 'left'){
+					$.mobile.pageContainer.pagecontainer('change', '#Page2', {
+						reverse: false,
+						transition: 'slide',
+						reload    : false
+					});
+					activeSystem = 'PSN';
+					console.log('going psn alter');
+					$(".systemSection.psn").css("display", "block");
+					$(".systemSection.steam").css("display", "none");
+					$(".systemSection.xbox").css({"display": "none"});
+				}
+				else if(direction == 'right'){
+					$.mobile.pageContainer.pagecontainer('change', '#Page2', {
+						reverse: true,
+						transition: 'slide',
+						reload    : false
+					});
+					activeSystem = 'PSN';
+					console.log('going PSN');
+					$(".systemSection.psn").css("display", "block");
+					$(".systemSection.steam").css("display", "none");
+					$(".systemSection.xbox").css("display", "none");
+				}
+				else{
+					$.mobile.pageContainer.pagecontainer('change', '#Page2', {
+						reverse: false,
+						transition: 'pop',
+						reload    : false
+					});
+					activeSystem = 'PSN';
+					console.log('going psn');
+					$(".systemSection.psn").css("display", "block");
+					$(".systemSection.steam").css("display", "none");
+					$(".systemSection.xbox").css("display", "none");
+				}
+			}
+			function goSteam(direction){
+				if(direction == 'left'){
+					$.mobile.pageContainer.pagecontainer('change', '#Page2', {
+						reverse: true,
+						transition: 'slide',
+						reload    : false
+					});
+					activeSystem = 'Steam';
+					console.log('going Steam');
+					$(".systemSection.psn").css("display", "none");
+					$(".systemSection.steam").css("display", "block");
+					$(".systemSection.xbox").css("display", "none");
+				}
+				else if(direction == 'right'){
+					$.mobile.pageContainer.pagecontainer('change', '#Page2', {
+						reverse: true,
+						transition: 'slide',
+						reload    : false
+					});
+					activeSystem = 'Steam';
+					console.log('going steam');
+					$(".systemSection.psn").css("display", "none");
+					$(".systemSection.steam").css("display", "block");
+					$(".systemSection.xbox").css("display", "none");
+				}
+				else{
+					$.mobile.pageContainer.pagecontainer('change', '#Page2', {
+						reverse: false,
+						transition: 'pop',
+						reload    : false
+					});
+					activeSystem = 'Steam';
+					console.log('going Steam');
+					$(".systemSection.psn").css("display", "none");
+					$(".systemSection.steam").css("display", "block");
+					$(".systemSection.xbox").css("display", "none");
+				}
+			}
+			function goXbox(direction){
+				if(direction == 'left'){
+					$.mobile.pageContainer.pagecontainer('change', '#Page2', {
+						reverse: true,
+						transition: 'slide',
+						reload    : false
+					});
+					activeSystem = 'Xbox';
+					console.log('going Xbox');
+					$(".systemSection.psn").css("display", "none");
+					$(".systemSection.steam").css("display", "none");
+					$(".systemSection.xbox").css("display", "block");
+				}
+				else if(direction == 'right'){
+					$.mobile.pageContainer.pagecontainer('change', '#Page2', {
+						reverse: true,
+						transition: 'slide',
+						reload    : false
+					});
+					activeSystem = 'Xbox';
+					console.log('going xbox');
+					$(".systemSection.psn").css("display", "none");
+					$(".systemSection.steam").css("display", "none");
+					$(".systemSection.xbox").css("display", "block");
+				}
+				else{
+					$.mobile.pageContainer.pagecontainer('change', '#Page2', {
+						reverse: false,
+						transition: 'slide',
+						reload    : false
+					});
+					activeSystem = 'Xbox';
+					console.log('going xbox');
+					$(".systemSection.psn").css("display", "none");
+					$(".systemSection.steam").css("display", "none");
+					$(".systemSection.xbox").css("display", "block");
+				}
+			}
+			function goHome(direction){
+				if(direction == 'left'){
+					$.mobile.pageContainer.pagecontainer('change', '#Page1', {
+						reverse: false,
+						transition: 'slide',
+						reload    : false
+					});
+					activeSystem = 'Home';
+					console.log('going home');
+					$(".systemSection.psn").css("display", "none");
+					$(".systemSection.steam").css("display", "none");
+					$(".systemSection.xbox").css("display", "block");
+				}
+				else if(direction == 'right'){
 					$.mobile.pageContainer.pagecontainer('change', '#Page1', {
 						reverse: true,
 						transition: 'slide',
 						reload    : false
 					});
-				});
-				console.log('getting')
-				getLinkedIds(); //Remove after testing. Only use in browser
+					activeSystem = 'Home';
+					console.log('going home');
+					$(".systemSection.psn").css("display", "block");
+					$(".systemSection.steam").css("display", "none");
+					$(".systemSection.xbox").css("display", "none");
+				}
 			}
 			function offlineTest(){
 				alert('You have no network connection');
 			}
 			function onlineTest(){
 				getLinkedIds(); //phone runs here
+			}
+			function test(){
+				console.log('moo');
 			}
 			//if ($('input[name=radio-choice-t-6]:checked').is(':checked')) {
 			//	
@@ -83,9 +278,80 @@
 	<body onload="onLoad()">
 		<div data-role="page" id="Page1">
 			<div data-role="header" data-theme="b" class='headerHomepage'>
-				<h1 class='headerTitle'>Home</h1>
+				<h1 class='headerTitle'>Game Stats</h1>
 			</div>
 			<div id='homePage'>
+				<div class='infoSection'>
+					<!--<div id='appDescription'>Welcome to game Stats <br>
+						This app lets you link multiple gaming Id's from multiple platforms to allow quick and easy tracking of you and your friends stats. The list of games and platforms will be continously expanded so if you have a game you want to have included throw it in a review and we will try to get it in.
+					</div>-->
+				</div>
+				<div class='systemSection'>
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+							<h1 class='systemTitle xbox'>
+								<div class="ui-grid-a">
+									<div class="ui-block-a" onclick="goXbox('right')" style="width: 40%;text-align: left;">
+										<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute" transform="translate(-20), scale(-1, 1)">
+										  <path stroke="#000" stroke-width="50" fill="none" stroke-opacity="0.4"
+												d="M200 350 A 100 100 0 0 1 200 150
+												   M200 150 200 125 225 150 200 175Z"/>
+										</svg>
+									</div>
+									<div class="ui-block-a" onclick="goXbox('right')" style="width: 60%;text-align: right;">
+										<div>Xbox</div>
+									</div>
+								</div>
+							</h1>
+						</div>
+						<div class="ui-block-b">
+							<h1 class='systemTitle psn'>
+								<div class="ui-grid-a">
+									<div class="ui-block-a" onclick="goPSN('left')" style="width: 60%;text-align: right;">
+										<div>PSN</div>
+									</div>
+									<div class="ui-block-b" onclick="goPSN('left')" style="width: 40%;text-align: center;">
+										<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute">
+											<path stroke="#000" stroke-width="50" fill="none" stroke-opacity="0.4"
+												d="M200 350 A 100 100 0 0 1 200 150
+												M200 150 200 125 225 150 200 175Z"/>
+										</svg>
+									</div>
+								</div>
+							</h1>
+						</div>
+					</div><!-- /grid-a -->
+				</div>
+				<div class='systemSection'>
+					<h1 class='systemTitle availablePlatforms'>Available Platforms</h1>
+					<div id="linkedPlatforms" class='idListview'>
+						<ul class='homepageList'>
+							<li>Playstation Network</li>
+							<li>Steam</li>
+							<li>Xbox Live</li>
+						</ul>
+					</div>
+				</div>
+				<div class='systemSection'>
+					<h1 class='systemTitle availableGames'>Available Games</h1>
+					<div id="linkedGames" class='idListview'>
+						<ul class='homepageList'>
+							<li>Rocket League</li>
+							<li>Rainbow Six Siege</li>
+						</ul>
+					</div>
+				</div>
+				<div class='systemSection'>
+					<h1 class='systemTitle availableGames'>Upcoming Additions</h1>
+					<div id="linkedUpcoming" class='idListview'>
+						<ul class='homepageList'>
+							<li>UPlay Platform</li>
+							<li>CS:GO</li>
+							<li>Halo Series</li>
+						</ul>
+					</div>
+				</div>
+			<!--
 				<div class='systemSection'>
 					<h1 class='systemTitle psn'>PSN Ids </h1>
 					<div id="linkedPSN" class='idListview' data-role="collapsible-set">
@@ -110,7 +376,6 @@
 				<div class='addIdSection'>
 					<h1 class='idTitle'>Add Id</h1>
 					<form>
-						<!--data-role="controlgroup" data-theme="b" data-type="horizontal"-->
 						<fieldset class="ui-grid-b" data-role="controlgroup" data-theme="b" data-type="horizontal">
 							<div class="ui-block-a systems">
 								<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6a" value='psn' checked="checked">
@@ -129,10 +394,214 @@
 					<input id="Username" type="text" placeholder="Username">
 					<input type="button" value="Add record" onClick="AddValueToDB()">
 				</div>
+				-->
 			</div>
 		</div>
 		
 		<div data-role="page" id="Page2">
+			<div class='systemSection psn'>
+				<h1 class='systemTitle psn'>Playstation Network </h1>
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<h1 class='systemTitle home'>
+							<div class="ui-grid-a">
+								<div class="ui-block-a" onclick="goHome('right')" style="width: 40%;text-align: left;">
+									<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute" transform="translate(-20), scale(-1, 1)">
+									  <path stroke="#000" stroke-width="50" fill="none" stroke-opacity="0.4"
+											d="M200 350 A 100 100 0 0 1 200 150
+											   M200 150 200 125 225 150 200 175Z"/>
+									</svg>
+								</div>
+								<div class="ui-block-a" onclick="goHome('right')" style="width: 60%;text-align: right;">
+									<div>Home</div>
+								</div>
+							</div>
+						</h1>
+					</div>
+					<div class="ui-block-b">
+						<h1 class='systemTitle steam'>
+							<div class="ui-grid-a">
+								<div class="ui-block-a" onclick="goSteam('left')" style="width: 60%;text-align: right;">
+									<div>Steam</div>
+								</div>
+								<div class="ui-block-b" onclick="goSteam('left')" style="width: 40%;text-align: center;">
+									<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute">
+										<path stroke="#000" stroke-width="50" fill="none" stroke-opacity="0.4"
+											d="M200 350 A 100 100 0 0 1 200 150
+											M200 150 200 125 225 150 200 175Z"/>
+									</svg>
+								</div>
+							</div>
+						</h1>
+					</div>
+				</div><!-- /grid-a -->
+				<div class="ui-grid-a" style="background-color: #5f4e4e">
+					<div class="ui-block-a">
+						<a href="#psnAddID" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a alterIdButton add" data-transition="pop">Add Id</a>
+						<div data-role="popup" id="psnAddID" data-theme="a" data-overlay-theme="b" class="ui-corner-all">
+							<form id="psnAddForm" action="">
+								<div style="padding:10px 20px;">
+									<input type="text" name="user" id="psnId" value="" placeholder="PSN Id" style="font-size: 3vh" required data-theme="a">
+									<button type="submit" style="font-size: 3vh" class="ui-btn ui-corner-all ui-shadow ui-btn-b">Link Id</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="ui-block-b">
+						<a href="#psnRemoveID" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a alterIdButton remove" data-transition="pop">Remove Id</a>
+						<div data-role="popup" id="psnRemoveID" data-theme="a" data-overlay-theme="b" class="ui-corner-all">
+							<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+						</div>
+					</div>
+				</div>
+				<div id="linkedPSN" class='idListview' data-role="collapsible-set">
+					<div data-theme='b' data-role='collapsible'>
+						
+					</div>
+				</div>
+			</div>
+			<div class='systemSection steam'>
+				<h1 class='systemTitle steam'>Steam</h1>
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<h1 class='systemTitle psn'>
+							<div class="ui-grid-a">
+								<div class="ui-block-a" onclick="goPSN('right')" style="width: 40%;text-align: left;">
+									<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute" transform="translate(-20), scale(-1, 1)">
+									  <path stroke="#000" stroke-width="50" fill="none" stroke-opacity="0.4"
+											d="M200 350 A 100 100 0 0 1 200 150
+											   M200 150 200 125 225 150 200 175Z"/>
+									</svg>
+								</div>
+								<div class="ui-block-a" onclick="goPSN('right')" style="width: 60%;text-align: right;">
+									<div>PSN</div>
+								</div>
+							</div>
+						</h1>
+					</div>
+					<div class="ui-block-b">
+						<h1 class='systemTitle xbox'>
+							<div class="ui-grid-a">
+								<div class="ui-block-a" onclick="goXbox('left')" style="width: 60%;text-align: right;">
+									<div>Xbox</div>
+								</div>
+								<div class="ui-block-b" onclick="goXbox('left')" style="width: 40%;text-align: center;">
+									<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute">
+										<path stroke="#000" stroke-width="50" fill="none" stroke-opacity="0.4"
+											d="M200 350 A 100 100 0 0 1 200 150
+											M200 150 200 125 225 150 200 175Z"/>
+									</svg>
+								</div>
+							</div>
+						</h1>
+					</div>
+				</div><!-- /grid-a -->
+				<div class="ui-grid-a" style="background-color: #5f4e4e">
+					<div class="ui-block-a">
+						<a href="#steamAddID" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a alterIdButton add" data-transition="pop">Add Id</a>
+						<div data-role="popup" id="steamAddID" data-theme="a" data-overlay-theme="b" class="ui-corner-all">
+							<form id="steamAddForm" action="">
+								<div style="padding:10px 20px;">
+									<input type="text" name="user" id="steamID" value="" placeholder="Steam Id" style="font-size: 3vh" required data-theme="a">
+									<input type="text" name="user" id="steamName" value="" placeholder="Steam Name" style="font-size: 3vh" required data-theme="a">
+									<button type="submit" style="font-size: 3vh" class="ui-btn ui-corner-all ui-shadow ui-btn-b">Link Id</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="ui-block-b">
+						<a href="#steamRemoveID" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a alterIdButton remove" data-transition="pop">Remove Id</a>
+						<div data-role="popup" id="steamRemoveID" data-theme="a" data-overlay-theme="b" class="ui-corner-all">
+							<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+						</div>
+					</div>
+				</div>
+				<div id="linkedSteam" class='idListview'>
+					
+				</div>
+			</div>
+			<div class='systemSection xbox'>
+				<h1 class='systemTitle xbox'>Xbox Live</h1>
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<h1 class='systemTitle steam'>
+							<div class="ui-grid-a">
+								<div class="ui-block-a" onclick="goSteam('right')" style="width: 40%;text-align: left;">
+									<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute" transform="translate(-20), scale(-1, 1)">
+									  <path stroke="#000" stroke-width="50" fill="none" stroke-opacity="0.4"
+											d="M200 350 A 100 100 0 0 1 200 150
+											   M200 150 200 125 225 150 200 175Z"/>
+									</svg>
+								</div>
+								<div class="ui-block-a" onclick="goSteam('right')" style="width: 60%;text-align: right;">
+									<div>Steam</div>
+								</div>
+							</div>
+						</h1>
+					</div>
+					<div class="ui-block-b">
+						<h1 class='systemTitle home'>
+							<div class="ui-grid-a">
+								<div class="ui-block-a" onclick="goHome('left')" style="width: 60%;text-align: right;">
+									<div>Home</div>
+								</div>
+								<div class="ui-block-b" onclick="goHome('left')" style="width: 40%;text-align: center;">
+									<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute">
+										<path stroke="#000" stroke-width="50" fill="none" stroke-opacity="0.4"
+											d="M200 350 A 100 100 0 0 1 200 150
+											M200 150 200 125 225 150 200 175Z"/>
+									</svg>
+								</div>
+							</div>
+						</h1>
+					</div>
+				</div><!-- /grid-a -->
+				<div class="ui-grid-a" style="background-color: #5f4e4e">
+					<div class="ui-block-a">
+						<a href="#xboxAddID" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a alterIdButton add" data-transition="pop">Add Gamertag</a>
+						<div data-role="popup" id="xboxAddID" data-theme="a" data-overlay-theme="b" class="ui-corner-all">
+							<form id="xboxAddForm" action="">
+								<div style="padding:10px 20px;">
+									<input type="text" name="user" id="xboxId" value="" placeholder="Gamertag" style="font-size: 3vh"required data-theme="a">
+									<button type="submit" style="font-size: 3vh" class="ui-btn ui-corner-all ui-shadow ui-btn-b">Link Gamertag</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="ui-block-b">
+						<a href="#psnRemoveID" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a alterIdButton remove" data-transition="pop">Remove Gamertag</a>
+						<div data-role="popup" id="psnRemoveID" data-theme="a" data-overlay-theme="b" class="ui-corner-all">
+							<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+						</div>
+					</div>
+				</div>
+				<div id="linkedXbox" class='idListview' data-role="collapsible-set">
+					
+				</div>
+			</div>
+			<!--<div class='addIdSection'>
+				<h1 class='idTitle'>Add Id</h1>
+				<form>
+					<fieldset class="ui-grid-b" data-role="controlgroup" data-theme="b" data-type="horizontal">
+						<div class="ui-block-a systems">
+							<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6a" value='psn' checked="checked">
+							<label for="radio-choice-t-6a" class='psn'>PSN</label>
+						</div>
+						<div class="ui-block-b systems">
+							<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6b" value='steam'>
+							<label for="radio-choice-t-6b" class='steam'>Steam</label>
+						</div>
+						<div class="ui-block-c systems">
+							<input type="radio" name="radio-choice-t-6" id="radio-choice-t-6c" value='xbox'>
+							<label for="radio-choice-t-6c" class='xbox'>Xbox</label>
+						</div>
+					</fieldset>
+				</form>
+				<input id="Username" type="text" placeholder="Username">
+				<input type="button" value="Add record" onClick="AddValueToDB()">
+			</div>-->
+		</div>
+		<div data-role="page" id="Page3">
 			<div data-role="header" data-theme="b" class='headerStatsPage'>
 				<a href="#Page1" class='homeIcon' data-transition="slide" data-direction="reverse" data-role="button" data-icon="home"></a>
 				<div id='statsPageTitle'>
@@ -140,7 +609,42 @@
 				</div>
 			</div>
 			<div id='statsPage'>
-
+				<div class='systemSection'>
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+							<!--<h1 class='gameTitle xbox'>
+								<div class="ui-grid-a">
+									<div class="ui-block-a" onclick="goXbox('right')" style="width: 40%;text-align: left;">
+										<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute" transform="translate(-20), scale(-1, 1)">
+										  <path stroke="#000" stroke-width="50" fill="none" stroke-opacity="0.4"
+												d="M200 350 A 100 100 0 0 1 200 150
+												   M200 150 200 125 225 150 200 175Z"/>
+										</svg>
+									</div>
+									<div class="ui-block-a" onclick="goXbox('right')" style="width: 60%;text-align: right;">
+										<div>Xbox</div>
+									</div>
+								</div>
+							</h1>
+						</div>
+						<div class="ui-block-b">
+							<h1 class='systemTitle psn'>
+								<div class="ui-grid-a">
+									<div class="ui-block-a" onclick="goPSN('left')" style="width: 60%;text-align: right;">
+										<div>PSN</div>
+									</div>
+									<div class="ui-block-b" onclick="goPSN('left')" style="width: 40%;text-align: center;">
+										<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute">
+											<path stroke="#000" stroke-width="50" fill="none" stroke-opacity="0.4"
+												d="M200 350 A 100 100 0 0 1 200 150
+												M200 150 200 125 225 150 200 175Z"/>
+										</svg>
+									</div>
+								</div>
+							</h1>
+						</div>-->
+					</div><!-- /grid-a -->
+				</div>
 			</div>
 		</div>
 		<div class="ajax-loader">
@@ -152,6 +656,7 @@
 		<script type="text/javascript" src="js/checkNetwork.js"></script>
 		<script type="text/javascript" src="js/databaseSetup.js"></script>
 		<script type="text/javascript" src="js/fillLinkedIds.js"></script>
+		<script type="text/javascript" src="js/displayStatsPage.js"></script>
 		<script type="text/javascript" src="js/displayRocketLeague.js"></script>
 		<script type="text/javascript" src="js/displaySiege.js"></script>
 		<script type="text/javascript" src="js/sourceRocketLeague.js"></script>

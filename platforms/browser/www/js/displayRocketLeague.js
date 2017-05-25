@@ -1,32 +1,3 @@
-function displayBasics(Username, System, Game){
-	console.log('basics doing');
-	console.log(Game);
-	$("#statsPageTitle").append(
-		"<h1 id='gameTitle' class='headerTitle ui-title' role='heading'>" + Game + "</h1>"
-	);
-	if(System == 'psn'){
-		$("#statsPage").append(
-			"<h1 class='statsPageUserInfo psn'>" +
-				"<div class='usernameTitle'>" + Username +"</div>" +
-			"</h1>"
-		);
-	}
-	else if(System == 'steam'){
-		$("#statsPage").append(
-			"<h1 class='statsPageUserInfo steam'>" +
-				"<div class='usernameTitle'>" + Username +"</div>" +
-			"</h1>"
-		);
-	}
-	else if(System == 'xbox'){
-		$("#statsPage").append(
-			"<h1 class='statsPageUserInfo xbox'>" +
-				"<div class='usernameTitle'>" + Username +"</div>" +
-			"</h1>"
-		);
-	}
-}
-
 function displayRocketLeague(Username, System){
 	$("#statsPage").html("");
 	$("#statsPageTitle").html("");

@@ -1,5 +1,5 @@
 function fillListOfGames(UserId, Username, System){
-	$("#" + System + UserId).html("");
+	/*$("#" + System + UserId).html("");
 	//Check if User has recorded availability for each game
 	db = openDatabase(shortName, version, displayName,maxSize);
 	db.transaction(function(transaction){
@@ -41,7 +41,7 @@ function fillListOfGames(UserId, Username, System){
 			).children().last().trigger("create");
 		}
 		
-	},errorHandler,nullHandler);
+	},errorHandler,nullHandler);*/
 }
 
 function updateListOfGames(UserId, Username, System){
@@ -204,40 +204,38 @@ function getLinkedIds() {
 		function(transaction, result) {
 			if (result != null && result.rows != null) {
 				if(result.rows.length == 0){
-					$("#linkedPSN").append(
+					/*$("#linkedPSN").append(
 						"<h3 class='noIdsTitle'>" +
-							"<div></div>" +
+							"<div>No Linked Ids</div>" +
 						"</h3>"
-					);
+					);*/
 				}
 				else{
 					for (var i = 0; i < result.rows.length; i++) {
 					
 						var row = result.rows.item(i);
 						$("#linkedPSN").append(
-							"<div data-theme='b' data-role='collapsible'>" +
-								"<h3 class='usernameListTitle psn'>" +
-									"<div class='usernameList'>" + row.Username + "</div>" +
-								"</h3>" +
-								"<ul id='psn" + row.UserId + "'data-role='listview' class='gamelistview'>"
+							"<h3 class='usernameListTitle psn'>" +
+								"<div class='usernameList' onclick='displayStats(\"" + 'psn' + "\",\"" + row.Username + "\")'>" + row.Username + "</div>" +
+							"</h3>"
+							//"<ul id='psn" + row.UserId + "'data-role='listview' class='gamelistview'>"
 						);
-						fillListOfGames(row.UserId, row.Username, "psn");					
-						$("#linkedPSN").append(
-								"</ul>" +
-							"</div>"
-						);
+						//fillListOfGames(row.UserId, row.Username, "psn");					
+						//$("#linkedPSN").append(
+							//"</ul>"
+						//);
 						$("#linkedPSN").trigger("create");
 					}
 				}
 			}
 			else{
-				("#linkedPSN").append(
+				/*("#linkedPSN").append(
 					"<div data-theme='b' data-role='collapsible' >" +
 						"<h3 class='noIdsTitle'>" +
 							"<div></div>" +
 						"</h3>" +
 					"</div>"
-				);
+				);*/
 			}
 		},errorHandler);
 			
@@ -245,37 +243,33 @@ function getLinkedIds() {
 		function(transaction, result) {
 			if (result != null && result.rows != null) {
 				if(result.rows.length == 0){
-					$("#linkedSteam").append(
+					/*$("#linkedSteam").append(
 						"<h3 class='noIdsTitle'>" +
-							"<div></div>" +
+							"<div>No Linked Ids</div>" +
 						"</h3>"
-					);
+					);*/
 				}
 				else{
 					for (var i = 0; i < result.rows.length; i++) {
 						var row = result.rows.item(i);
+						str = row.Username
+						Id = str.substring(0,str.indexOf("/"));
+						Username = str.substring(str.indexOf("/")+1,str.length);
 						$("#linkedSteam").append(
-							"<div data-theme='b' data-role='collapsible' >" +
-								"<h3 class='usernameListTitle steam'>" +
-									"<div class='usernameList'>" + row.Username + "</div>" +
-								"</h3>" +
-								"<ul id='steam" + row.UserId + "'data-role='listview' class='gamelistview'>"
-						);
-						fillListOfGames(row.UserId, row.Username, "steam");						
-						$("#linkedSteam").append(
-								"</ul>" +
-							"</div>"
+							"<h3 class='usernameListTitle steam'>" +
+								"<div class='usernameList' onclick='displayStats(\"" + 'steam' + "\",\"" + row.Username + "\")'>" + Username + "</div>" +
+							"</h3>"
 						);
 						$("#linkedSteam").trigger("create");
 					}
 				}
 			}
 			else{
-				("#linkedSteam").append(
+				/*("#linkedSteam").append(
 					"<h3 class='noIdsTitle'>" +
 						"<div></div>" +
 					"</h3>"
-				);
+				);*/
 			}
 		},errorHandler);
 			
@@ -283,35 +277,33 @@ function getLinkedIds() {
 		function(transaction, result) {
 			if (result != null && result.rows != null) {
 				if(result.rows.length == 0){
-					$("#linkedXbox").append(
+					/*$("#linkedXbox").append(
 						"<h1 class='noIdsTitle'></h1>"
-					);
+					);*/
 				}
 				else{
 					for (var i = 0; i < result.rows.length; i++) {
 						var row = result.rows.item(i);
 						$("#linkedXbox").append(
-							"<div data-theme='b' data-role='collapsible' >" +
-								"<h3 class='usernameListTitle xbox'>" +
-									"<div class='usernameList'>" + row.Username + "</div>" +
-								"</h3>" +
-								"<ul id='xbox" + row.UserId + "'data-role='listview' class='gamelistview'>"
+							"<h3 class='usernameListTitle xbox'>" +
+								"<div class='usernameList' onclick='displayStats(\"" + 'xbox' + "\",\"" + row.Username + "\")'>" + row.Username + "</div>" +
+							"</h3>" +
+							"<ul id='xbox" + row.UserId + "'data-role='listview' class='gamelistview'>"
 						);
-						fillListOfGames(row.UserId, row.Username, "xbox");
+						//fillListOfGames(row.UserId, row.Username, "xbox");
 						$("#linkedXbox").append(
-								"</ul>" +
-							"</div>"
+							"</ul>"
 						);
 						$("#linkedXbox").trigger("create");
 					}
 				}
 			}
 			else{
-				("#linkedXbox").append(
+				/*("#linkedXbox").append(
 					"<h3 class='noIdsTitle'>" +
 						"<div></div>" +
 					"</h3>"
-				);
+				);*/
 			}
 		},errorHandler);
 	},errorHandler,nullHandler);
