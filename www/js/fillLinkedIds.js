@@ -204,13 +204,10 @@ function getLinkedIds() {
 		function(transaction, result) {
 			if (result != null && result.rows != null) {
 				if(result.rows.length == 0){
-					/*$("#linkedPSN").append(
-						"<h3 class='noIdsTitle'>" +
-							"<div>No Linked Ids</div>" +
-						"</h3>"
-					);*/
+					$("#psnRemoveIdButton").attr("onclick","");
 				}
 				else{
+					$("#psnRemoveIdButton").attr("onclick","fillRemoveIdPopup('psn')");
 					for (var i = 0; i < result.rows.length; i++) {
 					
 						var row = result.rows.item(i);
@@ -243,6 +240,7 @@ function getLinkedIds() {
 		function(transaction, result) {
 			if (result != null && result.rows != null) {
 				if(result.rows.length == 0){
+					$("#steamRemoveIdButton").attr("onclick","");
 					/*$("#linkedSteam").append(
 						"<h3 class='noIdsTitle'>" +
 							"<div>No Linked Ids</div>" +
@@ -250,6 +248,7 @@ function getLinkedIds() {
 					);*/
 				}
 				else{
+					$("#steamRemoveIdButton").attr("onclick","fillRemoveIdPopup('steam')");
 					for (var i = 0; i < result.rows.length; i++) {
 						var row = result.rows.item(i);
 						str = row.Username
@@ -277,11 +276,13 @@ function getLinkedIds() {
 		function(transaction, result) {
 			if (result != null && result.rows != null) {
 				if(result.rows.length == 0){
+					$("#xboxRemoveIdButton").attr("onclick","");
 					/*$("#linkedXbox").append(
 						"<h1 class='noIdsTitle'></h1>"
 					);*/
 				}
 				else{
+					$("#xboxRemoveIdButton").attr("onclick","fillRemoveIdPopup('xbox')");
 					for (var i = 0; i < result.rows.length; i++) {
 						var row = result.rows.item(i);
 						$("#linkedXbox").append(

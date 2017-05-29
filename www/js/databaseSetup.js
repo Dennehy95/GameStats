@@ -3,6 +3,8 @@ var shortName = 'GameStatsDB';
 var version = '1.0';
 var displayName = 'GameStatsDB';
 var maxSize = 65535;
+
+var gamesList = ['Rocket_League', 'Siege'];
 // this is called when an error happens in a transaction
 function errorHandler(transaction, error) {
    alert('Error: ' + error.message + ' code: ' + error.code);
@@ -40,6 +42,7 @@ function onBodyLoad(){
 		
 		//tx.executeSql( 'DROP TABLE Users',nullHandler,nullHandler); //******************
 		//tx.executeSql( 'DROP TABLE Rocket_League',nullHandler,nullHandler); //**************
+		//tx.executeSql( 'DROP TABLE Siege',nullHandler,nullHandler); //**************
 		/*76561198073672390 Steam
 		Harmen501 PSN
 		The Wet Gurkin Xbox*/
@@ -54,42 +57,4 @@ function onBodyLoad(){
 		tx.executeSql( 'CREATE TABLE IF NOT EXISTS Rocket_League(PlayerName varchar(50) NOT NULL, System varchar(30), Active INT, Ratio REAL, Wins INT, Goals INT, Saves INT, Shots INT, Mvps INT, Assists INT, Mvpratio REAL, DuelRank varchar(30), DuelDivision varchar(30), DuelRating INT, DuelGames INT, DuelStreak varchar(30), DoublesRank varchar(30), DoublesDivision varchar(30), DoublesRating INT, DoublesGames INT, DoublesStreak varchar(30), StandardRank varchar(30),StandardDivision varchar(30), StandardRating INT, StandardGames INT, StandardStreak varchar(30),SoloStandardRank varchar(30),SoloStandardDivision varchar(30), SoloStandardRating INT, SoloStandardGames INT, SoloStandardStreak varchar(30), Time varchar(30))',[],nullHandler,errorHandler);
 		tx.executeSql( 'CREATE TABLE IF NOT EXISTS Siege(PlayerName varchar(50) NOT NULL, System varchar(30), Active INT, Time varchar(30))',[],nullHandler,errorHandler);
 	},errorHandler,successCallBack);
-}
-
-
-// this is the function that puts values into the database using the
-//values from the text boxes on the screen
-function AddValueToDB(system) {
-	db = openDatabase(shortName, version, displayName,maxSize);
-	if (!window.openDatabase) {
-		alert('Databases are not supported in this browser.');
-		return;
-	}
-	
-	if(system == 'psn'){
-		Username = $('#psnId').val().trim();
-	}
-	else if(system == 'steam'){
-		Username = $('#steamID').val().trim() + "/" + $('#steamName').val().trim();
-	}
-	else if(system =='xbox'){
-		Username = $('#xboxId').val().trim();
-	}
-	db.transaction(function(transaction) {
-		transaction.executeSql('SELECT Username FROM Users WHERE Username = "'+ Username +'" AND System = "' + system + '";', [],
-		function(transaction, result) {
-			if (result.rows.length == 0) {
-				transaction.executeSql('INSERT INTO Users(Username, System)VALUES (?,?)',[Username, system],nullHandler,errorHandler);
-			//transaction.executeSql('INSERT INTO Rocket_League(PlayerName, System, Goals)VALUES (?,?,?)',[$('#Username').val(), $('input[name=radio-choice-t-6]:checked').val(), 786],nullHandler,errorHandler);
-			}
-			else{
-				alert('Id already Linked')
-			}
-		},errorHandler);
-	});
-	// this calls the function that will show what is in the User table in
-	//the database
-	getLinkedIds();
-	return false;
-
 }

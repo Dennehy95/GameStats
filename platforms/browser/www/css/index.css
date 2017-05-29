@@ -2,8 +2,9 @@ html, body {
     height: 100%;
 }
 #Page1,
-#Page2{
-	background-color: #5f4e4e;
+#Page2,
+#Page3{
+	background-color: #333;
 	height: 100%;
 }
 
@@ -53,10 +54,10 @@ h1{
 	padding: 25px 25px 25px 25px;
 }
 .ui-title.headerTitle{
-	font-size: 4vh;
+	font-size: 5vh;
     margin: 0;
 	height: 100%;
-	line-height: 200%; 
+	line-height: 175%; 
     max-height: 100%;
 	padding: 0;
 	text-align: center;
@@ -119,20 +120,10 @@ h1{
 	padding: 0;
 	text-indent: 5%;
 }
-.gameList.ui-btn.ui-icon-carat-r.ui-btn-icon-right{
-	background-color: #333;
-	border: none;
-    color: white;
-	font-family: Ubuntu;
-		src: local("ubuntu-font-family-0.83/Ubuntu-M"),
-		url(Ubuntu-M.ttf);
-	padding: 1.5vh 1vh 1.5vh 3vh;
-	text-shadow: none;
-}
 .idListview{
 	margin: 0;
-	min-height: 80%;
-	background-color: #5f4e4e;
+	min-height: 70%;
+	background-color: #333;
 }
 .noIdsTitle{
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#45484d+0,000000+100;Black+3D+%231 */
@@ -183,8 +174,8 @@ h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-le
 .idTitle{
 	color: #FFFFFF;
 	font-size: 5vh;
-	height: 7vh;
-	line-height: 150%; 
+	height: 8.6vh;
+	line-height: 175%;
 	margin: 0;
 	text-align: center;
 	text-indent: 5%;
@@ -193,16 +184,18 @@ h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-le
 	text-align: center;
 	background-color: #000;
 }
-.systemTitle.availablePlatforms,
-.systemTitle.home,
-.systemTitle.availableGames{
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cb60b3+0,a34486+23,a33481+38,a5518c+48,a5518c+53,bf2896+61,a33481+84,a53182+92,db36a4+100 */
-	background: #cb60b3; /* Old browsers */
-	background: -moz-linear-gradient(-45deg,  #cb60b3 0%, #a34486 23%, #a33481 38%, #a5518c 48%, #a5518c 53%, #bf2896 61%, #a33481 84%, #a53182 92%, #db36a4 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(-45deg,  #cb60b3 0%,#a34486 23%,#a33481 38%,#a5518c 48%,#a5518c 53%,#bf2896 61%,#a33481 84%,#a53182 92%,#db36a4 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(135deg,  #cb60b3 0%,#a34486 23%,#a33481 38%,#a5518c 48%,#a5518c 53%,#bf2896 61%,#a33481 84%,#a53182 92%,#db36a4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cb60b3', endColorstr='#db36a4',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
+.systemTitle.home{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4c4c4c+1,5b5b5b+30,545454+46,545454+60,565656+60,545454+90 */
+	background: rgb(76,76,76); /* Old browsers */
+	background: -moz-linear-gradient(-45deg,  rgba(76,76,76,1) 1%, rgba(91,91,91,1) 30%, rgba(84,84,84,1) 46%, rgba(84,84,84,1) 60%, rgba(86,86,86,1) 60%, rgba(84,84,84,1) 90%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(-45deg,  rgba(76,76,76,1) 1%,rgba(91,91,91,1) 30%,rgba(84,84,84,1) 46%,rgba(84,84,84,1) 60%,rgba(86,86,86,1) 60%,rgba(84,84,84,1) 90%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(135deg,  rgba(76,76,76,1) 1%,rgba(91,91,91,1) 30%,rgba(84,84,84,1) 46%,rgba(84,84,84,1) 60%,rgba(86,86,86,1) 60%,rgba(84,84,84,1) 90%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#545454',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.systemTitle.availableGames,
+.systemTitle.availablePlatforms{
+	background-color: #333;
+	color: #67e2bc;
 }
 .systemTitle.psn{
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#47a1ef+0,429aed+14,1283ed+31,268bef+50,2188ef+65,085edd+82 */
@@ -300,9 +293,33 @@ h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-le
 .usernameListTitle.xbox{
 	background: #73AD21;
 }
+
+
+/**********			System page		**********/
+#psnRemoveID,
+#steamRemoveID,
+#xboxRemoveID{
+	top: -20vh;
+}
+.removeIdList {
+	font-size: 4vh;
+}
+
+h3.popupHeader{
+	background-color: #333333;
+	color: #67e2bc;
+	margin: 0;
+	#padding: 5px 12vh 5px 12vh;
+	padding: 5px 0 5px 0;
+	font-family: "Simplifica", sans-serif;
+	font-size: 6vh;
+	min-width: 40vh;
+	text-shadow: none;
+	text-align: center;
+}
+
 /**********			Stats page		**********/
 #statsPage{
-	background-color: #0F5959;
 	height: calc(100% - 44px);
 	position: inherit;
 	width: 100%;
@@ -313,6 +330,25 @@ h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-le
 }
 .gamelistview.ui-listview{
 	border: none;
+}
+.gameList.ui-btn.ui-icon-carat-r.ui-btn-icon-right{
+	background-color: #333;
+	border: none;
+    color: white;
+	font-family: Ubuntu;
+		src: local("ubuntu-font-family-0.83/Ubuntu-M"),
+		url(Ubuntu-M.ttf);
+	padding: 1.5vh 1vh 1.5vh 3vh;
+	text-shadow: none;
+}
+.gameTitle{
+	color: #67e2bc;
+	font-size: 4vh;
+	height: 8.6vh;
+	line-height: 200%;
+	margin: 0;
+	text-align: center;
+	text-indent: 5%;
 }
 .getStats{
     margin: 10%;
@@ -333,10 +369,45 @@ h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-le
 	font-size: 8vh;
 	height: 10vh;
 }
+.navText.systems,
+.navText.games{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space:nowrap;
+}
+.statsHeaderLeft.ui-block-a{
+	height: 8.6vh;
+	width: 20%;
+}
+.statsHeaderRight.ui-block-b{
+	height: 8.6vh;
+	width: 75%;
+	text-align: center;
+    position: absolute;
+    margin: 0 0 0 20%;
+	max-width: 100%;
+}
+.statsPageNavigationSingle{
+	background-color: #333333;
+}
+.statsPageNavigationMulti{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#333333+1,333333+49,67e2bc+50,333333+51,333333+100 */
+	background: rgb(51,51,51); /* Old browsers */
+	background: -moz-linear-gradient(left,  rgba(51,51,51,1) 1%, rgba(51,51,51,1) 49%, rgba(103,226,188,1) 50%, rgba(51,51,51,1) 51%, rgba(51,51,51,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left,  rgba(51,51,51,1) 1%,rgba(51,51,51,1) 49%,rgba(103,226,188,1) 50%,rgba(51,51,51,1) 51%,rgba(51,51,51,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right,  rgba(51,51,51,1) 1%,rgba(51,51,51,1) 49%,rgba(103,226,188,1) 50%,rgba(51,51,51,1) 51%,rgba(51,51,51,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', endColorstr='#333333',GradientType=1 ); /* IE6-9 */
+}
+.statsPageUpdateGames{
+	background-color: #333;
+	height: 8.6vh;
+	width: 100%;
+}
 .statsPageUserInfo{
 	color: #FFFFFF;
+	font-size: 5vh;
+	height: 8.6vh;
 	margin: 0;
-	text-align: center;
 }
 .statsPageUserInfo.psn{
 	background: #47a1ef; /* Old browsers */
@@ -359,13 +430,27 @@ h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-le
 	background: -webkit-linear-gradient(45deg,  #c2dbab 0%,#71db6b 15%,#86dd39 45%,#69bf28 75%,#74c13a 76%,#69bf28 79%,#76e01f 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(45deg,  #c2dbab 0%,#71db6b 15%,#86dd39 45%,#69bf28 75%,#74c13a 76%,#69bf28 79%,#76e01f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c2dbab', endColorstr='#76e01f',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-	height: 8vh;
+}
+.ui-btn.updateGamesButton{
+	border-radius: 4vh;
+	font-family: Simplifica;
+		src: local("Simplifica"),
+		url(SIMPLIFICATypeface.ttf);
+	font-size: 5vh;
+	height: 8.6vh;
+	margin: 0 0 0 20%;
+	padding: 0;
+	width: 60%;
 }
 .usernameTitle{
 	font-size: 5vh;
 	height: 100%;
-	line-height: 150%; 
+	line-height: 175%; 
 	max-height: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: nowrap;
 }
 
 
@@ -498,4 +583,10 @@ h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-le
 }
 .ui-collapsible-content.ui-body-inherit{
 	border: none;
+}
+.ui-header, .ui-footer{
+	border: none;
+	color: #67e2bc;
+	height: 8.6vh;
+	
 }

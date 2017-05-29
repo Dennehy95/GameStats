@@ -216,7 +216,7 @@
 				else{
 					$.mobile.pageContainer.pagecontainer('change', '#Page2', {
 						reverse: false,
-						transition: 'slide',
+						transition: 'pop',
 						reload    : false
 					});
 					activeSystem = 'Xbox';
@@ -291,15 +291,15 @@
 						<div class="ui-block-a">
 							<h1 class='systemTitle xbox'>
 								<div class="ui-grid-a">
-									<div class="ui-block-a" onclick="goXbox('right')" style="width: 40%;text-align: left;">
-										<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute" transform="translate(-20), scale(-1, 1)">
+									<div class="ui-block-a" onclick="goXbox('right')" style="width: 0%;margin-left: -1vh;text-align: center;">
+										<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute" transform="scale(-1, 1)">
 										  <path stroke="#000" stroke-width="50" fill="none" stroke-opacity="0.4"
 												d="M200 350 A 100 100 0 0 1 200 150
 												   M200 150 200 125 225 150 200 175Z"/>
 										</svg>
 									</div>
-									<div class="ui-block-a" onclick="goXbox('right')" style="width: 60%;text-align: right;">
-										<div>Xbox</div>
+									<div class="ui-block-a" onclick="goXbox('right')" style="margin-left: 20%;text-align: center;width: 80%;">
+										<div class='navText systems'>Xbox</div>
 									</div>
 								</div>
 							</h1>
@@ -307,10 +307,10 @@
 						<div class="ui-block-b">
 							<h1 class='systemTitle psn'>
 								<div class="ui-grid-a">
-									<div class="ui-block-a" onclick="goPSN('left')" style="width: 60%;text-align: right;">
-										<div>PSN</div>
+									<div class="ui-block-a" onclick="goPSN('left')" style="width: 80%;text-align: center;">
+										<div class='navText systems'>PSN</div>
 									</div>
-									<div class="ui-block-b" onclick="goPSN('left')" style="width: 40%;text-align: center;">
+									<div class="ui-block-b" onclick="goPSN('left')" style="width: 0%;text-align: center;">
 										<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute">
 											<path stroke="#000" stroke-width="50" fill="none" stroke-opacity="0.4"
 												d="M200 350 A 100 100 0 0 1 200 150
@@ -405,15 +405,15 @@
 					<div class="ui-block-a">
 						<h1 class='systemTitle home'>
 							<div class="ui-grid-a">
-								<div class="ui-block-a" onclick="goHome('right')" style="width: 40%;text-align: left;">
-									<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute" transform="translate(-20), scale(-1, 1)">
+								<div class="ui-block-a" onclick="goHome('right')" style="width: 0%;margin-left: -1vh;text-align: center;">
+									<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute" transform="scale(-1, 1)">
 									  <path stroke="#000" stroke-width="50" fill="none" stroke-opacity="0.4"
 											d="M200 350 A 100 100 0 0 1 200 150
 											   M200 150 200 125 225 150 200 175Z"/>
 									</svg>
 								</div>
-								<div class="ui-block-a" onclick="goHome('right')" style="width: 60%;text-align: right;">
-									<div>Home</div>
+								<div class="ui-block-a" onclick="goHome('right')" style="margin-left: 20%;text-align: center;width: 80%;">
+									<div class='navText systems'>Home</div>
 								</div>
 							</div>
 						</h1>
@@ -421,10 +421,10 @@
 					<div class="ui-block-b">
 						<h1 class='systemTitle steam'>
 							<div class="ui-grid-a">
-								<div class="ui-block-a" onclick="goSteam('left')" style="width: 60%;text-align: right;">
-									<div>Steam</div>
+								<div class="ui-block-a" onclick="goSteam('left')" style="width: 80%;text-align: center;">
+									<div class='navText systems'>Steam</div>
 								</div>
-								<div class="ui-block-b" onclick="goSteam('left')" style="width: 40%;text-align: center;">
+								<div class="ui-block-b" onclick="goSteam('left')" style="width: 0%;text-align: center;">
 									<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute">
 										<path stroke="#000" stroke-width="50" fill="none" stroke-opacity="0.4"
 											d="M200 350 A 100 100 0 0 1 200 150
@@ -435,7 +435,7 @@
 						</h1>
 					</div>
 				</div><!-- /grid-a -->
-				<div class="ui-grid-a" style="background-color: #5f4e4e">
+				<div class="ui-grid-a" style="background-color: #333">
 					<div class="ui-block-a">
 						<a href="#psnAddID" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a alterIdButton add" data-transition="pop">Add Id</a>
 						<div data-role="popup" id="psnAddID" data-theme="a" data-overlay-theme="b" class="ui-corner-all">
@@ -448,9 +448,11 @@
 						</div>
 					</div>
 					<div class="ui-block-b">
-						<a href="#psnRemoveID" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a alterIdButton remove" data-transition="pop">Remove Id</a>
-						<div data-role="popup" id="psnRemoveID" data-theme="a" data-overlay-theme="b" class="ui-corner-all">
-							<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+						<a id="psnRemoveIdButton" href="#psnRemoveID" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a alterIdButton remove" data-transition="pop">Remove Id</a>
+						<div data-role="popup" id="psnRemoveID" data-transition="flow" data-overlay-theme="a" data-position-to="window" style="background-color: #333; border: none; padding: 0 0 1px 0;">
+							<h3 class='popupHeader'>Remove Id</h3>
+							<ul id='psnRemoveIdList' data-role='listview' data-inset='false'>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -466,15 +468,15 @@
 					<div class="ui-block-a">
 						<h1 class='systemTitle psn'>
 							<div class="ui-grid-a">
-								<div class="ui-block-a" onclick="goPSN('right')" style="width: 40%;text-align: left;">
-									<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute" transform="translate(-20), scale(-1, 1)">
+								<div class="ui-block-a" onclick="goPSN('right')" style="width: 0%;margin-left: -1vh;text-align: center;">
+									<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute" transform="scale(-1, 1)">
 									  <path stroke="#000" stroke-width="50" fill="none" stroke-opacity="0.4"
 											d="M200 350 A 100 100 0 0 1 200 150
 											   M200 150 200 125 225 150 200 175Z"/>
 									</svg>
 								</div>
 								<div class="ui-block-a" onclick="goPSN('right')" style="width: 60%;text-align: right;">
-									<div>PSN</div>
+									<div class='navText systems'>PSN</div>
 								</div>
 							</div>
 						</h1>
@@ -482,10 +484,10 @@
 					<div class="ui-block-b">
 						<h1 class='systemTitle xbox'>
 							<div class="ui-grid-a">
-								<div class="ui-block-a" onclick="goXbox('left')" style="width: 60%;text-align: right;">
-									<div>Xbox</div>
+								<div class="ui-block-a" onclick="goXbox('left')" style="width: 80%;text-align: center;">
+									<div class='navText systems'> Xbox</div>
 								</div>
-								<div class="ui-block-b" onclick="goXbox('left')" style="width: 40%;text-align: center;">
+								<div class="ui-block-b" onclick="goXbox('left')" style="width: 0%;text-align: center;">
 									<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute">
 										<path stroke="#000" stroke-width="50" fill="none" stroke-opacity="0.4"
 											d="M200 350 A 100 100 0 0 1 200 150
@@ -496,7 +498,7 @@
 						</h1>
 					</div>
 				</div><!-- /grid-a -->
-				<div class="ui-grid-a" style="background-color: #5f4e4e">
+				<div class="ui-grid-a" style="background-color: #333">
 					<div class="ui-block-a">
 						<a href="#steamAddID" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a alterIdButton add" data-transition="pop">Add Id</a>
 						<div data-role="popup" id="steamAddID" data-theme="a" data-overlay-theme="b" class="ui-corner-all">
@@ -510,9 +512,11 @@
 						</div>
 					</div>
 					<div class="ui-block-b">
-						<a href="#steamRemoveID" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a alterIdButton remove" data-transition="pop">Remove Id</a>
-						<div data-role="popup" id="steamRemoveID" data-theme="a" data-overlay-theme="b" class="ui-corner-all">
-							<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+						<a id="steamRemoveIdButton" href="#steamRemoveID" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a alterIdButton remove" data-transition="pop">Remove Id</a>
+						<div data-role="popup" id="steamRemoveID" data-transition="flow" data-overlay-theme="a" data-position-to="window" style="background-color: #333; border: none; padding: 0 0 1px 0;">
+							<h3 class='popupHeader'>Remove Id</h3>
+							<ul id='steamRemoveIdList' data-role='listview' data-inset='false'>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -526,15 +530,15 @@
 					<div class="ui-block-a">
 						<h1 class='systemTitle steam'>
 							<div class="ui-grid-a">
-								<div class="ui-block-a" onclick="goSteam('right')" style="width: 40%;text-align: left;">
-									<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute" transform="translate(-20), scale(-1, 1)">
+								<div class="ui-block-a" onclick="goSteam('right')" style="width: 0%;margin-left: -1vh;text-align: center;">
+									<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute" transform="scale(-1, 1)">
 									  <path stroke="#000" stroke-width="50" fill="none" stroke-opacity="0.4"
 											d="M200 350 A 100 100 0 0 1 200 150
 											   M200 150 200 125 225 150 200 175Z"/>
 									</svg>
 								</div>
-								<div class="ui-block-a" onclick="goSteam('right')" style="width: 60%;text-align: right;">
-									<div>Steam</div>
+								<div class="ui-block-a" onclick="goSteam('right')" style="width: 80%;text-align: center;">
+									<div class='navText systems'>Steam</div>
 								</div>
 							</div>
 						</h1>
@@ -542,10 +546,10 @@
 					<div class="ui-block-b">
 						<h1 class='systemTitle home'>
 							<div class="ui-grid-a">
-								<div class="ui-block-a" onclick="goHome('left')" style="width: 60%;text-align: right;">
-									<div>Home</div>
+								<div class="ui-block-a" onclick="goHome('left')" style="width: 80%;text-align: center;">
+									<div class='navText systems'>Home</div>
 								</div>
-								<div class="ui-block-b" onclick="goHome('left')" style="width: 40%;text-align: center;">
+								<div class="ui-block-b" onclick="goHome('left')" style="width: 0%;text-align: center;">
 									<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute">
 										<path stroke="#000" stroke-width="50" fill="none" stroke-opacity="0.4"
 											d="M200 350 A 100 100 0 0 1 200 150
@@ -556,7 +560,7 @@
 						</h1>
 					</div>
 				</div><!-- /grid-a -->
-				<div class="ui-grid-a" style="background-color: #5f4e4e">
+				<div class="ui-grid-a" style="background-color: #333">
 					<div class="ui-block-a">
 						<a href="#xboxAddID" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a alterIdButton add" data-transition="pop">Add Gamertag</a>
 						<div data-role="popup" id="xboxAddID" data-theme="a" data-overlay-theme="b" class="ui-corner-all">
@@ -569,9 +573,11 @@
 						</div>
 					</div>
 					<div class="ui-block-b">
-						<a href="#psnRemoveID" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a alterIdButton remove" data-transition="pop">Remove Gamertag</a>
-						<div data-role="popup" id="psnRemoveID" data-theme="a" data-overlay-theme="b" class="ui-corner-all">
-							<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+						<a id="xboxRemoveIdButton" href="#xboxRemoveID" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a alterIdButton remove" data-transition="pop">Remove Gamertag</a>
+						<div data-role="popup" id="xboxRemoveID" data-transition="flow" data-overlay-theme="a" data-position-to="window" style="background-color: #333; border: none; padding: 0 0 1px 0;">
+							<h3 class='popupHeader'>Remove Gamertag</h3>
+							<ul id='xboxRemoveIdList' data-role='listview' data-inset='false'>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -602,17 +608,20 @@
 			</div>-->
 		</div>
 		<div data-role="page" id="Page3">
-			<div data-role="header" data-theme="b" class='headerStatsPage'>
-				<a href="#Page1" class='homeIcon' data-transition="slide" data-direction="reverse" data-role="button" data-icon="home"></a>
-				<div id='statsPageTitle'>
+			<div id='statsPage'>
+				<div id='statsPageHeader'>
 				
 				</div>
-			</div>
-			<div id='statsPage'>
-				<div class='systemSection'>
+				<div id='statsPageNavigation'>
+				
+				</div>
+				<div id='statsPageUpdateGames'>
+				
+				</div>
+				<!--<div class='systemSection'>
 					<div class="ui-grid-a">
 						<div class="ui-block-a">
-							<!--<h1 class='gameTitle xbox'>
+							<h1 class='gameTitle xbox'>
 								<div class="ui-grid-a">
 									<div class="ui-block-a" onclick="goXbox('right')" style="width: 40%;text-align: left;">
 										<svg width="7vh" height="7vh" viewbox="0 0 400 400" style="position: absolute" transform="translate(-20), scale(-1, 1)">
@@ -642,9 +651,9 @@
 									</div>
 								</div>
 							</h1>
-						</div>-->
-					</div><!-- /grid-a -->
-				</div>
+						</div>
+					</div><!-- /grid-a --
+				</div>-->
 			</div>
 		</div>
 		<div class="ajax-loader">
@@ -653,10 +662,15 @@
 		<!--<div class="ajax-loader2">
 			<img src="/css/images/reload.gif" class="img-responsive" />
 		</div>-->
+		
 		<script type="text/javascript" src="js/checkNetwork.js"></script>
 		<script type="text/javascript" src="js/databaseSetup.js"></script>
 		<script type="text/javascript" src="js/fillLinkedIds.js"></script>
+		<script type="text/javascript" src="js/fillPopups.js"></script>
+		<script type="text/javascript" src="js/addId.js"></script>
+		<script type="text/javascript" src="js/removeIds.js"></script>
 		<script type="text/javascript" src="js/displayStatsPage.js"></script>
+		<script type="text/javascript" src="js/gameNavigation.js"></script>
 		<script type="text/javascript" src="js/displayRocketLeague.js"></script>
 		<script type="text/javascript" src="js/displaySiege.js"></script>
 		<script type="text/javascript" src="js/sourceRocketLeague.js"></script>
