@@ -1,8 +1,5 @@
 function gameNavigation(Destination, Direction, Outlay, Username, System, position, size){
 	console.log(Destination);
-	console.log(Direction);
-	console.log(Outlay);
-	console.log(size + "=Size");
 	
 	if(Outlay == 'single'){
 		if(position == 1){
@@ -34,8 +31,16 @@ function gameNavigation(Destination, Direction, Outlay, Username, System, positi
 	$("#statsPageHeader").html("");
 	$("#statsPageNavigation").html("");
 	$("#statsPageUpdateGames").html("");
+	$("#statsPageContent").html("");
 	
 	displayBasics(Username, System, Destination);
 	navigationSetup(position, Username, System);
-	updateGamesList(position);
+	updateGamesList(position, Username, System, Destination);
+	
+	if(Destination == 'Rocket_League'){
+		displayStatsRocketLeague(Username, System)
+	}
+	else if(Destination == 'Siege'){
+		console.log('display siege');
+	}
 }

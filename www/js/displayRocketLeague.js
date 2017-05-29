@@ -1,48 +1,25 @@
-function displayRocketLeague(Username, System){
-	$("#statsPage").html("");
-	$("#statsPageTitle").html("");
-	$.mobile.pageContainer.pagecontainer('change', '#Page2', {
-		transition: 'slide',
-		reload    : false
-	});
-	
-	displayBasics(Username, System, "Rocket League");
-	
-	db.transaction(function(transaction){
-		transaction.executeSql('SELECT Active FROM Rocket_League WHERE PlayerName = "' + Username + '" AND System = "' + System + '";', [],
-		function(transaction, result) {
-			if(result.rows.item(0).Active == 0){
-				$("#statsPage").append(
-					"<div class='getStats'>" +
-						"<a class='getStatsButton ui-btn ui-corner-all' onclick='sourceRocketLeague(\"" + Username + "\",\"" + System + "\")'>Get Stats</a>" +
-					"</div>"
-				);
-			}
-			else if(result.rows.item(0).Active == 1){
-				displayStatsRocketLeague(Username, System);
-			}
-		});
-	},errorHandler,nullHandler);
-	$("#statsPageTitle").trigger("create");
-	$("#statsPage").trigger("create");
-}
-
 function displayStatsRocketLeague(Username, System){
 	//db = openDatabase(shortName, version, displayName,maxSize);
-	$("#statsPage").html("");
-	$("#statsPageTitle").html("");
-	displayBasics(Username, System, "Rocket League");
+	//$("#statsPage").html("");
+	//$("#statsPageTitle").html("");
+	$(".updateButtonTextBottom").html("");
+	$("#statsPageContent").html("");
+	//displayBasics(Username, System, "Rocket League");
 	db.transaction(function(transaction) {
 		transaction.executeSql('SELECT Ratio, Wins, Goals, Saves, Shots, Mvps, Assists, Mvpratio, Time FROM Rocket_League WHERE PlayerName = "'+ Username +'" AND System = "' + System +'";', [],
 		function(transaction, result) {
 			console.log(result.rows.item(0));
-			$("#statsPage").append(
-				"<div class='update'>" +
+			
+			$(".updateButtonTextBottom").append(
+				"Updated: " + result.rows.item(0).Time + ""
+			);
+			$("#statsPageContent").append(
+				/*"<div class='update'>" +
 					"<h1 class='statsPageUpdate'>" +
 						"<div class='statsPageUpdateText'>Last Updated: " + result.rows.item(0).Time + "</dic>" +
 						"<a class='getUpdatedStats ui-btn ui-btn-right ui-corner-all' onclick='sourceRocketLeague(\"" + Username + "\",\"" + System + "\")'>Update</a>" +
 					"</h1>" +
-				"</div>" +
+				"</div>" +*/
 				/*"<div data-role='header'>" +
 					"<h1 class='statsPageUpdate'>Accurate as of: </h1>" +
 					"<a data-role='button' data-icon='refresh' data-iconshadow='false' onclick='' class='ui-btn-right'>Update</a>" +
@@ -128,7 +105,7 @@ function displayStatsRocketLeague(Username, System){
 				SoloStandardStreak = '';
 				SoloStandardStreakAppend = "<div>"+ SoloStandardStreak + "</div>"
 			}
-			$("#statsPage").append(
+			$("#statsPageContent").append(
 				"<div class='rankings'>" +
 					"<div class='RanksRL ui-grid-c'>" +
 						"<div class='ui-block-a statsText'><img class='RankImageRL' src='img/" + result.rows.item(0).DuelRank +".png'</img></div>" +

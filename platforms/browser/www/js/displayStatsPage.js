@@ -12,7 +12,7 @@ function displayBasics(Username, System, Game){
 			"<h1 class='statsPageUserInfo psn'>" +
 				"<div class='ui-grid-a'>" +
 					"<div class='statsHeaderLeft ui-block-a'>" +
-						"<a href='#Page2' data-transition='pop'>" +
+						"<a onclick='goPSN(\"" + 'pop' + "\")'>" +
 							"<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' id='Capa_1' x='0px' y='0px' viewBox='0 0 297 297' style='enable-background:new 0 0 297 297;' xml:space='preserve' width='8.6vh' height='8.6vh' transform=' scale(-1, 1)'>" +
 								"<path d='M148.5,0C66.485,0,0,66.485,0,148.5S66.485,297,148.5,297S297,230.515,297,148.5S230.515,0,148.5,0z M159.083,231.5H90.75 l74.25-84l-74.25-81h68.333l71.917,81L159.083,231.5z'/>" +
 							"</svg>" +
@@ -41,7 +41,7 @@ function displayBasics(Username, System, Game){
 			"<h1 class='statsPageUserInfo steam'>" +
 				"<div class='ui-grid-a'>" +
 					"<div class='statsHeaderLeft ui-block-a'>" +
-						"<a href='#Page2' data-transition='pop'>" +
+						"<a onclick='goSteam(\"" + 'pop' + "\")>" +
 							"<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' id='Capa_1' x='0px' y='0px' viewBox='0 0 297 297' style='enable-background:new 0 0 297 297;' xml:space='preserve' width='8.6vh' height='8.6vh' transform=' scale(-1, 1)'>" +
 								"<path d='M148.5,0C66.485,0,0,66.485,0,148.5S66.485,297,148.5,297S297,230.515,297,148.5S230.515,0,148.5,0z M159.083,231.5H90.75 l74.25-84l-74.25-81h68.333l71.917,81L159.083,231.5z'/>" +
 							"</svg>" +
@@ -66,7 +66,7 @@ function displayBasics(Username, System, Game){
 			"<h1 class='statsPageUserInfo xbox'>" +
 				"<div class='ui-grid-a'>" +
 					"<div class='statsHeaderLeft ui-block-a'>" +
-						"<a href='#Page2' data-transition='pop'>" +
+						"<a onclick='goXbox(\"" + 'pop' + "\")'>" +
 							"<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' id='Capa_1' x='0px' y='0px' viewBox='0 0 297 297' style='enable-background:new 0 0 297 297;' xml:space='preserve' width='8.6vh' height='8.6vh' transform=' scale(-1, 1)'>" +
 								"<path d='M148.5,0C66.485,0,0,66.485,0,148.5S66.485,297,148.5,297S297,230.515,297,148.5S230.515,0,148.5,0z M159.083,231.5H90.75 l74.25-84l-74.25-81h68.333l71.917,81L159.083,231.5z'/>" +
 							"</svg>" +
@@ -126,29 +126,28 @@ function checkGameList(position, usersGameList, gameFound, Username, System){
 			
 			if(size == 1){
 				if(position == 0){
-					
-					console.log('setting for pos 0');
 					$("#Page3").swipeleft(function() {
 						gameNavigation(usersGameListFinal[0],'left','single',Username, System, position, size);
 					});
 					$("#Page3").swiperight(function() {
 						gameNavigation(usersGameListFinal[0],'right','single', Username, System, position, size);
 					});
+					gameTitleOnClick = 'gameNavigation("' + usersGameListFinal[0] + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ')';
 					navTitle = usersGameListFinal[0]
 				}
 				else if(position == 1){
-					console.log('setting for pos 1');
 					$("#Page3").swipeleft(function() {
 						gameNavigation('Profile','left','single', Username, System, position, size);
 					});
 					$("#Page3").swiperight(function() {
 						gameNavigation('Profile','right','single', Username, System, position, size);
 					});
+					gameTitleOnClick = 'gameNavigation("' + 'Profile' + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ')';
 					navTitle = 'Profile';
 				}
 				
 				$("#statsPageNavigation").append(
-					"<div class='ui-grid-b statsPageNavigationSingle' onclick=''>" +
+					"<div class='ui-grid-b statsPageNavigationSingle' onclick='" + gameTitleOnClick + "'>" +
 						"<div class='ui-block-a' style='width: 0%;margin-left: -1vh;text-align: center'>" +
 							"<svg width='7vh' height='7vh' viewbox='0 0 400 400' style='position: absolute' transform='scale(-1, 1)'>" +
 								"<path stroke='#67e2bc' stroke-width='50' fill='none' stroke-opacity='0.6' d='M200 350 A 100 100 0 0 1 200 150 M200 150 200 125 225 150 200 175Z'/>" +
@@ -168,7 +167,6 @@ function checkGameList(position, usersGameList, gameFound, Username, System){
 				);
 			}
 			else if(size > 1){
-				console.log(position);
 				if(position == 0){
 					$("#Page3").swipeleft(function() {
 						gameNavigation(usersGameListFinal[0],'left','multi', Username, System, position, size);
@@ -177,6 +175,8 @@ function checkGameList(position, usersGameList, gameFound, Username, System){
 						gameNavigation(usersGameListFinal[size-1],'right','multi', Username, System, position, size);
 					});
 					
+					gameTitleRightOnClick = 'gameNavigation("' + usersGameListFinal[0] + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ')';
+					gameTitleLeftOnClick = 'gameNavigation("' + usersGameListFinal[size-1] + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ')';
 					navTitleRight = usersGameListFinal[0]
 					navTitleLeft = usersGameListFinal[size-1];
 				}
@@ -188,6 +188,8 @@ function checkGameList(position, usersGameList, gameFound, Username, System){
 						gameNavigation('Profile','right','multi', Username, System, position, size);
 					});
 					
+					gameTitleRightOnClick = 'gameNavigation("' + usersGameListFinal[1] + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ')';
+					gameTitleLeftOnClick = 'gameNavigation("' + 'Profile' + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ')';
 					navTitleRight = usersGameListFinal[1]
 					navTitleLeft = 'Profile';
 				}
@@ -199,15 +201,17 @@ function checkGameList(position, usersGameList, gameFound, Username, System){
 						gameNavigation(usersGameListFinal[size-2],'right','multi', Username, System, position, size);
 					});
 					
+					gameTitleRightOnClick = 'gameNavigation("' + 'Profile' + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ')';
+					gameTitleLeftOnClick = 'gameNavigation("' + usersGameListFinal[size-2] + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ')';
 					navTitleRight = 'Profile';
 					navTitleLeft = usersGameListFinal[size-2];
 				}
 				$("#statsPageNavigation").append(
 					"<div class='ui-grid-a statsPageNavigationMulti'>" +
 						"<div class='ui-block-a'>" +
-							"<h1 class='gameTitle'>" +
+							"<h1 class='gameTitle left' onclick='" + gameTitleLeftOnClick + "'>" +
 								"<div class='ui-grid-a'>" +
-									"<div class='ui-block-a' onclick='' style='width: 0%;margin-left: -1vh;text-align: center;'>" +
+									"<div class='ui-block-a' style='width: 0%;margin-left: -1vh;text-align: center;'>" +
 										"<svg width='7vh' height='7vh' viewbox='0 0 400 400' style='position: absolute' transform='scale(-1, 1)'>" +
 										 "<path stroke='#67e2bc' stroke-width='50' fill='none' stroke-opacity='0.8' d='M200 350 A 100 100 0 0 1 200 150 M200 150 200 125 225 150 200 175Z'/>" +
 										"</svg>" +
@@ -219,9 +223,9 @@ function checkGameList(position, usersGameList, gameFound, Username, System){
 							"</h1>" +
 						"</div>" +
 						"<div class='ui-block-b'>" +
-							"<h1 class='gameTitle'>" +
+							"<h1 class='gameTitle right' onclick='" + gameTitleRightOnClick + "'>" +
 								"<div class='ui-grid-a'>" +
-									"<div class='ui-block-a' onclick='' style='width: 80%;text-align: center;'>" +
+									"<div class='ui-block-a' style='width: 80%;text-align: center;'>" +
 										"<div class='navText games'>" + navTitleRight + "</div>" +
 									"</div>" +
 									"<div class='ui-block-b' onclick='' style='width: 0%;text-align: center;'>" +
@@ -247,11 +251,11 @@ function allZero(arr) {
     return arr == 0;
 }
 
-function updateGamesList(position){
+function updateGamesList(position, Username, System, Destination){
 	if(position == 0){
 		$("#statsPageUpdateGames").append(
 			"<div class='statsPageUpdateGames'>" +
-				"<button class='ui-btn updateGamesButton'>Update Games" +
+				"<button id='updateGamesButton' class='ui-btn updateGamesButton' onclick=''>Update Games" +
 					/*"<svg width='7vh' height='7vh' viewBox='0 0 487.23 487.23' style='enable-background:new 0 0 487.23 487.23; position: absolute'>" +
 						"<path d='M55.323,203.641c15.664,0,29.813-9.405,35.872-23.854c25.017-59.604,83.842-101.61,152.42-101.61    c37.797,0,72.449,12.955,100.23,34.442l-21.775,3.371c-7.438,1.153-13.224,7.054-14.232,14.512    c-1.01,7.454,3.008,14.686,9.867,17.768l119.746,53.872c5.249,2.357,11.33,1.904,16.168-1.205    c4.83-3.114,7.764-8.458,7.796-14.208l0.621-131.943c0.042-7.506-4.851-14.144-12.024-16.332    c-7.185-2.188-14.947,0.589-19.104,6.837l-16.505,24.805C370.398,26.778,310.1,0,243.615,0C142.806,0,56.133,61.562,19.167,149.06    c-5.134,12.128-3.84,26.015,3.429,36.987C29.865,197.023,42.152,203.641,55.323,203.641z' fill='#91DC5A'/>" +
 						"<path d='M464.635,301.184c-7.27-10.977-19.558-17.594-32.728-17.594c-15.664,0-29.813,9.405-35.872,23.854    c-25.018,59.604-83.843,101.61-152.42,101.61c-37.798,0-72.45-12.955-100.232-34.442l21.776-3.369    c7.437-1.153,13.223-7.055,14.233-14.514c1.009-7.453-3.008-14.686-9.867-17.768L49.779,285.089    c-5.25-2.356-11.33-1.905-16.169,1.205c-4.829,3.114-7.764,8.458-7.795,14.207l-0.622,131.943 c-0.042,7.506,4.85,14.144,12.024,16.332c7.185,2.188,14.948-0.59,19.104-6.839l16.505-24.805  c44.004,43.32,104.303,70.098,170.788,70.098c100.811,0,187.481-61.561,224.446-149.059 C473.197,326.043,471.903,312.157,464.635,301.184z' fill='#91DC5A'/>" +
@@ -263,7 +267,13 @@ function updateGamesList(position){
 	else{
 		$("#statsPageUpdateGames").append(
 			"<div class='statsPageUpdateGames'>" +
-				"<button class='ui-btn updateGamesButton'>Update Stats" +
+				"<button id='updateGamesStatsButton' class='ui-btn updateGamesButton' onclick='sourceRocketLeague(\"" + Username + "\",\"" + System + "\")'>" +
+					"<div class='updateButtonTextTop'>" +
+						"Update Stats" +
+					"</div>" +
+					"<div class='updateButtonTextBottom'>" +
+						
+					"</div>" +
 					/*"<svg width='7vh' height='7vh' viewBox='0 0 487.23 487.23' style='enable-background:new 0 0 487.23 487.23; position: absolute'>" +
 						"<path d='M55.323,203.641c15.664,0,29.813-9.405,35.872-23.854c25.017-59.604,83.842-101.61,152.42-101.61    c37.797,0,72.449,12.955,100.23,34.442l-21.775,3.371c-7.438,1.153-13.224,7.054-14.232,14.512    c-1.01,7.454,3.008,14.686,9.867,17.768l119.746,53.872c5.249,2.357,11.33,1.904,16.168-1.205    c4.83-3.114,7.764-8.458,7.796-14.208l0.621-131.943c0.042-7.506-4.851-14.144-12.024-16.332    c-7.185-2.188-14.947,0.589-19.104,6.837l-16.505,24.805C370.398,26.778,310.1,0,243.615,0C142.806,0,56.133,61.562,19.167,149.06    c-5.134,12.128-3.84,26.015,3.429,36.987C29.865,197.023,42.152,203.641,55.323,203.641z' fill='#91DC5A'/>" +
 						"<path d='M464.635,301.184c-7.27-10.977-19.558-17.594-32.728-17.594c-15.664,0-29.813,9.405-35.872,23.854    c-25.018,59.604-83.843,101.61-152.42,101.61c-37.798,0-72.45-12.955-100.232-34.442l21.776-3.369    c7.437-1.153,13.223-7.055,14.233-14.514c1.009-7.453-3.008-14.686-9.867-17.768L49.779,285.089    c-5.25-2.356-11.33-1.905-16.169,1.205c-4.829,3.114-7.764,8.458-7.795,14.207l-0.622,131.943 c-0.042,7.506,4.85,14.144,12.024,16.332c7.185,2.188,14.948-0.59,19.104-6.839l16.505-24.805  c44.004,43.32,104.303,70.098,170.788,70.098c100.811,0,187.481-61.561,224.446-149.059 C473.197,326.043,471.903,312.157,464.635,301.184z' fill='#91DC5A'/>" +
@@ -278,6 +288,7 @@ function displayStats(system, Username){
 	$("#statsPageHeader").html("");
 	$("#statsPageNavigation").html("");
 	$("#statsPageUpdateGames").html("");
+	$("#statsPageContent").html("");
 	
 	$.mobile.pageContainer.pagecontainer('change', '#Page3', {
 		reverse: false,
