@@ -1,4 +1,4 @@
-function sourceSiege(Username, System){
+function sourceSiege(Username, System, pageId){
 	
 	var request;
 	if (request) {
@@ -39,10 +39,17 @@ function sourceSiege(Username, System){
 		*
 		*Next lines are the different ranking. So may not be there hence max 4. They are hash separated *and split accordingly
 		*/
-		//displaySiege(Username, System, 1)//re draw stats page
+		db.transaction(function(transaction){
+			var date = new Date();
+			var mins = ('0'+date.getMinutes()).slice(-2);
+			var time = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " +  date.getHours() + ":" + mins;
+			
+			//KillsCasual, DeathsCasual, kdCasual, PlaytimeCasual, WinsCasual, LossesCasual, WinPercentCasual, levelCasual, KillsRanked, DeathsRanked, kdRanked, PlaytimeRanked, WinsRanked, LossesRanked, WinPercentRanked, levelRanked, Revives, Suicides, MeleeKills, AccuracyPercent, HeadshotPercent, Assist, PenetrationKills, Time
+			transaction.executeSql('UPDATE Siege SET Active = ?, KillsCasual = ?, DeathsCasual = ?, kdCasual = ?, PlaytimeCasual = ?, WinsCasual = ?, LossesCasual = ?, WinPercentCasual = ?, levelCasual = ?, KillsRanked = ?, DeathsRanked = ?, kdRanked = ?, PlaytimeRanked = ?, WinsRanked = ?, LossesRanked = ?, WinPercentRanked = ?, levelRanked = ?,Revives = ?, Suicides = ?, MeleeKills = ?, AccuracyPercent = ?, HeadshotPercent = ?,Assist = ?, PenetrationKills = ?,Time =? WHERE PlayerName = ? AND System = ?',[1, statsArray[0], statsArray[1], statsArray[2], statsArray[3], statsArray[4], statsArray[5], statsArray[6], statsArray[7], statsArray[8], statsArray[9], statsArray[10], statsArray[11], statsArray[12], statsArray[13], statsArray[14], statsArray[15], statsArray[16], statsArray[17], statsArray[18], statsArray[19], statsArray[20], statsArray[21], statsArray[22],time, Username, System],nullHandler,errorHandler);
+		},errorHandler,nullHandler);
+		
+		displayStatsSiege(Username, System, pageId)//re draw stats page
 	});
-	
-	// DuelRank = ?, DuelDivision = ?,DuelRating = ?,DuelGames = ?, DuelStreak = ?,DoublesRank = ?, DoublesDivision = ?,DoublesRating = ?,DoublesGames = ?, DoublesStreak = ?,StandardRank = ?, StandardDivision = ?,StandardRating = ?,StandardGames = ?, StandardStreak = ?,SoloStandardRank = ?, SoloStandardDivision = ?,SoloStandardRating = ?,SoloStandardGames = ?, SoloStandardStreak = ?, 
 	
 	// Callback handler that will be called on failure
 	request.fail(function (jqXHR, textStatus, errorThrown){

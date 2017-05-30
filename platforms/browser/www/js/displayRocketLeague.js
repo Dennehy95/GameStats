@@ -1,9 +1,9 @@
-function displayStatsRocketLeague(Username, System){
+function displayStatsRocketLeague(Username, System, pageId){
 	//db = openDatabase(shortName, version, displayName,maxSize);
 	//$("#statsPage").html("");
 	//$("#statsPageTitle").html("");
 	$(".updateButtonTextBottom").html("");
-	$("#statsPageContent").html("");
+	$("#statsPageContent" + pageId).html("");
 	//displayBasics(Username, System, "Rocket League");
 	db.transaction(function(transaction) {
 		transaction.executeSql('SELECT Ratio, Wins, Goals, Saves, Shots, Mvps, Assists, Mvpratio, Time FROM Rocket_League WHERE PlayerName = "'+ Username +'" AND System = "' + System +'";', [],
@@ -13,7 +13,7 @@ function displayStatsRocketLeague(Username, System){
 			$(".updateButtonTextBottom").append(
 				"Updated: " + result.rows.item(0).Time + ""
 			);
-			$("#statsPageContent").append(
+			$("#statsPageContent" + pageId).append(
 				/*"<div class='update'>" +
 					"<h1 class='statsPageUpdate'>" +
 						"<div class='statsPageUpdateText'>Last Updated: " + result.rows.item(0).Time + "</dic>" +
@@ -105,7 +105,7 @@ function displayStatsRocketLeague(Username, System){
 				SoloStandardStreak = '';
 				SoloStandardStreakAppend = "<div>"+ SoloStandardStreak + "</div>"
 			}
-			$("#statsPageContent").append(
+			$("#statsPageContent" + pageId).append(
 				"<div class='rankings'>" +
 					"<div class='RanksRL ui-grid-c'>" +
 						"<div class='ui-block-a statsText'><img class='RankImageRL' src='img/" + result.rows.item(0).DuelRank +".png'</img></div>" +

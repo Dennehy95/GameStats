@@ -1,6 +1,4 @@
-function gameNavigation(Destination, Direction, Outlay, Username, System, position, size, activeSystemPage){
-	console.log(Destination);
-	
+function gameNavigation(Destination, Direction, Outlay, Username, System, position, size, activeSystemPage, pageId){
 	if(Outlay == 'single'){
 		if(position == 1){
 			position = 0;
@@ -27,20 +25,41 @@ function gameNavigation(Destination, Direction, Outlay, Username, System, positi
 			}
 		}
 	}
+	if(pageId == '3a'){
+		toChangePageId = '3b';
+	}
+	else{
+		toChangePageId = '3a';
+	}
 	
-	$("#statsPageHeader").html("");
-	$("#statsPageNavigation").html("");
-	$("#statsPageUpdateGames").html("");
-	$("#statsPageContent").html("");
+	$("#statsPageHeader" + toChangePageId).html("");
+	$("#statsPageNavigation" + toChangePageId).html("");
+	$("#statsPageUpdateGames" + toChangePageId).html("");
+	$("#statsPageContent" + toChangePageId).html("");
 	
-	displayBasics(Username, System, Destination,activeSystemPage);
-	navigationSetup(position, Username, System);
-	updateGamesList(position, Username, System, Destination);
+	displayBasics(Username, System, Destination,activeSystemPage, toChangePageId);
+	navigationSetup(position, Username, System, toChangePageId);
+	updateGamesList(position, Username, System, Destination, toChangePageId);
 	
 	if(Destination == 'Rocket_League'){
-		displayStatsRocketLeague(Username, System)
+		displayStatsRocketLeague(Username, System, toChangePageId)
 	}
 	else if(Destination == 'Siege'){
-		console.log('display siege');
+		displayStatsSiege(Username, System, toChangePageId)
+	}
+	
+	if(Direction == 'right'){
+		$.mobile.pageContainer.pagecontainer('change', '#Page' + toChangePageId, {
+			reverse: true,
+			transition: 'slide',
+			reload    : false
+		});
+	}
+	else{
+		$.mobile.pageContainer.pagecontainer('change', '#Page' + toChangePageId, {
+			reverse: false,
+			transition: 'slide',
+			reload    : false
+		});
 	}
 }

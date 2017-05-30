@@ -4,7 +4,8 @@ html, body {
 #Page1,
 #Page2a,
 #Page2b,
-#Page3{
+#Page3a,
+#Page3b{
 	background-color: #333;
 	height: 100%;
 }
@@ -328,6 +329,11 @@ h3.popupHeader{
 	position: inherit;
 	width: 100%;
 }
+#statsPageContent3a,
+#statsPageContent3b{
+    margin: 1vh 0 0 0;
+}
+	
 .gameList{
 	border: none;
 	font-size: 3vh;
@@ -584,6 +590,15 @@ h3.popupHeader{
 .update{
 	height: 8vh;
 	position: relative;
+}
+/**********			Siege		**********/
+.Ranked,
+.Casual,
+.General{
+	font-family: Ubuntu;
+		src: local("ubuntu-font-family-0.83/Ubuntu-M"),
+		url(Ubuntu-M.ttf);
+	text-shadow: none;
 }
 
 

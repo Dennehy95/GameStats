@@ -1,4 +1,4 @@
-function sourceRocketLeague(Username, System){
+function sourceRocketLeague(Username, System, pageId){
 	
 	var request;
 	if (request) {
@@ -122,7 +122,7 @@ function sourceRocketLeague(Username, System){
 			
 			/*transaction.executeSql('UPDATE Rocket_League SET DuelRank = ?, DuelDivision = ?,DuelRating = ?,DuelGames = ?, DuelStreak = ?,DoublesRank = ?, DoublesDivision = ?,DoublesRating = ?,DoublesGames = ?, DoublesStreak = ?,StandardRank = ?, StandardDivision = ?,StandardRating = ?,StandardGames = ?, StandardStreak = ?,SoloStandardRank = ?, SoloStandardDivision = ?,SoloStandardRating = ?,SoloStandardGames = ?, SoloStandardStreak = ? WHERE PlayerName = ? AND System = ?',[performanceArray[0], performanceArray[1], performanceArray[2], performanceArray[3], performanceArray[4], performanceArray[5], performanceArray[6], performanceArray[7],time, Username, System],nullHandler,errorHandler);*/
 		},errorHandler,nullHandler);
-		displayStatsRocketLeague(Username, System)//re draw stats page
+		displayStatsRocketLeague(Username, System, pageId)//re draw stats page
 	});
 	
 	// DuelRank = ?, DuelDivision = ?,DuelRating = ?,DuelGames = ?, DuelStreak = ?,DoublesRank = ?, DoublesDivision = ?,DoublesRating = ?,DoublesGames = ?, DoublesStreak = ?,StandardRank = ?, StandardDivision = ?,StandardRating = ?,StandardGames = ?, StandardStreak = ?,SoloStandardRank = ?, SoloStandardDivision = ?,SoloStandardRating = ?,SoloStandardGames = ?, SoloStandardStreak = ?, 

@@ -1,4 +1,4 @@
-function displayBasics(Username, System, Game, activeSystemPage){
+function displayBasics(Username, System, Game, activeSystemPage, pageId){
 
 	if(System == 'psn'){
 		if(Game == '' || Game == 'Profile'){
@@ -8,7 +8,7 @@ function displayBasics(Username, System, Game, activeSystemPage){
 			toAppend = Game;
 		}
 		
-		$("#statsPageHeader").append(
+		$("#statsPageHeader" + pageId).append(
 			"<h1 class='statsPageUserInfo psn'>" +
 				"<div class='ui-grid-a'>" +
 					"<div class='statsHeaderLeft ui-block-a'>" +
@@ -37,7 +37,7 @@ function displayBasics(Username, System, Game, activeSystemPage){
 			toAppend = Game;
 		}
 		
-		$("#statsPageHeader").append(
+		$("#statsPageHeader" + pageId).append(
 			"<h1 class='statsPageUserInfo steam'>" +
 				"<div class='ui-grid-a'>" +
 					"<div class='statsHeaderLeft ui-block-a'>" +
@@ -62,7 +62,7 @@ function displayBasics(Username, System, Game, activeSystemPage){
 			toAppend = Game;
 		}
 		
-		$("#statsPageHeader").append(
+		$("#statsPageHeader" + pageId).append(
 			"<h1 class='statsPageUserInfo xbox'>" +
 				"<div class='ui-grid-a'>" +
 					"<div class='statsHeaderLeft ui-block-a'>" +
@@ -81,9 +81,10 @@ function displayBasics(Username, System, Game, activeSystemPage){
 	}
 }
 
-function navigationSetup(position, Username, System){
+function navigationSetup(position, Username, System, pageId){
 	//$("#" + System + UserId).html("");
-	
+	console.log('clearing nav');
+	$("#statsPageNavigation" + pageId).html("");
 	//Check if User has recorded availability for each game
 	db = openDatabase(shortName, version, displayName,maxSize);
 	var usersGameList = [];
@@ -98,20 +99,20 @@ function navigationSetup(position, Username, System){
 							"<a class='gameList ui-btn ui-icon-carat-r ui-btn-icon-right' onclick='displayRocketLeague(\"" + Username + "\",\"" + System + "\")'>Rocket League</a>" +
 						"</li>"
 					).children().last().trigger("create");*/
-					checkGameList(position, usersGameList, '1', Username, System);
+					checkGameList(position, usersGameList, '1', Username, System, pageId);
 				}
 				else{
-					checkGameList(position, usersGameList, '0', Username, System);
+					checkGameList(position, usersGameList, '0', Username, System, pageId);
 				}
 			},errorHandler);
 		}
 	},errorHandler,nullHandler);
 }
-function checkGameList(position, usersGameList, gameFound, Username, System){
+function checkGameList(position, usersGameList, gameFound, Username, System, pageId){
 	usersGameList.push(gameFound);
 	if(usersGameList.length == gamesList.length){
-		$("#Page3").unbind('swipeleft');
-		$("#Page3").unbind('swiperight');
+		$("#Page" + pageId).unbind('swipeleft');
+		$("#Page" + pageId).unbind('swiperight');
 		if(usersGameList.every(allZero)){
 			console.log('all zero');
 		}
@@ -126,27 +127,27 @@ function checkGameList(position, usersGameList, gameFound, Username, System){
 			
 			if(size == 1){
 				if(position == 0){
-					$("#Page3").swipeleft(function() {
-						gameNavigation(usersGameListFinal[0],'left','single',Username, System, position, size, activeSystemPage);
+					$("#Page" + pageId).swipeleft(function() {
+						gameNavigation(usersGameListFinal[0],'left','single',Username, System, position, size, activeSystemPage, pageId);
 					});
-					$("#Page3").swiperight(function() {
-						gameNavigation(usersGameListFinal[0],'right','single', Username, System, position, size, activeSystemPage);
+					$("#Page" + pageId).swiperight(function() {
+						gameNavigation(usersGameListFinal[0],'right','single', Username, System, position, size, activeSystemPage, pageId);
 					});
-					gameTitleOnClick = 'gameNavigation("' + usersGameListFinal[0] + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ')';
+					gameTitleOnClick = 'gameNavigation("' + usersGameListFinal[0] + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ',"' + pageId + '")';
 					navTitle = usersGameListFinal[0]
 				}
 				else if(position == 1){
 					$("#Page3").swipeleft(function() {
-						gameNavigation('Profile','left','single', Username, System, position, size, activeSystemPage);
+						gameNavigation('Profile','left','single', Username, System, position, size, activeSystemPage, pageId);
 					});
 					$("#Page3").swiperight(function() {
-						gameNavigation('Profile','right','single', Username, System, position, size, activeSystemPage);
+						gameNavigation('Profile','right','single', Username, System, position, size, activeSystemPage, pageId);
 					});
-					gameTitleOnClick = 'gameNavigation("' + 'Profile' + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ')';
+					gameTitleOnClick = 'gameNavigation("' + 'Profile' + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ',"'  + pageId + '")';
 					navTitle = 'Profile';
 				}
 				
-				$("#statsPageNavigation").append(
+				$("#statsPageNavigation" + pageId).append(
 					"<div class='ui-grid-b statsPageNavigationSingle' onclick='" + gameTitleOnClick + "'>" +
 						"<div class='ui-block-a' style='width: 0%;margin-left: -1vh;text-align: center'>" +
 							"<svg width='7vh' height='7vh' viewbox='0 0 400 400' style='position: absolute' transform='scale(-1, 1)'>" +
@@ -168,45 +169,45 @@ function checkGameList(position, usersGameList, gameFound, Username, System){
 			}
 			else if(size > 1){
 				if(position == 0){
-					$("#Page3").swipeleft(function() {
-						gameNavigation(usersGameListFinal[0],'left','multi', Username, System, position, size, activeSystemPage);
+					$("#Page" + pageId).swipeleft(function() {
+						gameNavigation(usersGameListFinal[0],'left','multi', Username, System, position, size, activeSystemPage, pageId);
 					});
-					$("#Page3").swiperight(function() {
-						gameNavigation(usersGameListFinal[size-1],'right','multi', Username, System, position, size, activeSystemPage);
+					$("#Page" + pageId).swiperight(function() {
+						gameNavigation(usersGameListFinal[size-1],'right','multi', Username, System, position, size, activeSystemPage, pageId);
 					});
 					
-					gameTitleRightOnClick = 'gameNavigation("' + usersGameListFinal[0] + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ')';
-					gameTitleLeftOnClick = 'gameNavigation("' + usersGameListFinal[size-1] + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ')';
+					gameTitleRightOnClick = 'gameNavigation("' + usersGameListFinal[0] + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ',"' + pageId + '")';
+					gameTitleLeftOnClick = 'gameNavigation("' + usersGameListFinal[size-1] + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ',"' + pageId + '")';
 					navTitleRight = usersGameListFinal[0]
 					navTitleLeft = usersGameListFinal[size-1];
 				}
 				else if(position == 1){
-					$("#Page3").swipeleft(function() {
-						gameNavigation(usersGameListFinal[1],'left','multi', Username, System, position, size, activeSystemPage);
+					$("#Page" + pageId).swipeleft(function() {
+						gameNavigation(usersGameListFinal[1],'left','multi', Username, System, position, size, activeSystemPage, pageId);
 					});
-					$("#Page3").swiperight(function() {
-						gameNavigation('Profile','right','multi', Username, System, position, size, activeSystemPage);
+					$("#Page" + pageId).swiperight(function() {
+						gameNavigation('Profile','right','multi', Username, System, position, size, activeSystemPage, pageId);
 					});
 					
-					gameTitleRightOnClick = 'gameNavigation("' + usersGameListFinal[1] + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ')';
-					gameTitleLeftOnClick = 'gameNavigation("' + 'Profile' + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ')';
+					gameTitleRightOnClick = 'gameNavigation("' + usersGameListFinal[1] + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ',"' + pageId + '")';
+					gameTitleLeftOnClick = 'gameNavigation("' + 'Profile' + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ',"'  + pageId + '")';
 					navTitleRight = usersGameListFinal[1]
 					navTitleLeft = 'Profile';
 				}
 				else if(position == size){
-					$("#Page3").swipeleft(function() {
-						gameNavigation('Profile','left','multi', Username, System, position, size, activeSystemPage);
+					$("#Page" + pageId).swipeleft(function() {
+						gameNavigation('Profile','left','multi', Username, System, position, size, activeSystemPage, pageId);
 					});
-					$("#Page3").swiperight(function() {
-						gameNavigation(usersGameListFinal[size-2],'right','multi', Username, System, position, size, activeSystemPage);
+					$("#Page" + pageId).swiperight(function() {
+						gameNavigation(usersGameListFinal[size-2],'right','multi', Username, System, position, size, activeSystemPage, pageId);
 					});
 					
-					gameTitleRightOnClick = 'gameNavigation("' + 'Profile' + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ')';
-					gameTitleLeftOnClick = 'gameNavigation("' + usersGameListFinal[size-2] + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ')';
+					gameTitleRightOnClick = 'gameNavigation("' + 'Profile' + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ','  + pageId + ')';
+					gameTitleLeftOnClick = 'gameNavigation("' + usersGameListFinal[size-2] + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ',' + pageId + ')';
 					navTitleRight = 'Profile';
 					navTitleLeft = usersGameListFinal[size-2];
 				}
-				$("#statsPageNavigation").append(
+				$("#statsPageNavigation" + pageId).append(
 					"<div class='ui-grid-a statsPageNavigationMulti'>" +
 						"<div class='ui-block-a'>" +
 							"<h1 class='gameTitle left' onclick='" + gameTitleLeftOnClick + "'>" +
@@ -251,11 +252,11 @@ function allZero(arr) {
     return arr == 0;
 }
 
-function updateGamesList(position, Username, System, Destination){
+function updateGamesList(position, Username, System, Destination, pageId){
 	if(position == 0){
-		$("#statsPageUpdateGames").append(
+		$("#statsPageUpdateGames" + pageId).append(
 			"<div class='statsPageUpdateGames'>" +
-				"<button id='updateGamesButton' class='ui-btn updateGamesButton' onclick=''>Update Games" +
+				"<button id='updateGamesButton" + pageId +"' class='ui-btn updateGamesButton' onclick='updateListOfGames(\"" + Username + "\",\"" + System + "\")'>Update Games" +
 					/*"<svg width='7vh' height='7vh' viewBox='0 0 487.23 487.23' style='enable-background:new 0 0 487.23 487.23; position: absolute'>" +
 						"<path d='M55.323,203.641c15.664,0,29.813-9.405,35.872-23.854c25.017-59.604,83.842-101.61,152.42-101.61    c37.797,0,72.449,12.955,100.23,34.442l-21.775,3.371c-7.438,1.153-13.224,7.054-14.232,14.512    c-1.01,7.454,3.008,14.686,9.867,17.768l119.746,53.872c5.249,2.357,11.33,1.904,16.168-1.205    c4.83-3.114,7.764-8.458,7.796-14.208l0.621-131.943c0.042-7.506-4.851-14.144-12.024-16.332    c-7.185-2.188-14.947,0.589-19.104,6.837l-16.505,24.805C370.398,26.778,310.1,0,243.615,0C142.806,0,56.133,61.562,19.167,149.06    c-5.134,12.128-3.84,26.015,3.429,36.987C29.865,197.023,42.152,203.641,55.323,203.641z' fill='#91DC5A'/>" +
 						"<path d='M464.635,301.184c-7.27-10.977-19.558-17.594-32.728-17.594c-15.664,0-29.813,9.405-35.872,23.854    c-25.018,59.604-83.843,101.61-152.42,101.61c-37.798,0-72.45-12.955-100.232-34.442l21.776-3.369    c7.437-1.153,13.223-7.055,14.233-14.514c1.009-7.453-3.008-14.686-9.867-17.768L49.779,285.089    c-5.25-2.356-11.33-1.905-16.169,1.205c-4.829,3.114-7.764,8.458-7.795,14.207l-0.622,131.943 c-0.042,7.506,4.85,14.144,12.024,16.332c7.185,2.188,14.948-0.59,19.104-6.839l16.505-24.805  c44.004,43.32,104.303,70.098,170.788,70.098c100.811,0,187.481-61.561,224.446-149.059 C473.197,326.043,471.903,312.157,464.635,301.184z' fill='#91DC5A'/>" +
@@ -265,9 +266,16 @@ function updateGamesList(position, Username, System, Destination){
 		);
 	}
 	else{
-		$("#statsPageUpdateGames").append(
+		if(Destination == 'Rocket_League'){
+			onclickAppend = 'sourceRocketLeague("' + Username + '","' + System + '","' + pageId + '")';
+		}
+		else if(Destination == 'Siege'){
+			onclickAppend = 'sourceSiege("' + Username + '","' + System + '","' + pageId + '")';
+		}
+		
+		$("#statsPageUpdateGames" + pageId).append(
 			"<div class='statsPageUpdateGames'>" +
-				"<button id='updateGamesStatsButton' class='ui-btn updateGamesButton' onclick='sourceRocketLeague(\"" + Username + "\",\"" + System + "\")'>" +
+				"<button id='updateGamesStatsButton" + pageId +"' class='ui-btn updateGamesButton' onclick='" + onclickAppend + "'>" +
 					"<div class='updateButtonTextTop'>" +
 						"Update Stats" +
 					"</div>" +
@@ -285,16 +293,17 @@ function updateGamesList(position, Username, System, Destination){
 }
 
 function displayStats(system, Username, activeSystemPage){
-	$("#statsPageHeader").html("");
-	$("#statsPageNavigation").html("");
-	$("#statsPageUpdateGames").html("");
-	$("#statsPageContent").html("");
+	$("#statsPageHeader3a").html("");
+	$("#statsPageNavigation3a").html("");
+	$("#statsPageUpdateGames3a").html("");
+	$("#statsPageContent3a").html("");
 	
-	$.mobile.pageContainer.pagecontainer('change', '#Page3', {
+	$.mobile.pageContainer.pagecontainer('change', '#Page3a', {
 		reverse: false,
 		transition: 'pop',
 		reload    : false
 	});
+	
 	if(system == 'psn'){
 		activeSystem = 'InPSN';
 	}
@@ -304,10 +313,8 @@ function displayStats(system, Username, activeSystemPage){
 	if(system == 'xbox'){
 		activeSystem = 'InXbox';
 	}
-	//setBacks(activeSystem, activeSystemPage);
-	console.log(activeSystem);
 	
-	displayBasics(Username, system, "", activeSystemPage);
-	navigationSetup(0, Username, system);
-	updateGamesList(0);
+	displayBasics(Username, system, "", activeSystemPage, '3a');
+	navigationSetup(0, Username, system, '3a');
+	updateGamesList(0, Username, system,"",'3a');
 }
