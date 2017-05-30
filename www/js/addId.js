@@ -1,6 +1,6 @@
 // this is the function that puts values into the database using the
 //values from the text boxes on the screen
-function AddValueToDB(system) {
+function AddValueToDB(system, activeSystemPage) {
 	db = openDatabase(shortName, version, displayName,maxSize);
 	if (!window.openDatabase) {
 		alert('Databases are not supported in this browser.');
@@ -8,13 +8,14 @@ function AddValueToDB(system) {
 	}
 	
 	if(system == 'psn'){
-		Username = $('#psnId').val().trim();
+		Username = $('#psnId' + activeSystemPage).val().trim();
+		console.log(Username);
 	}
 	else if(system == 'steam'){
-		Username = $('#steamID').val().trim() + "/" + $('#steamName').val().trim();
+		Username = $('#steamID'+ activeSystemPage).val().trim() + "/" + $('#steamName').val().trim();
 	}
 	else if(system =='xbox'){
-		Username = $('#xboxId').val().trim();
+		Username = $('#xboxId'+ activeSystemPage).val().trim();
 	}
 	db.transaction(function(transaction) {
 		transaction.executeSql('SELECT Username FROM Users WHERE Username = "'+ Username +'" AND System = "' + system + '";', [],
@@ -30,6 +31,6 @@ function AddValueToDB(system) {
 	});
 	// this calls the function that will show what is in the User table in
 	//the database
-	getLinkedIds();
+	getLinkedIds(system, activeSystemPage);
 	return false;
 }

@@ -1,4 +1,4 @@
-function gameNavigation(Destination, Direction, Outlay, Username, System, position, size){
+function gameNavigation(Destination, Direction, Outlay, Username, System, position, size, activeSystemPage){
 	console.log(Destination);
 	
 	if(Outlay == 'single'){
@@ -33,7 +33,7 @@ function gameNavigation(Destination, Direction, Outlay, Username, System, positi
 	$("#statsPageUpdateGames").html("");
 	$("#statsPageContent").html("");
 	
-	displayBasics(Username, System, Destination);
+	displayBasics(Username, System, Destination,activeSystemPage);
 	navigationSetup(position, Username, System);
 	updateGamesList(position, Username, System, Destination);
 	

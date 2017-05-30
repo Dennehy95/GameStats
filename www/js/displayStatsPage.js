@@ -1,4 +1,4 @@
-function displayBasics(Username, System, Game){
+function displayBasics(Username, System, Game, activeSystemPage){
 
 	if(System == 'psn'){
 		if(Game == '' || Game == 'Profile'){
@@ -12,7 +12,7 @@ function displayBasics(Username, System, Game){
 			"<h1 class='statsPageUserInfo psn'>" +
 				"<div class='ui-grid-a'>" +
 					"<div class='statsHeaderLeft ui-block-a'>" +
-						"<a onclick='goPSN(\"" + 'pop' + "\")'>" +
+						"<a onclick='goPSN(\"" + 'pop' + "\",\"" + activeSystemPage + "\")'>" +
 							"<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' id='Capa_1' x='0px' y='0px' viewBox='0 0 297 297' style='enable-background:new 0 0 297 297;' xml:space='preserve' width='8.6vh' height='8.6vh' transform=' scale(-1, 1)'>" +
 								"<path d='M148.5,0C66.485,0,0,66.485,0,148.5S66.485,297,148.5,297S297,230.515,297,148.5S230.515,0,148.5,0z M159.083,231.5H90.75 l74.25-84l-74.25-81h68.333l71.917,81L159.083,231.5z'/>" +
 							"</svg>" +
@@ -41,7 +41,7 @@ function displayBasics(Username, System, Game){
 			"<h1 class='statsPageUserInfo steam'>" +
 				"<div class='ui-grid-a'>" +
 					"<div class='statsHeaderLeft ui-block-a'>" +
-						"<a onclick='goSteam(\"" + 'pop' + "\")>" +
+						"<a onclick='goSteam(\"" + 'pop' + "\",\"" + activeSystemPage + "\")>" +
 							"<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' id='Capa_1' x='0px' y='0px' viewBox='0 0 297 297' style='enable-background:new 0 0 297 297;' xml:space='preserve' width='8.6vh' height='8.6vh' transform=' scale(-1, 1)'>" +
 								"<path d='M148.5,0C66.485,0,0,66.485,0,148.5S66.485,297,148.5,297S297,230.515,297,148.5S230.515,0,148.5,0z M159.083,231.5H90.75 l74.25-84l-74.25-81h68.333l71.917,81L159.083,231.5z'/>" +
 							"</svg>" +
@@ -66,7 +66,7 @@ function displayBasics(Username, System, Game){
 			"<h1 class='statsPageUserInfo xbox'>" +
 				"<div class='ui-grid-a'>" +
 					"<div class='statsHeaderLeft ui-block-a'>" +
-						"<a onclick='goXbox(\"" + 'pop' + "\")'>" +
+						"<a onclick='goXbox(\"" + 'pop' + "\",\"" + activeSystemPage + "\")'>" +
 							"<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' id='Capa_1' x='0px' y='0px' viewBox='0 0 297 297' style='enable-background:new 0 0 297 297;' xml:space='preserve' width='8.6vh' height='8.6vh' transform=' scale(-1, 1)'>" +
 								"<path d='M148.5,0C66.485,0,0,66.485,0,148.5S66.485,297,148.5,297S297,230.515,297,148.5S230.515,0,148.5,0z M159.083,231.5H90.75 l74.25-84l-74.25-81h68.333l71.917,81L159.083,231.5z'/>" +
 							"</svg>" +
@@ -127,22 +127,22 @@ function checkGameList(position, usersGameList, gameFound, Username, System){
 			if(size == 1){
 				if(position == 0){
 					$("#Page3").swipeleft(function() {
-						gameNavigation(usersGameListFinal[0],'left','single',Username, System, position, size);
+						gameNavigation(usersGameListFinal[0],'left','single',Username, System, position, size, activeSystemPage);
 					});
 					$("#Page3").swiperight(function() {
-						gameNavigation(usersGameListFinal[0],'right','single', Username, System, position, size);
+						gameNavigation(usersGameListFinal[0],'right','single', Username, System, position, size, activeSystemPage);
 					});
-					gameTitleOnClick = 'gameNavigation("' + usersGameListFinal[0] + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ')';
+					gameTitleOnClick = 'gameNavigation("' + usersGameListFinal[0] + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ')';
 					navTitle = usersGameListFinal[0]
 				}
 				else if(position == 1){
 					$("#Page3").swipeleft(function() {
-						gameNavigation('Profile','left','single', Username, System, position, size);
+						gameNavigation('Profile','left','single', Username, System, position, size, activeSystemPage);
 					});
 					$("#Page3").swiperight(function() {
-						gameNavigation('Profile','right','single', Username, System, position, size);
+						gameNavigation('Profile','right','single', Username, System, position, size, activeSystemPage);
 					});
-					gameTitleOnClick = 'gameNavigation("' + 'Profile' + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ')';
+					gameTitleOnClick = 'gameNavigation("' + 'Profile' + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ')';
 					navTitle = 'Profile';
 				}
 				
@@ -169,40 +169,40 @@ function checkGameList(position, usersGameList, gameFound, Username, System){
 			else if(size > 1){
 				if(position == 0){
 					$("#Page3").swipeleft(function() {
-						gameNavigation(usersGameListFinal[0],'left','multi', Username, System, position, size);
+						gameNavigation(usersGameListFinal[0],'left','multi', Username, System, position, size, activeSystemPage);
 					});
 					$("#Page3").swiperight(function() {
-						gameNavigation(usersGameListFinal[size-1],'right','multi', Username, System, position, size);
+						gameNavigation(usersGameListFinal[size-1],'right','multi', Username, System, position, size, activeSystemPage);
 					});
 					
-					gameTitleRightOnClick = 'gameNavigation("' + usersGameListFinal[0] + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ')';
-					gameTitleLeftOnClick = 'gameNavigation("' + usersGameListFinal[size-1] + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ')';
+					gameTitleRightOnClick = 'gameNavigation("' + usersGameListFinal[0] + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ')';
+					gameTitleLeftOnClick = 'gameNavigation("' + usersGameListFinal[size-1] + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ')';
 					navTitleRight = usersGameListFinal[0]
 					navTitleLeft = usersGameListFinal[size-1];
 				}
 				else if(position == 1){
 					$("#Page3").swipeleft(function() {
-						gameNavigation(usersGameListFinal[1],'left','multi', Username, System, position, size);
+						gameNavigation(usersGameListFinal[1],'left','multi', Username, System, position, size, activeSystemPage);
 					});
 					$("#Page3").swiperight(function() {
-						gameNavigation('Profile','right','multi', Username, System, position, size);
+						gameNavigation('Profile','right','multi', Username, System, position, size, activeSystemPage);
 					});
 					
-					gameTitleRightOnClick = 'gameNavigation("' + usersGameListFinal[1] + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ')';
-					gameTitleLeftOnClick = 'gameNavigation("' + 'Profile' + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ')';
+					gameTitleRightOnClick = 'gameNavigation("' + usersGameListFinal[1] + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ')';
+					gameTitleLeftOnClick = 'gameNavigation("' + 'Profile' + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ')';
 					navTitleRight = usersGameListFinal[1]
 					navTitleLeft = 'Profile';
 				}
 				else if(position == size){
 					$("#Page3").swipeleft(function() {
-						gameNavigation('Profile','left','multi', Username, System, position, size);
+						gameNavigation('Profile','left','multi', Username, System, position, size, activeSystemPage);
 					});
 					$("#Page3").swiperight(function() {
-						gameNavigation(usersGameListFinal[size-2],'right','multi', Username, System, position, size);
+						gameNavigation(usersGameListFinal[size-2],'right','multi', Username, System, position, size, activeSystemPage);
 					});
 					
-					gameTitleRightOnClick = 'gameNavigation("' + 'Profile' + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ')';
-					gameTitleLeftOnClick = 'gameNavigation("' + usersGameListFinal[size-2] + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ')';
+					gameTitleRightOnClick = 'gameNavigation("' + 'Profile' + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ')';
+					gameTitleLeftOnClick = 'gameNavigation("' + usersGameListFinal[size-2] + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ')';
 					navTitleRight = 'Profile';
 					navTitleLeft = usersGameListFinal[size-2];
 				}
@@ -284,7 +284,7 @@ function updateGamesList(position, Username, System, Destination){
 	}
 }
 
-function displayStats(system, Username){
+function displayStats(system, Username, activeSystemPage){
 	$("#statsPageHeader").html("");
 	$("#statsPageNavigation").html("");
 	$("#statsPageUpdateGames").html("");
@@ -304,7 +304,10 @@ function displayStats(system, Username){
 	if(system == 'xbox'){
 		activeSystem = 'InXbox';
 	}
-	displayBasics(Username, system, "");
+	//setBacks(activeSystem, activeSystemPage);
+	console.log(activeSystem);
+	
+	displayBasics(Username, system, "", activeSystemPage);
 	navigationSetup(0, Username, system);
 	updateGamesList(0);
 }

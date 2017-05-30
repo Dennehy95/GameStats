@@ -1,25 +1,25 @@
-function fillRemoveIdPopup(system){
-	console.log($.mobile.activePage.find("#psnRemoveID-popup").hasClass("ui-popup-active"));
+function fillRemoveIdPopup(system, activeSystemPage){
+	console.log($.mobile.activePage.find("#psnRemoveID"+ activeSystemPage +"-popup").hasClass("ui-popup-active"));
 	if(system == "psn"){
-		$("#psnRemoveIdList").html("");
+		$("#psnRemoveIdList"+ activeSystemPage).html("");
 		db.transaction(function(transaction){
 			transaction.executeSql('SELECT UserId, Username FROM Users WHERE System = "psn";', [],
 			function(transaction, result) {
 				for (var i = 0; i < result.rows.length; i++) {
 					var row = result.rows.item(i);
-					$("#psnRemoveIdList").append(
+					$("#psnRemoveIdList"+ activeSystemPage).append(
 						"<li class='removeIdList' >" +
 							"<h3 class='usernameListTitle psn'>" +
-								"<div class='usernameList' onclick='removeId(\"" + 'psn' + "\",\"" + row.Username + "\")'>" + row.Username + "</div>" +
+								"<div class='usernameList' onclick='removeId(\"" + 'psn' + "\",\"" + row.Username + "\",\"" + activeSystemPage + "\")'>" + row.Username + "</div>" +
 							"</h3>" +
 						"</li>").children().last().trigger("create");
-					$("#psnRemoveID").trigger("create");
+					$("#psnRemoveID"+ activeSystemPage).trigger("create");
 				}
 			});
 		});
 	}
 	else if(system == "steam"){
-		$("#steamRemoveIdList").html("");
+		$("#steamRemoveIdList"+ activeSystemPage).html("");
 		db.transaction(function(transaction){
 			transaction.executeSql('SELECT UserId, Username FROM Users WHERE System = "steam";', [],
 			function(transaction, result) {
@@ -29,32 +29,32 @@ function fillRemoveIdPopup(system){
 					Id = str.substring(0,str.indexOf("/"));
 					Username = str.substring(str.indexOf("/")+1,str.length);
 					
-					$("#steamRemoveIdList").append(
+					$("#steamRemoveIdList"+ activeSystemPage).append(
 						"<li class='removeIdList' >" +
 							"<h3 class='usernameListTitle steam'>" +
-								"<div class='usernameList' onclick='removeId(\"" + 'steam' + "\",\"" + row.Username + "\")'>" + Username + "</div>" +
+								"<div class='usernameList' onclick='removeId(\"" + 'steam' + "\",\"" + row.Username + "\",\"" + activeSystemPage + "\")'>" + Username + "</div>" +
 							"</h3>" +
 						"</li>").children().last().trigger("create");
-					$("#steamRemoveID").trigger("create");
+					$("#steamRemoveID"+ activeSystemPage).trigger("create");
 				}
 			});
 		});
 	}
 	else if(system == "xbox"){
 		//$('#psnAddID').popup
-		$("#xboxRemoveIdList").html("");
+		$("#xboxRemoveIdList"+ activeSystemPage).html("");
 		db.transaction(function(transaction){
 			transaction.executeSql('SELECT UserId, Username FROM Users WHERE System = "xbox";', [],
 			function(transaction, result) {
 				for (var i = 0; i < result.rows.length; i++) {
 					var row = result.rows.item(i);
-					$("#xboxRemoveIdList").append(
+					$("#xboxRemoveIdList"+ activeSystemPage).append(
 						"<li class='removeIdList' >" +
 							"<h3 class='usernameListTitle xbox'>" +
-								"<div class='usernameList' onclick='removeId(\"" + 'xbox' + "\",\"" + row.Username + "\")'>" + row.Username + "</div>" +
+								"<div class='usernameList' onclick='removeId(\"" + 'xbox' + "\",\"" + row.Username + "\",\"" + activeSystemPage + "\")'>" + row.Username + "</div>" +
 							"</h3>" +
 						"</li>").children().last().trigger("create");
-					$("#xboxRemoveID").trigger("create");
+					$("#xboxRemoveID"+ activeSystemPage).trigger("create");
 				}
 			});
 		});

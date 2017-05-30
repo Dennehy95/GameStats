@@ -2,7 +2,8 @@ html, body {
     height: 100%;
 }
 #Page1,
-#Page2,
+#Page2a,
+#Page2b,
 #Page3{
 	background-color: #333;
 	height: 100%;
@@ -296,9 +297,12 @@ h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-le
 
 
 /**********			System page		**********/
-#psnRemoveID,
-#steamRemoveID,
-#xboxRemoveID{
+#psnRemoveID2a,
+#psnRemoveID2b,
+#steamRemoveID2a,
+#steamRemoveID2a,
+#xboxRemoveID2a,
+#xboxRemoveID2b{
 	top: -20vh;
 }
 .removeIdList {

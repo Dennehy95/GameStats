@@ -1,4 +1,4 @@
-function removeId(system, Username){
+function removeId(system, Username, activeSystemPage){
 	/*db = openDatabase(shortName, version, displayName,maxSize);
 	if (!window.openDatabase) {
 		alert('Databases are not supported in this browser.');
@@ -9,7 +9,8 @@ function removeId(system, Username){
 	},errorHandler);
 	// this calls the function that will show what is in the User table in
 	//the database
-	getLinkedIds();
-	fillRemoveIdPopup(system)
+	
+	fillRemoveIdPopup(system, activeSystemPage);
+	getLinkedIds(system, activeSystemPage);
 	return false;
 }
