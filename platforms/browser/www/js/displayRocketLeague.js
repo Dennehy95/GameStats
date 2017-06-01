@@ -14,16 +14,6 @@ function displayStatsRocketLeague(Username, System, pageId){
 				"Updated: " + result.rows.item(0).Time + ""
 			);
 			$("#statsPageContent" + pageId).append(
-				/*"<div class='update'>" +
-					"<h1 class='statsPageUpdate'>" +
-						"<div class='statsPageUpdateText'>Last Updated: " + result.rows.item(0).Time + "</dic>" +
-						"<a class='getUpdatedStats ui-btn ui-btn-right ui-corner-all' onclick='sourceRocketLeague(\"" + Username + "\",\"" + System + "\")'>Update</a>" +
-					"</h1>" +
-				"</div>" +*/
-				/*"<div data-role='header'>" +
-					"<h1 class='statsPageUpdate'>Accurate as of: </h1>" +
-					"<a data-role='button' data-icon='refresh' data-iconshadow='false' onclick='' class='ui-btn-right'>Update</a>" +
-				"</div>" +*/
 				"<div class='performance'>" +
 					"<div class='performanceRatings ui-grid-b'>" +
 						"<div class='offenseStats ui-grid-b '>" +

@@ -107,10 +107,6 @@
 				$("#Page2b").unbind('swipeleft');
 				$("#Page2b").unbind('swiperight');
 				
-				console.log('unbinded');
-				console.log(activeSystem);
-				console.log(activeSystemPage);
-				
 				$("#Page1").swipeleft(function() {
 					goPSN('left', activeSystemPage);
 				});
@@ -126,8 +122,6 @@
 						goPSN('right', activeSystemPage);
 					}
 					else if(activeSystem == 'Xbox'){
-						console.log('should be happen + 2b');
-						console.log(activeSystemPage);
 						goSteam('right', activeSystemPage);
 					}
 				});
@@ -168,9 +162,7 @@
 			}
 				
 			function goPSN(direction, activeSystemPage){
-			console.log(activeSystemPage);
-				console.log('psn');
-				getLinkedIds('psn',activeSystemPage);
+				getLinkedIds('psn',activeSystemPage, 1);
 				if(direction == 'left'){
 					if(activeSystemPage == '2a'){
 						toChange = '#Page2a';
@@ -180,7 +172,6 @@
 							reload    : false
 						});
 						activeSystem = 'PSN';
-						console.log('going psn alter');
 						changeActiveSystemPage();
 						activeSystemPage = '2b';
 						//setBacks(activeSystem, activeSystemPage);
@@ -197,7 +188,6 @@
 							reload    : false
 						});
 						activeSystem = 'PSN';
-						console.log('going psn alter');
 						changeActiveSystemPage();
 						activeSystemPage = '2a';
 						//setBacks(activeSystem, activeSystemPage);
@@ -216,7 +206,6 @@
 							reload    : false
 						});
 						activeSystem = 'PSN';
-						console.log('going PSN');
 						changeActiveSystemPage();
 						activeSystemPage = '2b';
 						//setBacks(activeSystem, activeSystemPage);
@@ -233,7 +222,6 @@
 							reload    : false
 						});
 						activeSystem = 'PSN';
-						console.log('going PSN');
 						changeActiveSystemPage();
 						activeSystemPage = '2a';
 						
@@ -253,7 +241,6 @@
 							reload    : false
 						});
 						activeSystem = 'PSN';
-						console.log('going psn');
 						//setBacks(activeSystem, activeSystemPage);
 						//setSwipes(activeSystem, activeSystemPage);
 						/*$(".systemSection.psn").css("display", "block");
@@ -268,7 +255,6 @@
 							reload    : false
 						});
 						activeSystem = 'PSN';
-						console.log('going psn');
 						//setBacks(activeSystem, activeSystemPage);
 						//setSwipes(activeSystem, activeSystemPage);
 						/*$(".systemSection.psn").css("display", "block");
@@ -280,7 +266,7 @@
 			function goSteam(direction, activeSystemPage){
 				console.log(activeSystemPage);
 				console.log('Steam');
-				getLinkedIds('steam',activeSystemPage);
+				getLinkedIds('steam',activeSystemPage,1);
 				if(direction == 'left'){
 					if(activeSystemPage == '2a'){
 						toChange = '#Page2a';
@@ -290,7 +276,6 @@
 							reload    : false
 						});
 						activeSystem = 'Steam';
-						console.log('going Steam');
 						changeActiveSystemPage();
 						activeSystemPage = '2b';
 						//setBacks(activeSystem, activeSystemPage);
@@ -307,7 +292,6 @@
 							reload    : false
 						});
 						activeSystem = 'Steam';
-						console.log('going Steam');
 						changeActiveSystemPage();
 						activeSystemPage = '2a';
 						//setBacks(activeSystem, activeSystemPage);
@@ -326,7 +310,6 @@
 							reload    : false
 						});
 						activeSystem = 'Steam';
-						console.log('going steam');
 						changeActiveSystemPage();
 						activeSystemPage = '2b';
 						//setBacks(activeSystem, activeSystemPage);
@@ -343,7 +326,6 @@
 							reload    : false
 						});
 						activeSystem = 'Steam';
-						console.log('going steam');
 						changeActiveSystemPage();
 						activeSystemPage = '2a';
 						//setBacks(activeSystem, activeSystemPage);
@@ -359,7 +341,6 @@
 							reload    : false
 						});
 						activeSystem = 'Steam';
-						console.log('going Steam');
 						//setBacks(activeSystem, activeSystemPage);
 						//setSwipes(activeSystem, activeSystemPage);
 						/*$(".systemSection.psn").css("display", "none");
@@ -374,7 +355,6 @@
 							reload    : false
 						});
 						activeSystem = 'Steam';
-						console.log('going Steam');
 						//setBacks(activeSystem, activeSystemPage);
 						//setSwipes(activeSystem, activeSystemPage);
 						/*$(".systemSection.psn").css("display", "none");
@@ -386,7 +366,7 @@
 			function goXbox(direction, activeSystemPage){
 				console.log(activeSystemPage);
 				console.log('Xbox');
-				getLinkedIds('xbox', activeSystemPage);
+				getLinkedIds('xbox', activeSystemPage,1);
 				if(direction == 'left'){
 					if(activeSystemPage == '2a'){
 						toChange = '#Page2a';
@@ -396,7 +376,6 @@
 							reload    : false
 						});
 						activeSystem = 'Xbox';
-						console.log('going Xbox');
 						changeActiveSystemPage();
 						activeSystemPage = '2b';
 						//setBacks(activeSystem, activeSystemPage);
@@ -413,7 +392,6 @@
 							reload    : false
 						});
 						activeSystem = 'Xbox';
-						console.log('going Xbox');
 						changeActiveSystemPage();
 						activeSystemPage = '2a';
 						//setBacks(activeSystem, activeSystemPage);
@@ -429,7 +407,6 @@
 							reload    : false
 						});
 						activeSystem = 'Xbox';
-						console.log('going xbox');
 						
 						changeActiveSystemPage();
 						activeSystemPage = '2b';
@@ -447,7 +424,6 @@
 							reload    : false
 						});
 						activeSystem = 'Xbox';
-						console.log('going xbox');
 						changeActiveSystemPage();
 						activeSystemPage = '2a';
 						//setBacks(activeSystem, activeSystemPage);
@@ -463,7 +439,6 @@
 							reload    : false
 						});
 						activeSystem = 'Xbox';
-						console.log('going xbox');
 						//setBacks(activeSystem, activeSystemPage);
 						//setSwipes(activeSystem, activeSystemPage);
 						/*$(".systemSection.psn").css("display", "none");
@@ -478,7 +453,6 @@
 							reload    : false
 						});
 						activeSystem = 'Xbox';
-						console.log('going xbox');
 						//setBacks(activeSystem, activeSystemPage);
 						//setSwipes(activeSystem, activeSystemPage);
 					}
@@ -501,7 +475,6 @@
 						reload    : false
 					});
 					activeSystem = 'Home';
-					console.log('going home');
 					/*$(".systemSection.psn").css("display", "none");
 					$(".systemSection.steam").css("display", "none");
 					$(".systemSection.xbox").css("display", "block");*/
@@ -513,7 +486,6 @@
 						reload    : false
 					});
 					activeSystem = 'Home';
-					console.log('going home');
 					/*$(".systemSection.psn").css("display", "block");
 					$(".systemSection.steam").css("display", "none");
 					$(".systemSection.xbox").css("display", "none");*/

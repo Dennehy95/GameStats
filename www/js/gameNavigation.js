@@ -31,15 +31,14 @@ function gameNavigation(Destination, Direction, Outlay, Username, System, positi
 	else{
 		toChangePageId = '3a';
 	}
-	
 	$("#statsPageHeader" + toChangePageId).html("");
 	$("#statsPageNavigation" + toChangePageId).html("");
 	$("#statsPageUpdateGames" + toChangePageId).html("");
 	$("#statsPageContent" + toChangePageId).html("");
 	
 	displayBasics(Username, System, Destination,activeSystemPage, toChangePageId);
-	navigationSetup(position, Username, System, toChangePageId);
-	updateGamesList(position, Username, System, Destination, toChangePageId);
+	navigationSetup(position, Username, System, toChangePageId, Destination);
+	//updateGamesList(position, Username, System, Destination, toChangePageId);
 	
 	if(Destination == 'Rocket_League'){
 		displayStatsRocketLeague(Username, System, toChangePageId)

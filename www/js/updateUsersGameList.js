@@ -1,4 +1,4 @@
-function updateListOfGames(/*UserId,*/ Username, System){
+function updateListOfGames(/*UserId,*/ Username, System, pageId, Destination){
 	db = openDatabase(shortName, version, displayName,maxSize);
 	/*$.get("http://www.dennehyobutternug.eu/gameStatsPython/checkGames.py", function(data) {
 		//$("#ajax_results").text(data);
@@ -79,7 +79,9 @@ function updateListOfGames(/*UserId,*/ Username, System){
 				console.log('nosiege');
 			}
 			console.log('recalling nav');
-			navigationSetup(0, Username, System, '3a');
+			$("#statsPageUpdateGames" + pageId).html("");
+			navigationSetup(0, Username, System, pageId, Destination);
+			//navigationSetup(position, Username, System, toChangePageId, Destination);
 		},errorHandler,nullHandler);
 		console.log('done?');
 		//fillListOfGames(UserId, Username, System);

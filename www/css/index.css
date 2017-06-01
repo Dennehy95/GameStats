@@ -298,13 +298,13 @@ h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-le
 
 
 /**********			System page		**********/
-#psnRemoveID2a,
-#psnRemoveID2b,
-#steamRemoveID2a,
-#steamRemoveID2a,
-#xboxRemoveID2a,
-#xboxRemoveID2b{
-	top: -20vh;
+#psnRemoveID2a-popup,
+#psnRemoveID2b-popup,
+#steamRemoveID2a-popup,
+#steamRemoveID2a-popup,
+#xboxRemoveID2a-popup,
+#xboxRemoveID2b-popup{
+	top: 20vh!important;
 }
 .removeIdList {
 	font-size: 4vh;

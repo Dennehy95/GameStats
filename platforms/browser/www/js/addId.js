@@ -31,6 +31,6 @@ function AddValueToDB(system, activeSystemPage) {
 	});
 	// this calls the function that will show what is in the User table in
 	//the database
-	getLinkedIds(system, activeSystemPage);
+	getLinkedIds(system, activeSystemPage,0);
 	return false;
 }
