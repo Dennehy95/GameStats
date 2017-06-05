@@ -5,7 +5,18 @@ function displayBasics(Username, System, Game, activeSystemPage, pageId){
 			toAppend = Username + ' - PSN';
 		}
 		else{
-			toAppend = Game;
+			if(Game == 'Rocket_League'){
+				toAppend = 'Rocket League';
+				console.log('Lea');
+			}
+			else if(Game == 'Siege'){
+				console.log('Siege');
+				toAppend = 'R6 Siege';
+			}
+			else{
+				console.log('else');
+				toAppend = Game;
+			}
 		}
 		
 		$("#statsPageHeader" + pageId).append(
@@ -34,7 +45,15 @@ function displayBasics(Username, System, Game, activeSystemPage, pageId){
 			toAppend = Username + ' - Steam';
 		}
 		else{
-			toAppend = Game;
+			if(Game == 'Rocket_League'){
+				toAppend = 'Rocket League';
+			}
+			else if(Game == 'Siege'){
+				toAppend = 'R6 Siege';
+			}
+			else{
+				toAppend = Game;
+			}
 		}
 		
 		$("#statsPageHeader" + pageId).append(
@@ -59,7 +78,15 @@ function displayBasics(Username, System, Game, activeSystemPage, pageId){
 			toAppend = Username + ' - Xbox Live';
 		}
 		else{
-			toAppend = Game;
+			if(Game == 'Rocket_League'){
+				toAppend = 'Rocket League';
+			}
+			else if(Game == 'Siege'){
+				toAppend = 'Rainbow Six Siege';
+			}
+			else{
+				toAppend = Game;
+			}
 		}
 		
 		$("#statsPageHeader" + pageId).append(
@@ -146,6 +173,9 @@ function checkGameList(position, usersGameList, gameFound, Username, System, pag
 					gameTitleOnClick = 'gameNavigation("' + 'Profile' + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',' + activeSystemPage + ',"'  + pageId + '")';
 					navTitle = 'Profile';
 				}
+				if(navTitle == 'Rocket_League'){
+					navTitle = 'Rocket League';
+				}
 				
 				$("#statsPageNavigation" + pageId).append(
 					"<div class='ui-grid-b statsPageNavigationSingle' onclick='" + gameTitleOnClick + "'>" +
@@ -207,6 +237,12 @@ function checkGameList(position, usersGameList, gameFound, Username, System, pag
 					navTitleRight = 'Profile';
 					navTitleLeft = usersGameListFinal[size-2];
 				}
+				if(navTitleLeft == 'Rocket_League'){
+					navTitleLeft = 'Rocket League';
+				}
+				if(navTitleRight == 'Rocket_League'){
+					navTitleRight = 'Rocket League';
+				}
 				$("#statsPageNavigation" + pageId).append(
 					"<div class='ui-grid-a statsPageNavigationMulti'>" +
 						"<div class='ui-block-a'>" +
@@ -241,7 +277,6 @@ function checkGameList(position, usersGameList, gameFound, Username, System, pag
 				);
 			}
 		}
-		console.log('redraw¬!"');
 
 		updateGamesList(position, Username, System, Destination, pageId, usersGameList)
 	}
