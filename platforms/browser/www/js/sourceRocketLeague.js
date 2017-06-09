@@ -110,7 +110,6 @@ function sourceRocketLeague(Username, System, pageId){
 						}
 						transaction.executeSql('UPDATE Rocket_League SET SoloStandardRank = ?, SoloStandardDivision = ?,SoloStandardRating = ?,SoloStandardGames = ?, SoloStandardStreak = ? WHERE PlayerName = ? AND System = ?',[SoloStandardRank, SoloStandardDiv, SoloStandardRating, SoloStandardGames, SoloStandardStreak, Username, System],nullHandler,errorHandler);
 					}
-					/*transaction.executeSql('UPDATE Rocket_League SET DuelRank = ?, DuelDivision = ?,DuelRating = ?,DuelGames = ?, DuelStreak = ?,DoublesRank = ?, DoublesDivision = ?,DoublesRating = ?,DoublesGames = ?, DoublesStreak = ?,StandardRank = ?, StandardDivision = ?,StandardRating = ?,StandardGames = ?, StandardStreak = ?,SoloStandardRank = ?, SoloStandardDivision = ?,SoloStandardRating = ?,SoloStandardGames = ?, SoloStandardStreak = ? WHERE PlayerName = ? AND System = ?',[performanceArray[0], performanceArray[1], performanceArray[2], performanceArray[3], performanceArray[4], performanceArray[5], performanceArray[6], performanceArray[7],time, Username, System],nullHandler,errorHandler);*/
 				}
 			}
 		//var newStr = response

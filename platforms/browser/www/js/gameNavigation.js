@@ -40,11 +40,14 @@ function gameNavigation(Destination, Direction, Outlay, Username, System, positi
 	navigationSetup(position, Username, System, toChangePageId, Destination);
 	//updateGamesList(position, Username, System, Destination, toChangePageId);
 	
-	if(Destination == 'Rocket_League'){
-		displayStatsRocketLeague(Username, System, toChangePageId)
+	if(Destination == 'Halo_V'){
+		displayStatsHalo5(Username, System, toChangePageId)
 	}
 	else if(Destination == 'Siege'){
 		displayStatsSiege(Username, System, toChangePageId)
+	}
+	else if(Destination == 'Rocket_League'){
+		displayStatsRocketLeague(Username, System, toChangePageId)
 	}
 	
 	if(Direction == 'right'){

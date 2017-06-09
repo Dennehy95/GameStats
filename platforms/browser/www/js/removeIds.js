@@ -8,7 +8,7 @@ function removeId(system, Username, activeSystemPage){
 		transaction.executeSql('DELETE FROM Users WHERE Username = "'+ Username +'" AND System = "' + system + '";')
 		transaction.executeSql('DELETE FROM Rocket_League WHERE PlayerName = "'+ Username +'" AND System = "' + system + '";')
 		transaction.executeSql('DELETE FROM Siege WHERE PlayerName = "'+ Username +'" AND System = "' + system + '";')
-		//transaction.executeSql('DELETE FROM Siege WHERE Username = "'+ Username +'" AND System = "' + system + '";')
+		transaction.executeSql('DELETE FROM Halo_V WHERE PlayerName = "'+ Username +'" AND System = "' + system + '";')
 	},errorHandler);
 	// this calls the function that will show what is in the User table in
 	//the database
