@@ -1,7 +1,7 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="eu.phonegap.GameStats" version="1.0.0">
   <name>GameStatsApp</name>
   <description>Application to source user stats from popular video games.
-  Uses SVG Icons from Freepik from www.flaticon.com(Be sure to credit this in desc when releasing)
+  Uses SVG Icons from Freepik,Madebyoliver from www.flaticon.com(Be sure to credit this in desc when releasing)
   </description>
   <author href="http://phonegap.com" email="support@phonegap.com">PhoneGap Team</author>
   <content src="index.html"/>

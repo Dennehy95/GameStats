@@ -73,7 +73,7 @@ function halo5PSRArena(Username,System,pageId,Mode){
 			transaction.executeSql('UPDATE Halo_V SET Active = ?, TotalArenaAssassinations = ?, TotalArenaAssists = ?, TotalArenaDeaths = ?, TotalArenaGamesCompleted = ?, TotalArenaGamesLost = ?, TotalArenaGamesTied = ?, TotalArenaGamesWon = ?, TotalArenaGrenadeKills = ?,TotalArenaGroundPoundKills =?,TotalArenaHeadshots = ?, TotalArenaKills = ?, TotalArenaMeleeKills = ?, TotalArenaPowerWeaponKills = ?, TotalArenaShotsFired = ?, TotalArenaShotsLanded = ?, TotalArenaShoulderBashKills = ?, TotalArenaTimePlayed = ?, SpartanRank = ?, Time = ? WHERE PlayerName = ? AND System = ?',[1, statsArray[0], statsArray[1], statsArray[2], statsArray[3], statsArray[4], statsArray[5], statsArray[6], statsArray[7], statsArray[8], statsArray[9], statsArray[10], statsArray[11], statsArray[12], statsArray[13], statsArray[14], statsArray[15], statsArray[16], statsArray[17],time, Username, System],nullHandler,errorHandler);
 			
 		},errorHandler,nullHandler);
-		displayStatsHalo5(Username, System, pageId)//re draw stats page
+		displayStatsHalo5WithTime(Username, System, pageId)//re draw stats page
 	})
 	request.fail(function() {
 		alert("error");

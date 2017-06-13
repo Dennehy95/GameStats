@@ -79,10 +79,6 @@ h1{
 #Username{
 	font-size: 3vh;
 }
-.addIdSection{
-	background-color: #333;
-	min-height: 20%;
-}
 .ui-btn-a.alterIdButton{
 	font-family: Ubuntu;
 	font-size: 3vh;
@@ -222,54 +218,13 @@ h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-le
 	background: linear-gradient(45deg,  #c2dbab 0%,#71db6b 15%,#86dd39 45%,#69bf28 75%,#74c13a 76%,#69bf28 79%,#76e01f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c2dbab', endColorstr='#76e01f',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
-.psn.ui-btn.ui-corner-all.ui-btn-inherit.ui-radio-on.ui-btn-active{
-	background-color: #2794f3;
-	font-size: 3vh;
-	text-align: center;
-}
-.psn.ui-btn.ui-corner-all.ui-btn-inherit.ui-radio-off{
-	font-size: 3vh;
-	text-align: center;
-}
-.steam.ui-btn.ui-corner-all.ui-btn-inherit.ui-radio-on.ui-btn-active{
-	background-color: #27bdf3;
-	font-size: 3vh;
-	text-align: center;
-}
-.steam.ui-btn.ui-corner-all.ui-btn-inherit.ui-radio-off{
-	font-size: 3vh;
-	text-align: center;
-}
-.xbox.ui-btn.ui-corner-all.ui-btn-inherit.ui-radio-on.ui-btn-active{
-	background-color: #4ac331;
-	font-size: 3vh;
-	text-align: center;
-}
-.xbox.ui-btn.ui-corner-all.ui-btn-inherit.ui-radio-off{
-	font-size: 3vh;
-	text-align: center;
-}
-.ui-block-a.systems,
-.ui-block-b.systems,
-.ui-block-c.systems{
-	width: 33%;
-}
 .ui-btn.ui-input-btn.ui-corner-all.ui-shadow{
 	font-size: 3vh;
 }
 .ui-input-text.input{
 	font-size: 3vh;
 }
-.ui-radio{
-	float: none !important;
-}
-.ui-grid-b.ui-controlgroup{
-	display: block;
-	margin: 0;
-}
-.ui-grid-b > .ui-controlgroup-controls {
-	display: block;
-}
+
 .usernameListTitle{
 	border-radius: 25px;
 	color: white;
@@ -474,7 +429,55 @@ h3.popupHeader{
     white-space: nowrap;
 }
 
+/**********			Halo 5		**********/
 
+.halo5ActiveMode{
+	color: #fff;
+	font-family: "Simplifica", sans-serif;
+	font-size: 6vh;
+	height: 8vh;
+	text-align: center;
+	text-shadow: none;
+}
+
+.halo5ModeSelect{
+	min-height: 20%;
+}
+/*
+.halo5Modes.ui-btn.ui-corner-all.ui-btn-inherit.ui-radio-on.ui-btn-active{
+	background-color: #4ac331;
+	font-size: 3vh;
+	height: 8vh;
+	padding: 0;
+	text-align: center;
+}
+.halo5Modes.ui-btn.ui-corner-all.ui-btn-inherit.ui-radio-off{
+	font-size: 3vh;
+	height: 8vh;
+	padding: 0;
+	text-align: center;
+}
+*/
+.ui-block-b.halo5ModesActive{
+	width: 60%;
+}
+.ui-block-a.halo5ModesNavLeft{
+	width: 20%;
+}
+.ui-block-c.halo5ModesNavRight{
+	text-align: right;
+	width: 20%;
+}
+/*.ui-radio{
+	float: none !important;
+}
+.ui-grid-b.ui-controlgroup{
+	display: block;
+	margin: 0;
+}
+.ui-grid-b > .ui-controlgroup-controls {
+	display: block;
+}*/
 /**********			RocketLeague		**********/
 .getUpdatedStats.ui-btn.ui-btn-right.ui-corner-all{
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff670f+0,ff670f+100;Orange+Flat+%231 */

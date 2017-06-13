@@ -171,4 +171,3 @@ function displayStatsRocketLeague(Username, System, pageId){
 		},errorHandler,nullHandler);
 	},errorHandler);
 }
-	//$("#statsPage").trigger("create");

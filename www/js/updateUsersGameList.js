@@ -1,22 +1,6 @@
 function updateListOfGames(/*UserId,*/ Username, System, pageId, Destination, usersGameList){
 	db = openDatabase(shortName, version, displayName,maxSize);
 	
-	/*$.get("http://www.dennehyobutternug.eu/gameStatsPython/checkGames.py", function(data) {
-		//$("#ajax_results").text(data);
-		console.log(data);
-	})*/
-	
-	/*$.ajax({
-		type: "POST",
-		url: 'http://www.dennehyobutternug.eu/gameStatsPython/checkGames.py',
-		data: {
-			Username : Username,
-			System : System
-		},
-		function(data, status){
-			console.log("Data: " + data + "\nStatus: " + status);
-		}
-	});*/
 	usersGameListJSON = JSON.stringify(usersGameList)
 	//$(urlfetch )
 	var request;
@@ -51,8 +35,6 @@ function updateListOfGames(/*UserId,*/ Username, System, pageId, Destination, us
 		var availability = str.split(',');
 		console.log(availability);
 		
-		console.log('updateListOfGames');
-		// Log a message to the console
 		var halovAvailable = availability[0];
 		var rocketLeagueAvailable = availability[1];
 		var siegeAvailable = availability[2];
@@ -64,7 +46,7 @@ function updateListOfGames(/*UserId,*/ Username, System, pageId, Destination, us
 				function(transaction, result) {
 					if(result.rows.length == 0){
 						console.log('adding');
-						transaction.executeSql('INSERT INTO Halo_V(PlayerName, System, Active, TotalArenaAssassinations, TotalArenaAssists, TotalArenaDeaths, TotalArenaGamesCompleted, TotalArenaGamesLost, TotalArenaGamesTied, TotalArenaGamesWon, TotalArenaGrenadeKills, TotalArenaGroundPoundKills, TotalArenaHeadshots, TotalArenaKills, TotalArenaMeleeKills, TotalArenaPowerWeaponKills, TotalArenaShotsFired, TotalArenaShotsLanded, TotalArenaShoulderBashKills, TotalArenaTimePlayed, SpartanRank, Time)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',[Username, System, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0', 0,'Not Updated Yet'],nullHandler,errorHandler);
+						transaction.executeSql('INSERT INTO Halo_V(PlayerName, System, Active, TotalArenaAssassinations, TotalArenaAssists, TotalArenaDeaths, TotalArenaGamesCompleted, TotalArenaGamesLost, TotalArenaGamesTied, TotalArenaGamesWon, TotalArenaGrenadeKills, TotalArenaGroundPoundKills, TotalArenaHeadshots, TotalArenaKills, TotalArenaMeleeKills, TotalArenaPowerWeaponKills, TotalArenaShotsFired, TotalArenaShotsLanded, TotalArenaShoulderBashKills, TotalArenaTimePlayed, SpartanRank, Time, ActiveMode)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',[Username, System, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0', 0,'Not Updated Yet','Arena'],nullHandler,errorHandler);
 					}
 				},errorHandler);
 			}
@@ -91,8 +73,7 @@ function updateListOfGames(/*UserId,*/ Username, System, pageId, Destination, us
 			
 			console.log('recalling nav');
 			$("#statsPageUpdateGames" + pageId).html("");
-			navigationSetup(0, Username, System, pageId, Destination);
-			//navigationSetup(position, Username, System, toChangePageId, Destination);
+			navigationSetup(0, Username, System, pageId, Destination, 1, '');
 		},errorHandler,nullHandler);
 		console.log('done?');
 		//fillListOfGames(UserId, Username, System);

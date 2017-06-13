@@ -1,4 +1,4 @@
-function gameNavigation(Destination, Direction, Outlay, Username, System, position, size, activeSystemPage, pageId){
+function gameNavigation(Destination, Direction, Outlay, Username, System, position, size, activeSystemPage, pageId, usersGameList){
 	if(Outlay == 'single'){
 		if(position == 1){
 			position = 0;
@@ -37,11 +37,11 @@ function gameNavigation(Destination, Direction, Outlay, Username, System, positi
 	$("#statsPageContent" + toChangePageId).html("");
 	
 	displayBasics(Username, System, Destination,activeSystemPage, toChangePageId);
-	navigationSetup(position, Username, System, toChangePageId, Destination);
+	navigationSetup(position, Username, System, toChangePageId, Destination, 0, usersGameList);
 	//updateGamesList(position, Username, System, Destination, toChangePageId);
 	
 	if(Destination == 'Halo_V'){
-		displayStatsHalo5(Username, System, toChangePageId)
+		displayStatsHalo5WithTime(Username, System, toChangePageId)
 	}
 	else if(Destination == 'Siege'){
 		displayStatsSiege(Username, System, toChangePageId)
