@@ -11,7 +11,8 @@ function displayStatsHalo5(Username, System, pageId){
 			$("#halo5ActiveMode").append(
 				activeMode 
 			);
-			console.log('happening');
+			displayActiveModeStatsHalo5(Username, System, pageId, activeMode);
+			
 			$("#halo5ActiveModeLeft").attr("onclick","halo5ActiveModeChange('" + Username +"','" + System +"','" + pageId +"','left','" + activeMode +"')");
 			$("#halo5ActiveModeRight").attr("onclick","halo5ActiveModeChange('" + Username +"','" + System +"','" + pageId +"','right','" + activeMode +"')");
 		},errorHandler,nullHandler);
@@ -36,6 +37,7 @@ function displayStatsHalo5(Username, System, pageId){
 			"</div>" +
 		"</div>"
 	).children().last().trigger("create");
+	
 	
 	db.transaction(function(transaction) {
 		transaction.executeSql('SELECT TotalArenaAssassinations, TotalArenaAssists, TotalArenaDeaths, TotalArenaGamesCompleted, TotalArenaGamesLost, TotalArenaGamesTied, TotalArenaGamesWon, TotalArenaGrenadeKills,TotalArenaGroundPoundKills,TotalArenaHeadshots, TotalArenaKills, TotalArenaMeleeKills, TotalArenaPowerWeaponKills, TotalArenaShotsFired, TotalArenaShotsLanded, TotalArenaShoulderBashKills, TotalArenaTimePlayed, SpartanRank, Time FROM Halo_V WHERE PlayerName = "'+ Username +'" AND System = "' + System +'";', [],
@@ -85,16 +87,72 @@ function displayStatsHalo5WithTime(Username, System, pageId){
 	displayStatsHalo5(Username, System, pageId);
 
 }
-function displayArenaStatsHalo5(Username, System, pageId){
-	db.transaction(function(transaction) {
-		transaction.executeSql('SELECT TotalArenaAssassinations, TotalArenaAssists, TotalArenaDeaths, TotalArenaGamesCompleted, TotalArenaGamesLost, TotalArenaGamesTied, TotalArenaGamesWon, TotalArenaGrenadeKills,TotalArenaGroundPoundKills,TotalArenaHeadshots, TotalArenaKills, TotalArenaMeleeKills, TotalArenaPowerWeaponKills, TotalArenaShotsFired, TotalArenaShotsLanded, TotalArenaShoulderBashKills, TotalArenaTimePlayed, SpartanRank, Time FROM Halo_V WHERE PlayerName = "'+ Username +'" AND System = "' + System +'";', [],
-		function(transaction, result) {
-			console.log(result.rows.item(0));
-			$(".updateButtonTextBottom").append(
-				"Updated: " + result.rows.item(0).Time + ""
-			);
-		},errorHandler,nullHandler);
-	},errorHandler);
+function displayActiveModeStatsHalo5(Username, System, pageId, activeMode){
+	if(activeMode == 'Arena'){
+		db.transaction(function(transaction) {
+			transaction.executeSql('SELECT TotalArenaAssassinations, TotalArenaAssists, TotalArenaDeaths, TotalArenaGamesCompleted, TotalArenaGamesLost, TotalArenaGamesTied, TotalArenaGamesWon, TotalArenaGrenadeKills,TotalArenaGroundPoundKills,TotalArenaHeadshots, TotalArenaKills, TotalArenaMeleeKills, TotalArenaPowerWeaponKills, TotalArenaShotsFired, TotalArenaShotsLanded, TotalArenaShoulderBashKills, TotalArenaTimePlayed, SpartanRank FROM Halo_V WHERE PlayerName = "'+ Username +'" AND System = "' + System +'";', [],
+			function(transaction, result) {
+				console.log(result.rows.item(0));
+				timePlayedNoFormat = result.rows.item(0).TotalArenaTimePlayed;
+				Days = timePlayedNoFormat.substring(timePlayedNoFormat.lastIndexOf("P")+1,timePlayedNoFormat.lastIndexOf("D"));
+				if(Days == 'P'){
+					Days = ''
+				}
+				console.log(Days);
+				Hours = timePlayedNoFormat.substring(timePlayedNoFormat.lastIndexOf("T")+1,timePlayedNoFormat.lastIndexOf("H"));
+				if(Hours == 'T'){
+					Hours = ''
+				}
+				Minutes = timePlayedNoFormat.substring(timePlayedNoFormat.lastIndexOf("H")+1,timePlayedNoFormat.lastIndexOf("M"));
+				if(Minutes == 'H'){
+					Minutes = ''
+				}
+				if(Days == ''){
+					if(Hours == ''){
+						if(Minutes == ''){
+							timePlayedFormatted = 'Not Even a Minute Played';
+						}
+						else{
+							timePlayedFormatted = Minutes +' Minutes Played';
+						}
+					}
+					else{
+						timePlayedFormatted = Hours + ' Hours ' + Minutes +' Minutes Played';
+					}
+				}
+				else{
+					timePlayedFormatted = Days + ' Days ' + Hours + ' Hours ' + Minutes +' Minutes Played';
+				}
+				TotalGames = result.rows.item(0).TotalArenaGamesCompleted
+				Wins = result.rows.item(0).TotalArenaGamesWon
+				Losses = result.rows.item(0).TotalArenaGamesLost
+				Ties = result.rows.item(0).TotalArenaGamesTied
+				WinRatio = Wins/TotalGames;
+				$("#statsPageContent" + pageId).append(
+					"<h1 class='halo5TimePlayed'>" + timePlayedFormatted + "</h1>" +
+					"<div class='halo5GamesCompleted ui-grid-a'>" +
+						"<div class='ui-block-a '>Games Played<br>" + result.rows.item(0).TotalArenaGamesCompleted + "</div>" +
+						"<div class='ui-block-b 'Win Ratio<br>" + WinRatio + "%></div>" +
+					"</div>" +
+					"<div class='halo5GamesCompleted ui-grid-b'>" +
+						"<div class='ui-block-a '></div>" +
+						"<div class='ui-block-b '></div>" +
+						"<div class='ui-block-c '></div>" +
+					"</div>" +
+					"<h1 class='halo5TimePlayed'>" + timePlayedFormatted + "</h1>" 
+				);
+			},errorHandler,nullHandler);
+		},errorHandler);
+	}
+	else if(activeMode == 'Campaign'){
+		
+	}
+	else if(activeMode == 'Customs'){
+		
+	}
+	else if(activeMode == 'Warzone'){
+		
+	}
 }
 
 function halo5ActiveModeChange(Username, System, pageId, Direction, activeMode){

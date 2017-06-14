@@ -1,4 +1,5 @@
 html, body {
+	background-color: #333 !important;
     height: 100%;
 }
 #Page1,
@@ -120,7 +121,7 @@ h1{
 }
 .idListview{
 	margin: 0;
-	min-height: 70%;
+	min-height: 67%;
 	background-color: #333;
 }
 .noIdsTitle{
@@ -442,6 +443,13 @@ h3.popupHeader{
 
 .halo5ModeSelect{
 	min-height: 20%;
+}
+
+.halo5TimePlayed{
+	color: #fff;
+	font-size: 4vh;
+	margin: 0;
+	text-align:center;
 }
 /*
 .halo5Modes.ui-btn.ui-corner-all.ui-btn-inherit.ui-radio-on.ui-btn-active{
