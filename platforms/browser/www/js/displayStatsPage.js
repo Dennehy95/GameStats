@@ -234,7 +234,7 @@ function checkGameList(position, usersGameList, gameFound, Username, System, pag
 					});
 					
 					gameTitleRightOnClick = 'gameNavigation("' + usersGameListFinal[1] + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',"' + activeSystemPage + '","' + pageId + '","' + usersGameList + '")';
-					gameTitleLeftOnClick = 'gameNavigation("' + 'Profile' + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',"' + activeSystemPage + '","'  + pageId + '","' + usersGameList + '")';
+					gameTitleLeftOnClick = 'gameNavigation("' + 'Profile' + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',"' + activeSystemPage + '","' + pageId + '","' + usersGameList + '")';
 					navTitleRight = usersGameListFinal[1]
 					navTitleLeft = 'Profile';
 				}
@@ -246,8 +246,8 @@ function checkGameList(position, usersGameList, gameFound, Username, System, pag
 						gameNavigation(usersGameListFinal[size-2],'right','multi', Username, System, position, size, activeSystemPage, pageId, usersGameList);
 					});
 					
-					gameTitleRightOnClick = 'gameNavigation("' + 'Profile' + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',"' + activeSystemPage + '",'  + pageId + ',"' + usersGameList + '")';
-					gameTitleLeftOnClick = 'gameNavigation("' + usersGameListFinal[size-2] + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',"' + activeSystemPage + '",' + pageId + ',"' + usersGameList + '")';
+					gameTitleRightOnClick = 'gameNavigation("' + 'Profile' + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',"' + activeSystemPage + '","'  + pageId + '","' + usersGameList + '")';
+					gameTitleLeftOnClick = 'gameNavigation("' + usersGameListFinal[size-2] + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',"' + activeSystemPage + '","' + pageId + '","' + usersGameList + '")';
 					navTitleRight = 'Profile';
 					navTitleLeft = usersGameListFinal[size-2];
 				}
@@ -261,8 +261,8 @@ function checkGameList(position, usersGameList, gameFound, Username, System, pag
 						gameNavigation(usersGameListFinal[position - 2],'right','multi', Username, System, position, size, activeSystemPage, pageId, usersGameList);
 					});
 					
-					gameTitleRightOnClick = 'gameNavigation("' + usersGameListFinal[position] + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',"' + activeSystemPage + '",'  + pageId + ',"' + usersGameList + '")';
-					gameTitleLeftOnClick = 'gameNavigation("' + usersGameListFinal[position - 2] + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',"' + activeSystemPage + '",' + pageId + ',"' + usersGameList + '")';
+					gameTitleRightOnClick = 'gameNavigation("' + usersGameListFinal[position] + '","' + 'left' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',"' + activeSystemPage + '","'  + pageId + '","' + usersGameList + '")';
+					gameTitleLeftOnClick = 'gameNavigation("' + usersGameListFinal[position - 2] + '","' + 'right' + '","' + 'multi' + '","' + Username + '","' + System + '",' + position + ',' + size + ',"' + activeSystemPage + '","' + pageId + '","' + usersGameList + '")';
 					navTitleRight = usersGameListFinal[position];
 					navTitleLeft = usersGameListFinal[position - 2];
 				}

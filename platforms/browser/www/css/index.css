@@ -21,6 +21,7 @@ h1{
        url(SIMPLIFICATypeface.ttf);
 	   
 }
+
 .ajax-loader,
 .ajax-loader2 {
 	visibility: hidden;
@@ -286,6 +287,9 @@ h3.popupHeader{
 }
 #statsPageContent3a,
 #statsPageContent3b{
+	background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;
     margin: 1vh 0 0 0;
 }
 	
@@ -434,7 +438,7 @@ h3.popupHeader{
 
 .halo5ActiveMode{
 	color: #fff;
-	font-family: "Simplifica", sans-serif;
+	font-family: "Simplifica";
 	font-size: 6vh;
 	height: 8vh;
 	text-align: center;
@@ -445,11 +449,31 @@ h3.popupHeader{
 	min-height: 20%;
 }
 
-.halo5TimePlayed{
+.halo5BackgroundImage{
+	background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;  
+	opacity: 0.3;
+    filter: alpha(opacity = 40);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+.Halo5Stats{
+	color: #fff;
+	font-family: "Simplifica";
+	font-size: 4vh;
+	text-align:center;
+}
+.halo5TimePlayed,
+.halo5Rank{
 	color: #fff;
 	font-size: 4vh;
 	margin: 0;
 	text-align:center;
+}
+.halo5TimePlayed.Arena{
+	
 }
 /*
 .halo5Modes.ui-btn.ui-corner-all.ui-btn-inherit.ui-radio-on.ui-btn-active{
@@ -630,4 +654,16 @@ h3.popupHeader{
 	color: #67e2bc;
 	height: 8.6vh;
 	
+}
+.ui-page
+{
+background: #000;
+background-image:url(image.gif);
+background-size:cover;  
+}
+.ui-page.ui-body-c {
+    background: url(bg.png);
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;  
 }

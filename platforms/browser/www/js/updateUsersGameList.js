@@ -46,7 +46,7 @@ function updateListOfGames(/*UserId,*/ Username, System, pageId, Destination, us
 				function(transaction, result) {
 					if(result.rows.length == 0){
 						console.log('adding');
-						transaction.executeSql('INSERT INTO Halo_V(PlayerName, System, Active, TotalArenaAssassinations, TotalArenaAssists, TotalArenaDeaths, TotalArenaGamesCompleted, TotalArenaGamesLost, TotalArenaGamesTied, TotalArenaGamesWon, TotalArenaGrenadeKills, TotalArenaGroundPoundKills, TotalArenaHeadshots, TotalArenaKills, TotalArenaMeleeKills, TotalArenaPowerWeaponKills, TotalArenaShotsFired, TotalArenaShotsLanded, TotalArenaShoulderBashKills, TotalArenaTimePlayed, SpartanRank, Time, ActiveMode)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',[Username, System, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0', 0,'Not Updated Yet','Arena'],nullHandler,errorHandler);
+						transaction.executeSql('INSERT INTO Halo_V(PlayerName, System, Active, TotalArenaAssassinations, TotalArenaAssists, TotalArenaDeaths, TotalArenaGamesCompleted, TotalArenaGamesLost, TotalArenaGamesTied, TotalArenaGamesWon, TotalArenaGrenadeKills, TotalArenaGroundPoundKills, TotalArenaHeadshots, TotalArenaKills, TotalArenaMeleeKills, TotalArenaPowerWeaponKills, TotalArenaShotsFired, TotalArenaShotsLanded, TotalArenaShoulderBashKills, TotalArenaTimePlayed, SpartanRank, Emblem, SpartanImage, Time, ActiveMode)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',[Username, System, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0', 0,'None','None','Not Updated Yet','Arena'],nullHandler,errorHandler);
 					}
 				},errorHandler);
 			}

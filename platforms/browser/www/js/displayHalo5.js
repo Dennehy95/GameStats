@@ -90,7 +90,7 @@ function displayStatsHalo5WithTime(Username, System, pageId){
 function displayActiveModeStatsHalo5(Username, System, pageId, activeMode){
 	if(activeMode == 'Arena'){
 		db.transaction(function(transaction) {
-			transaction.executeSql('SELECT TotalArenaAssassinations, TotalArenaAssists, TotalArenaDeaths, TotalArenaGamesCompleted, TotalArenaGamesLost, TotalArenaGamesTied, TotalArenaGamesWon, TotalArenaGrenadeKills,TotalArenaGroundPoundKills,TotalArenaHeadshots, TotalArenaKills, TotalArenaMeleeKills, TotalArenaPowerWeaponKills, TotalArenaShotsFired, TotalArenaShotsLanded, TotalArenaShoulderBashKills, TotalArenaTimePlayed, SpartanRank FROM Halo_V WHERE PlayerName = "'+ Username +'" AND System = "' + System +'";', [],
+			transaction.executeSql('SELECT TotalArenaAssassinations, TotalArenaAssists, TotalArenaDeaths, TotalArenaGamesCompleted, TotalArenaGamesLost, TotalArenaGamesTied, TotalArenaGamesWon, TotalArenaGrenadeKills,TotalArenaGroundPoundKills,TotalArenaHeadshots, TotalArenaKills, TotalArenaMeleeKills, TotalArenaPowerWeaponKills, TotalArenaShotsFired, TotalArenaShotsLanded, TotalArenaShoulderBashKills, TotalArenaTimePlayed, SpartanRank, Emblem, SpartanImage FROM Halo_V WHERE PlayerName = "'+ Username +'" AND System = "' + System +'";', [],
 			function(transaction, result) {
 				console.log(result.rows.item(0));
 				timePlayedNoFormat = result.rows.item(0).TotalArenaTimePlayed;
@@ -98,7 +98,6 @@ function displayActiveModeStatsHalo5(Username, System, pageId, activeMode){
 				if(Days == 'P'){
 					Days = ''
 				}
-				console.log(Days);
 				Hours = timePlayedNoFormat.substring(timePlayedNoFormat.lastIndexOf("T")+1,timePlayedNoFormat.lastIndexOf("H"));
 				if(Hours == 'T'){
 					Hours = ''
@@ -123,24 +122,86 @@ function displayActiveModeStatsHalo5(Username, System, pageId, activeMode){
 				else{
 					timePlayedFormatted = Days + ' Days ' + Hours + ' Hours ' + Minutes +' Minutes Played';
 				}
-				TotalGames = result.rows.item(0).TotalArenaGamesCompleted
-				Wins = result.rows.item(0).TotalArenaGamesWon
-				Losses = result.rows.item(0).TotalArenaGamesLost
-				Ties = result.rows.item(0).TotalArenaGamesTied
-				WinRatio = Wins/TotalGames;
+				/*halo5GamesCompleted*/
+				TotalGames = result.rows.item(0).TotalArenaGamesCompleted;
+				Wins = result.rows.item(0).TotalArenaGamesWon;
+				Losses = result.rows.item(0).TotalArenaGamesLost;
+				Ties = result.rows.item(0).TotalArenaGamesTied;
+				WinRatio = Wins/TotalGames *100;
+				WinRatio = Math.round(WinRatio * 100) / 100;
+				
+				/*halo5KillsDeaths*/
+				Kills = result.rows.item(0).TotalArenaKills;
+				Deaths = result.rows.item(0).TotalArenaDeaths;
+				Assists = result.rows.item(0).TotalArenaAssists;
+				Assassinations = result.rows.item(0).TotalArenaAssassinations;
+				KD = Kills/Deaths;
+				KD = Math.round(KD * 100) / 100;
+				KG = Kills/TotalGames;
+				KG = Math.round(KG * 100) / 100;
+				
+				/*halo5KillTypes*/
+				Grenade = result.rows.item(0).TotalArenaGrenadeKills;
+				Headshots = result.rows.item(0).TotalArenaHeadshots;
+				PowerWeapon = result.rows.item(0).TotalArenaPowerWeaponKills;
+				Melee = result.rows.item(0).TotalArenaMeleeKills;
+				ShoulderBash = result.rows.item(0).TotalArenaGroundPoundKills;
+				GroundPound = result.rows.item(0).TotalArenaShoulderBashKills;
+				
+				/*halo5Accruacy*/
+				Fired = result.rows.item(0).TotalArenaShotsFired;
+				Landed = result.rows.item(0).TotalArenaShotsLanded;
+				Accuracy = Fired/Landed;
+				Accuracy = Math.round(Accuracy * 100) / 100;
+				
+				if(result.rows.item(0).SpartanImage !== 'None'){
+					$("#statsPageContent" + pageId).prepend(
+						"<div class='halo5BackgroundImage'>" +
+						"</div>"
+					);
+					$(".halo5BackgroundImage").css('background-image', 'url("' + result.rows.item(0).SpartanImage + '")');
+				}
+				
 				$("#statsPageContent" + pageId).append(
-					"<h1 class='halo5TimePlayed'>" + timePlayedFormatted + "</h1>" +
-					"<div class='halo5GamesCompleted ui-grid-a'>" +
-						"<div class='ui-block-a '>Games Played<br>" + result.rows.item(0).TotalArenaGamesCompleted + "</div>" +
-						"<div class='ui-block-b 'Win Ratio<br>" + WinRatio + "%></div>" +
-					"</div>" +
-					"<div class='halo5GamesCompleted ui-grid-b'>" +
-						"<div class='ui-block-a '></div>" +
-						"<div class='ui-block-b '></div>" +
-						"<div class='ui-block-c '></div>" +
-					"</div>" +
-					"<h1 class='halo5TimePlayed'>" + timePlayedFormatted + "</h1>" 
+					"<div class='Halo5Stats'>" +
+						"<h1 class='halo5TimePlayed Arena'>" + timePlayedFormatted + "</h1>" +
+						"<div class='halo5GamesCompleted Arena ui-grid-a'>" +
+							"<div class='ui-block-a '>Games Played<br>" + TotalGames + "</div>" +
+							"<div class='ui-block-b '>Win Ratio<br>" + WinRatio + "%</div>" +
+						"</div>" +
+						"<div class='halo5GamesCompleted Arena ui-grid-b'>" +
+							"<div class='ui-block-a '>Wins<br>" + Wins + "</div>" +
+							"<div class='ui-block-b '>Ties<br>" + Ties + "</div>" +
+							"<div class='ui-block-c '>Losses<br>" + Losses + "</div>" +
+						"</div>" +
+						"<div class='halo5KillsDeaths Arena ui-grid-b'>" +
+							"<div class='ui-block-a '>Kills<br>" + Kills + "</div>" +
+							"<div class='ui-block-b '>Deaths<br>" + Deaths + "</div>" +
+							"<div class='ui-block-c '>Assists<br>" + Assists + "</div>" +
+						"</div>" +
+						"<div class='halo5KillsDeaths Arena ui-grid-a'>" +
+							"<div class='ui-block-a '>K/D<br>" + KD + "</div>" +
+							"<div class='ui-block-b '>Kills/Game<br>" + KG + "</div>" +
+						"</div>" +
+						"<div class='halo5KillTypes Arena ui-grid-b'>" +
+							"<div class='ui-block-a '>Grenade Kills<br>" + Grenade + "</div>" +
+							"<div class='ui-block-b '>Headshot Kills<br>" + Headshots + "</div>" +
+							"<div class='ui-block-c '>Power Weapon Kills<br>" + PowerWeapon + "</div>" +
+						"</div>" +
+						"<div class='halo5KillTypes Arena ui-grid-b'>" +
+							"<div class='ui-block-a '>Melee Kills<br>" + Melee + "</div>" +
+							"<div class='ui-block-b '>Ground Pound Kills<br>" + ShoulderBash + "</div>" +
+							"<div class='ui-block-c '>Shoulder Bash Kills<br>" + GroundPound + "</div>" +
+						"</div>" +
+						"<div class='halo5Accuracy Arena ui-grid-b'>" +
+							"<div class='ui-block-a '>Shots Fired<br>" + Fired + "</div>" +
+							"<div class='ui-block-b '>Shots Landed<br>" + Landed + "</div>" +
+							"<div class='ui-block-c '>Accuracy<br>" + Accuracy + "</div>" +
+						"</div>" +
+						"<h1 class='halo5Rank Arena'>Spartan Rank - " + result.rows.item(0).SpartanRank + "</h1>" +
+					"</div>"
 				);
+				
 			},errorHandler,nullHandler);
 		},errorHandler);
 	}
