@@ -4,4 +4,3 @@ across the Playstation, Steam and Xbox live platforms.
 I currently plan on using PhoneGap to develop and build the application.
 
 
-document.getElementById("main_content_wrap").innerHTML='<object type="text/html" data="www/index.html" ></object>';
