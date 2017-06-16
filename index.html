@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+		<!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+		<meta http-equiv="Content-Security-Policy" content="default-src *; img-src * 'self' data: https:; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
+		<!-- Good default declaration:
+		* gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+		* https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+		* Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+			* Enable inline JS: add 'unsafe-inline' to default-src
+			* Enable eval(): add 'unsafe-eval' to default-src
+		* Create your own at http://cspisawesome.com
+		-->
+		<!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" charset="utf-8">    
+			function onLoad() {
+				document.addEventListener("deviceready", onDeviceReady, false);
+			}
+			
+			var activeSystemPage = '2a';
+			var activeSystem = 'Home';
+			// Cordova is loaded and it is now safe to make calls Cordova methods
+			//
+			function onDeviceReady() {
+				// Now safe to use the Cordova API
+				onBodyLoad();
+				document.addEventListener("offline", offlineTest, false);
+				document.addEventListener("online", onlineTest, false);
+				
+				document.addEventListener('backbutton', backButtonCallback, false);
+				//setBacks(activeSystem, activeSystemPage);
+				setSwipes(activeSystem, activeSystemPage);
+				
+				
+				//getLinkedIds(); //Remove after testing. Only use in browser
+			}
+			
+			function changeActiveSystemPage(){
+				if(activeSystemPage == '2a'){
+					activeSystemPage = '2b';
+				}
+				else{
+					activeSystemPage = '2a';
+				}
+			}
+			function backButtonCallback(){
+				if(activeSystem == 'Home' || activeSystem == 'PSN' || activeSystem == 'Steam' || activeSystem == 'Xbox'){
+					navigator.app.exitApp();
+				}
+				else if(activeSystem == 'InPSN'){
+					goPSN('pop', activeSystemPage);
+				}
+				else if(activeSystem == 'InSteam'){
+					goSteam('pop', activeSystemPage);
+				}
+				else if(activeSystem == 'InXbox'){
+					goXbox('pop', activeSystemPage);
+				}
+			}
+			//function setBacks(activeSystem, activeSystemPage){
+				
+				/*document.addEventListener('backbutton', function(e) {
+					if(activeSystem == 'Home' || activeSystem == 'PSN' || activeSystem == 'Steam' || activeSystem == 'Xbox'){
+						navigator.app.exitApp();
+					}
+					else if(activeSystem == 'InPSN'){
+						goPSN('pop', activeSystemPage);
+					}
+					else if(activeSystem == 'InSteam'){
+						goSteam('pop', activeSystemPage);
+					}
+					else if(activeSystem == 'InXbox'){
+						goXbox('pop', activeSystemPage);
+					}
+				});
+			}*/
+			function setSwipes(activeSystem, activeSystemPage){
+				$("#Page1").unbind('swipeleft');
+				$("#Page1").unbind('swiperight');
+				$("#Page2a").unbind('swipeleft');
+				$("#Page2a").unbind('swiperight');
+				$("#Page2b").unbind('swipeleft');
+				$("#Page2b").unbind('swiperight');
+				
+				$("#Page1").swipeleft(function() {
+					goPSN('left', activeSystemPage);
+				});
+				$("#Page1").swiperight(function() {
+					goXbox('right', activeSystemPage);
+				});
+				
+				$("#Page2a").swiperight(function() {
+					if(activeSystem == 'PSN'){
+						goHome('right', activeSystemPage);
+					}
+					else if(activeSystem == 'Steam'){
+						goPSN('right', activeSystemPage);
+					}
+					else if(activeSystem == 'Xbox'){
+						goSteam('right', activeSystemPage);
+					}
+				});
+				$("#Page2b").swiperight(function() {
+					if(activeSystem == 'PSN'){
+						goHome('right', activeSystemPage);
+					}
+					else if(activeSystem == 'Steam'){
+						goPSN('right', activeSystemPage);
+					}
+					else if(activeSystem == 'Xbox'){
+						goSteam('right', activeSystemPage);
+					}
+				});
+				
+				$("#Page2a").swipeleft(function() {
+					if(activeSystem == 'PSN'){
+						goSteam('left', activeSystemPage);
+					}
+					else if(activeSystem == 'Steam'){
+						goXbox('left', activeSystemPage);
+					}
+					else if(activeSystem == 'Xbox'){
+						goHome('left', activeSystemPage);
+					}
+				});
+				$("#Page2b").swipeleft(function() {
+					if(activeSystem == 'PSN'){
+						goSteam('left', activeSystemPage);
+					}
+					else if(activeSystem == 'Steam'){
+						goXbox('left', activeSystemPage);
+					}
+					else if(activeSystem == 'Xbox'){
+						goHome('left', activeSystemPage);
+					}
+				});
+			}
+				
+			function goPSN(direction, activeSystemPage){
+				getLinkedIds('psn',activeSystemPage, 1);
+				if(direction == 'left'){
+					if(activeSystemPage == '2a'){
+						toChange = '#Page2a';
+						$.mobile.pageContainer.pagecontainer('change', toChange, {
+							reverse: false,
+							transition: 'slide',
+							reload    : false
+						});
+						activeSystem = 'PSN';
+						changeActiveSystemPage();
+						activeSystemPage = '2b';
+						//setBacks(activeSystem, activeSystemPage);
+						setSwipes(activeSystem, activeSystemPage);
+						//$(".systemSection.psn").css("display", "block");
+						//$(".systemSection.steam").css("display", "none");
+						//$(".systemSection.xbox").css({"display": "none"});
+					}
+					else if(activeSystemPage == '2b'){
+						toChange = '#Page2b';
+						$.mobile.pageContainer.pagecontainer('change', toChange, {
+							reverse: false,
+							transition: 'slide',
+							reload    : false
+						});
+						activeSystem = 'PSN';
+						changeActiveSystemPage();
+						activeSystemPage = '2a';
+						//setBacks(activeSystem, activeSystemPage);
+						setSwipes(activeSystem, activeSystemPage);
+						//$(".systemSection.psn").css("display", "block");
+						//$(".systemSection.steam").css("display", "none");
+						//$(".systemSection.xbox").css({"display": "none"});
+					}
+				}
+				else if(direction == 'right'){
+					if(activeSystemPage == '2a'){
+						toChange = '#Page2a';
+						$.mobile.pageContainer.pagecontainer('change', toChange, {
+							reverse: true,
+							transition: 'slide',
+							reload    : false
+						});
+						activeSystem = 'PSN';
+						changeActiveSystemPage();
+						activeSystemPage = '2b';
+						//setBacks(activeSystem, activeSystemPage);
+						setSwipes(activeSystem, activeSystemPage);
+						/*$(".systemSection.psn").css("display", "block");
+						$(".systemSection.steam").css("display", "none");
+						$(".systemSection.xbox").css("display", "none");*/
+					}
+					else if(activeSystemPage == '2b'){
+						toChange = '#Page2b';
+						$.mobile.pageContainer.pagecontainer('change', toChange, {
+							reverse: true,
+							transition: 'slide',
+							reload    : false
+						});
+						activeSystem = 'PSN';
+						changeActiveSystemPage();
+						activeSystemPage = '2a';
+						
+						//setBacks(activeSystem, activeSystemPage);
+						setSwipes(activeSystem, activeSystemPage);
+						/*$(".systemSection.psn").css("display", "block");
+						$(".systemSection.steam").css("display", "none");
+						$(".systemSection.xbox").css("display", "none");*/
+					}
+				}
+				else{
+					if(activeSystemPage == '2a'){
+						toChange = '#Page2a'
+						$.mobile.pageContainer.pagecontainer('change', toChange, {
+							reverse: false,
+							transition: 'pop',
+							reload    : false
+						});
+						activeSystem = 'PSN';
+						//setBacks(activeSystem, activeSystemPage);
+						//setSwipes(activeSystem, activeSystemPage);
+						/*$(".systemSection.psn").css("display", "block");
+						$(".systemSection.steam").css("display", "none");
+						$(".systemSection.xbox").css("display", "none");*/
+					}
+					else if(activeSystemPage == '2b'){
+						toChange = '#Page2b'
+						$.mobile.pageContainer.pagecontainer('change', toChange, {
+							reverse: false,
+							transition: 'pop',
+							reload    : false
+						});
+						activeSystem = 'PSN';
+						//setBacks(activeSystem, activeSystemPage);
+						//setSwipes(activeSystem, activeSystemPage);
+						/*$(".systemSection.psn").css("display", "block");
+						$(".systemSection.steam").css("display", "none");
+						$(".systemSection.xbox").css("display", "none");*/
+					}					
+				}
+			}
+			function goSteam(direction, activeSystemPage){
+				console.log(activeSystemPage);
+				console.log('Steam');
+				getLinkedIds('steam',activeSystemPage,1);
+				if(direction == 'left'){
+					if(activeSystemPage == '2a'){
+						toChange = '#Page2a';
+						$.mobile.pageContainer.pagecontainer('change', toChange, {
+							reverse: false,
+							transition: 'slide',
+							reload    : false
+						});
+						activeSystem = 'Steam';
+						changeActiveSystemPage();
+						activeSystemPage = '2b';
+						//setBacks(activeSystem, activeSystemPage);
+						setSwipes(activeSystem, activeSystemPage);
+						/*$(".systemSection.psn").css("display", "none");
+						$(".systemSection.steam").css("display", "block");
+						$(".systemSection.xbox").css("display", "none");*/
+					}
+					else if(activeSystemPage == '2b'){
+						toChange = '#Page2b';
+						$.mobile.pageContainer.pagecontainer('change', toChange, {
+							reverse: false,
+							transition: 'slide',
+							reload    : false
+						});
+						activeSystem = 'Steam';
+						changeActiveSystemPage();
+						activeSystemPage = '2a';
+						//setBacks(activeSystem, activeSystemPage);
+						setSwipes(activeSystem, activeSystemPage);
+						/*$(".systemSection.psn").css("display", "none");
+						$(".systemSection.steam").css("display", "block");
+						$(".systemSection.xbox").css("display", "none");*/
+					}
+				}
+				else if(direction == 'right'){
+					if(activeSystemPage == '2a'){
+						toChange = '#Page2a';
+						$.mobile.pageContainer.pagecontainer('change', toChange, {
+							reverse: true,
+							transition: 'slide',
+							reload    : false
+						});
+						activeSystem = 'Steam';
+						changeActiveSystemPage();
+						activeSystemPage = '2b';
+						//setBacks(activeSystem, activeSystemPage);
+						setSwipes(activeSystem, activeSystemPage);
+						/*$(".systemSection.psn").css("display", "none");
+						$(".systemSection.steam").css("display", "block");
+						$(".systemSection.xbox").css("display", "none");*/
+					}
+					else if(activeSystemPage == '2b'){
+						toChange = '#Page2b';
+						$.mobile.pageContainer.pagecontainer('change', toChange, {
+							reverse: true,
+							transition: 'slide',
+							reload    : false
+						});
+						activeSystem = 'Steam';
+						changeActiveSystemPage();
+						activeSystemPage = '2a';
+						//setBacks(activeSystem, activeSystemPage);
+						setSwipes(activeSystem, activeSystemPage);
+					}
+				}
+				else{
+					if(activeSystemPage == '2a'){
+						toChange = '#Page2a';
+						$.mobile.pageContainer.pagecontainer('change', toChange, {
+							reverse: false,
+							transition: 'pop',
+							reload    : false
+						});
+						activeSystem = 'Steam';
+						//setBacks(activeSystem, activeSystemPage);
+						//setSwipes(activeSystem, activeSystemPage);
+						/*$(".systemSection.psn").css("display", "none");
+						$(".systemSection.steam").css("display", "block");
+						$(".systemSection.xbox").css("display", "none");*/
+					}
+					if(activeSystemPage == '2b'){
+						toChange = '#Page2b';
+						$.mobile.pageContainer.pagecontainer('change', toChange, {
+							reverse: false,
+							transition: 'pop',
+							reload    : false
+						});
+						activeSystem = 'Steam';
+						//setBacks(activeSystem, activeSystemPage);
+						//setSwipes(activeSystem, activeSystemPage);
+						/*$(".systemSection.psn").css("display", "none");
+						$(".systemSection.steam").css("display", "block");
+						$(".systemSection.xbox").css("display", "none");*/
+					}
+				}
+			}
+			function goXbox(direction, activeSystemPage){
+				console.log(activeSystemPage);
+				console.log('Xbox');
+				getLinkedIds('xbox', activeSystemPage,1);
+				if(direction == 'left'){
+					if(activeSystemPage == '2a'){
+						toChange = '#Page2a';
+						$.mobile.pageContainer.pagecontainer('change', toChange, {
+							reverse: false,
+							transition: 'slide',
+							reload    : false
+						});
+						activeSystem = 'Xbox';
+						changeActiveSystemPage();
+						activeSystemPage = '2b';
+						//setBacks(activeSystem, activeSystemPage);
+						setSwipes(activeSystem, activeSystemPage);
+						/*$(".systemSection.psn").css("display", "none");
+						$(".systemSection.steam").css("display", "none");
+						$(".systemSection.xbox").css("display", "block");*/
+					}
+					else if(activeSystemPage == '2b'){
+						toChange = '#Page2b';
+						$.mobile.pageContainer.pagecontainer('change', toChange, {
+							reverse: false,
+							transition: 'slide',
+							reload    : false
+						});
+						activeSystem = 'Xbox';
+						changeActiveSystemPage();
+						activeSystemPage = '2a';
+						//setBacks(activeSystem, activeSystemPage);
+						setSwipes(activeSystem, activeSystemPage);
+					}
+				}
+				else if(direction == 'right'){
+					if(activeSystemPage == '2a'){
+						toChange = '#Page2a';
+						$.mobile.pageContainer.pagecontainer('change', toChange, {
+							reverse: true,
+							transition: 'slide',
+							reload    : false
+						});
+						activeSystem = 'Xbox';
+						
+						changeActiveSystemPage();
+						activeSystemPage = '2b';
+						//setBacks(activeSystem, activeSystemPage);
+						setSwipes(activeSystem, activeSystemPage);
+						/*$(".systemSection.psn").css("display", "none");
+						$(".systemSection.steam").css("display", "none");
+						$(".systemSection.xbox").css("display", "block");*/
+					}
+					else if(activeSystemPage == '2b'){
+						toChange = '#Page2b';
+						$.mobile.pageContainer.pagecontainer('change', toChange, {
+							reverse: true,
+							transition: 'slide',
+							reload    : false
+						});
+						activeSystem = 'Xbox';
+						changeActiveSystemPage();
+						activeSystemPage = '2a';
+						//setBacks(activeSystem, activeSystemPage);
+						setSwipes(activeSystem, activeSystemPage);
+					}
+				}
+				else{
+					if(activeSystemPage == '2a'){
+						toChange = '#Page2a';
+						$.mobile.pageContainer.pagecontainer('change', toChange, {
+							reverse: false,
+							transition: 'pop',
+							reload    : false
+						});
+						activeSystem = 'Xbox';
+						//setBacks(activeSystem, activeSystemPage);
+						//setSwipes(activeSystem, activeSystemPage);
+						/*$(".systemSection.psn").css("display", "none");
+						$(".systemSection.steam").css("display", "none");
+						$(".systemSection.xbox").css("display", "block");*/
+					}
+					else{
+						toChange = '#Page2b';
+						$.mobile.pageContainer.pagecontainer('change', toChange, {
+							reverse: false,
+							transition: 'pop',
+							reload    : false
+						});
+						activeSystem = 'Xbox';
+						//setBacks(activeSystem, activeSystemPage);
+						//setSwipes(activeSystem, activeSystemPage);
+					}
+				}
+			}
+			function goHome(direction){
+				/*$("#Page1").unbind('swipeleft');
+				$("#Page1").unbind('swiperight');
+				$("#Page1").swipeleft(function() {
+					goPSN('left', activeSystemPage);
+				});
+				$("#Page1").swiperight(function() {
+					goXbox('right', activeSystemPage);
+				});*/
+				console.log(activeSystemPage);
+				if(direction == 'left'){
+					$.mobile.pageContainer.pagecontainer('change', '#Page1', {
+						reverse: false,
+						transition: 'slide',
+						reload    : false
+					});
+					activeSystem = 'Home';
+					/*$(".systemSection.psn").css("display", "none");
+					$(".systemSection.steam").css("display", "none");
+					$(".systemSection.xbox").css("display", "block");*/
+				}
+				else if(direction == 'right'){
+					$.mobile.pageContainer.pagecontainer('change', '#Page1', {
+						reverse: true,
+						transition: 'slide',
+						reload    : false
+					});
+					activeSystem = 'Home';
+					/*$(".systemSection.psn").css("display", "block");
+					$(".systemSection.steam").css("display", "none");
+					$(".systemSection.xbox").css("display", "none");*/
+				}
+			}
+			function offlineTest(){
+				alert('You have no network connection');
+			}
+			function onlineTest(){
+				//getLinkedIds(); //phone runs here
+			}
+			function test(){
+				console.log('moo');
+			}
+			//if ($('input[name=radio-choice-t-6]:checked').is(':checked')) {
+			//	
+			//}
+		</script>
+		<script src="www/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+		<script src="www/js/jquery-ui.min.js" type="text/javascript"></script>
+		<script src="www/js/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="www/css/jquery.mobile-1.4.5.min.css" />
+		<link rel="stylesheet" href="www/css/jquery.mobile.icons-1.4.5.min.css">
+		<link rel="stylesheet" href="www/css/jquery-ui.min.css">
+		<link rel="stylesheet" type="text/css" href="www/css/index.css" />
+		<title>Game Stats</title>
+	</head>
+
+	<body onload="onLoad()">
+		<div data-role="page" id="Page1">
+			<div data-role="header" data-theme="b" class='headerHomepage'>
+				<h1 class='headerTitle'>Game Stats</h1>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="www/js/checkNetwork.js"></script>
+		<script type="text/javascript" src="www/js/databaseSetup.js"></script>
+		<script type="text/javascript" src="www/js/fillLinkedIds.js"></script>
+		<script type="text/javascript" src="www/js/fillPopups.js"></script>
+		<script type="text/javascript" src="www/js/addId.js"></script>
+		<script type="text/javascript" src="www/js/removeIds.js"></script>
+		<script type="text/javascript" src="www/js/displayStatsPage.js"></script>
+		<script type="text/javascript" src="www/js/updateUsersGameList.js"></script>
+		<script type="text/javascript" src="www/js/gameNavigation.js"></script>
+		<script type="text/javascript" src="www/js/displayHalo5.js"></script>
+		<script type="text/javascript" src="www/js/displayRocketLeague.js"></script>
+		<script type="text/javascript" src="www/js/displaySiege.js"></script>
+		<script type="text/javascript" src="www/js/sourceHalo5.js"></script>
+		<script type="text/javascript" src="www/js/sourceRocketLeague.js"></script>
+		<script type="text/javascript" src="www/js/sourceSiege.js"></script>
+		
+	</body>
+
+</html>
