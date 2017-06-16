@@ -2,3 +2,6 @@ This is an in-development application I am making for fun to allow users to get 
 I aim to initially release the app to the Android play store with Rocket League, Rainbow six siege, Halo 5 and Counter Strike as available games
 across the Playstation, Steam and Xbox live platforms.
 I currently plan on using PhoneGap to develop and build the application.
+
+
+document.getElementById("main_content_wrap").innerHTML='<object type="text/html" data="www/index.html" ></object>';
