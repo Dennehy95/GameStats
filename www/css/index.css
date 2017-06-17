@@ -194,7 +194,7 @@ h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-le
 .systemTitle.availableGames,
 .systemTitle.availablePlatforms{
 	background-color: #333;
-	color: #67e2bc;
+	color: #63f9cb;
 }
 .systemTitle.psn{
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#47a1ef+0,429aed+14,1283ed+31,268bef+50,2188ef+65,085edd+82 */
@@ -228,7 +228,7 @@ h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-le
 }
 
 .usernameListTitle{
-	border-radius: 25px;
+	border-radius: 4vh;
 	color: white;
 	font-family: Simplifica;
 		src: local("Simplifica"),
@@ -268,7 +268,7 @@ h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-le
 
 h3.popupHeader{
 	background-color: #333333;
-	color: #67e2bc;
+	color: #63f9cb;
 	margin: 0;
 	#padding: 5px 12vh 5px 12vh;
 	padding: 5px 0 5px 0;
@@ -311,7 +311,7 @@ h3.popupHeader{
 	text-shadow: none;
 }
 .gameTitle{
-	color: #67e2bc;
+	color: #63f9cb;
 	font-size: 4vh;
 	height: 8.6vh;
 	line-height: 200%;
@@ -360,7 +360,7 @@ h3.popupHeader{
 	background-color: #333333;
 }
 .statsPageNavigationMulti{
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#333333+1,333333+49,67e2bc+50,333333+51,333333+100 */
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#333333+1,333333+49,63f9cb+50,333333+51,333333+100 */
 	background: rgb(51,51,51); /* Old browsers */
 	background: -moz-linear-gradient(left,  rgba(51,51,51,1) 1%, rgba(51,51,51,1) 49%, rgba(103,226,188,1) 50%, rgba(51,51,51,1) 51%, rgba(51,51,51,1) 100%); /* FF3.6-15 */
 	background: -webkit-linear-gradient(left,  rgba(51,51,51,1) 1%,rgba(51,51,51,1) 49%,rgba(103,226,188,1) 50%,rgba(51,51,51,1) 51%,rgba(51,51,51,1) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -368,7 +368,7 @@ h3.popupHeader{
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', endColorstr='#333333',GradientType=1 ); /* IE6-9 */
 }
 .statsPageUpdateGames{
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#333333+1,333333+45,67e2bc+50,333333+55,333333+100 */
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#333333+1,333333+45,63f9cb+50,333333+55,333333+100 */
 	background: rgb(51,51,51); /* Old browsers */
 	background: -moz-linear-gradient(top,  rgba(51,51,51,1) 1%, rgba(51,51,51,1) 45%, rgba(103,226,188,1) 50%, rgba(51,51,51,1) 55%, rgba(51,51,51,1) 100%); /* FF3.6-15 */
 	background: -webkit-linear-gradient(top,  rgba(51,51,51,1) 1%,rgba(51,51,51,1) 45%,rgba(103,226,188,1) 50%,rgba(51,51,51,1) 55%,rgba(51,51,51,1) 100%); /* Chrome10-25,Safari5.1-6 */
@@ -405,7 +405,7 @@ h3.popupHeader{
 	background: linear-gradient(45deg,  #c2dbab 0%,#71db6b 15%,#86dd39 45%,#69bf28 75%,#74c13a 76%,#69bf28 79%,#76e01f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c2dbab', endColorstr='#76e01f',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
-.ui-btn.updateGamesButton{
+.ui-btn.updateGamesButton.enabled{
 	border-radius: 4vh;
 	font-family: Simplifica;
 		src: local("Simplifica"),
@@ -414,6 +414,22 @@ h3.popupHeader{
 	height: 8.6vh;
 	margin: 0 0 0 20%;
 	padding: 0;
+	text-shadow: none;
+	width: 60%;
+}
+.ui-btn.updateGamesButton.disabled{
+	background-color: #6b6b6b;
+	border-color: #6b6b6b;
+	border-radius: 4vh;
+	color: #e8e8e8;
+	font-family: Simplifica;
+		src: local("Simplifica"),
+		url(SIMPLIFICATypeface.ttf);
+	font-size: 3.5vh;
+	height: 8.6vh;
+	margin: 0 0 0 20%;
+	padding: 0;
+	text-shadow: none;
 	width: 60%;
 }
 .updateButtonTextTop{
@@ -446,9 +462,10 @@ h3.popupHeader{
 }
 
 .halo5ModeSelect{
+	border-bottom: 1vh solid #14c48a;
 	min-height: 20%;
 }
-
+/*
 .halo5BackgroundImage{
 	background-repeat:no-repeat;
     background-position:center center;
@@ -459,11 +476,56 @@ h3.popupHeader{
     width: 100%;
     position: absolute;
 }
+*/
+.halo5Arena{
+	background-color: #333;
+	text-shadow: none;
+}
+.halo5Arena.GamesCompletedTop.ui-grid-a,
+.halo5Arena.KillsDeathsTop.ui-grid-b,
+.halo5Arena.KillTypesTop.ui-grid-b{
+	background-color: #14c48a;
+    border-radius: 5vh 5vh 0 0;
+	border-top: 0.5vh solid #00f9a7;
+	display: flex;
+	margin: 0 1vh 0 1vh;
+}
+
+.halo5Arena.GamesCompletedBottom.ui-grid-b,
+.halo5Arena.KillsDeathsBottom.ui-grid-a,
+.halo5Arena.KillTypesBottom.ui-grid-b{
+	background-color: #14c48a;
+    border-radius: 0 0 7vh 7vh;
+	border-bottom: 0.5vh solid #00f9a7;
+	display: flex;
+	margin: 0 1vh 1vh 1vh;
+}
+.halo5Arena.OverallHalo{
+	border-bottom: 0.5vh solid #00f9a7;
+	border-top: 0.5vh solid #00f9a7;
+    border-radius: 7vh 7vh 7vh 7vh;
+	margin: 0 1vh 1vh 1vh;
+}
+.halo5Arena.Accuracy{
+	border-bottom: 0.5vh solid #00f9a7;
+	border-top: 0.5vh solid #00f9a7;
+    border-radius: 7vh 7vh 7vh 7vh;
+	margin: 0 1vh 0 1vh;
+}
 .Halo5Stats{
+	background-color: #14c48a;
 	color: #fff;
 	font-family: "Simplifica";
 	font-size: 4vh;
 	text-align:center;
+}
+.halo5StatsHeaderText{
+	color: #fdb715;
+	text-shadow: none;
+}
+.halo5StatsInnerText{
+	color: #63f9cb;
+	text-shadow: none;
 }
 .halo5TimePlayed,
 .halo5Rank{
@@ -651,7 +713,7 @@ h3.popupHeader{
 }
 .ui-header, .ui-footer{
 	border: none;
-	color: #67e2bc;
+	color: #63f9cb;
 	height: 8.6vh;
 	
 }

@@ -43,7 +43,7 @@ function onBodyLoad(){
 		//tx.executeSql( 'DROP TABLE Users',nullHandler,nullHandler); //******************
 		//tx.executeSql( 'DROP TABLE Rocket_League',nullHandler,nullHandler); //**************
 		//tx.executeSql( 'DROP TABLE Siege',nullHandler,nullHandler); //**************
-		//tx.executeSql( 'DROP TABLE Halo_V',nullHandler,nullHandler); //**************
+		//tx.executeSql( 'DROP TABLE Halo_V',nullHandler,nullHandler); //************* 
 		/*76561198073672390 Steam
 		Harmen501 PSN
 		The Wet Gurkin Xbox*/

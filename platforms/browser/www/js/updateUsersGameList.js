@@ -89,3 +89,6 @@ function updateListOfGames(/*UserId,*/ Username, System, pageId, Destination, us
 		);
 	});
 }
+function updateListOfGamesNoConnection(){
+	alert('Cannot Update, No Internet Connection');
+}

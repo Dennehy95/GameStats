@@ -44,14 +44,32 @@
 			
 			var activeSystemPage = '2a';
 			var activeSystem = 'Home';
+			var online = false;
 			// Cordova is loaded and it is now safe to make calls Cordova methods
 			//
 			function onDeviceReady() {
 				// Now safe to use the Cordova API
-				onBodyLoad();
-				document.addEventListener("offline", offlineTest, false);
-				document.addEventListener("online", onlineTest, false);
+				//onBodyLoad();
+				var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
+				if ( app ) {
+					checkConnection()
+					if(navigator.connection.type==0){
+						offlineTest();
+					}
+					else if(navigator.connection.type=='none'){
+						offlineTest();
+					}
+					else{
+						onlineTest();
+					}
+				} 
+				else {
+					onlineTest();
+				}  
 				
+				document.addEventListener("offline", offlineTest, false);
+				document.addEventListener("online", onlineTest, true);
+				//onlineTest();//For Desktop
 				document.addEventListener('backbutton', backButtonCallback, false);
 				//setBacks(activeSystem, activeSystemPage);
 				setSwipes(activeSystem, activeSystemPage);
@@ -490,12 +508,26 @@
 					$(".systemSection.steam").css("display", "none");
 					$(".systemSection.xbox").css("display", "none");*/
 				}
+				else{
+					$.mobile.pageContainer.pagecontainer('change', '#Page1', {
+						reverse: true,
+						transition: 'pop',
+						reload    : false
+					});
+					activeSystem = 'Home';
+					/*$(".systemSection.psn").css("display", "block");
+					$(".systemSection.steam").css("display", "none");
+					$(".systemSection.xbox").css("display", "none");*/
+				}
 			}
 			function offlineTest(){
-				alert('You have no network connection');
+				online = false;
+				goHome('pop');
 			}
 			function onlineTest(){
 				//getLinkedIds(); //phone runs here
+				online = true;
+				goHome('pop');
 			}
 			function test(){
 				console.log('moo');
@@ -575,6 +607,7 @@
 					<h1 class='systemTitle availableGames'>Available Games</h1>
 					<div id="linkedGames" class='idListview'>
 						<ul class='homepageList'>
+							<li>Halo 5 (Xbox)</li>
 							<li>Rocket League</li>
 							<li>Rainbow Six Siege</li>
 						</ul>
@@ -586,7 +619,6 @@
 						<ul class='homepageList'>
 							<li>UPlay Platform</li>
 							<li>CS:GO</li>
-							<li>Halo Series</li>
 						</ul>
 					</div>
 				</div>

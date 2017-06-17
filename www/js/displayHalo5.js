@@ -145,8 +145,8 @@ function displayActiveModeStatsHalo5(Username, System, pageId, activeMode){
 				Headshots = result.rows.item(0).TotalArenaHeadshots;
 				PowerWeapon = result.rows.item(0).TotalArenaPowerWeaponKills;
 				Melee = result.rows.item(0).TotalArenaMeleeKills;
-				ShoulderBash = result.rows.item(0).TotalArenaGroundPoundKills;
-				GroundPound = result.rows.item(0).TotalArenaShoulderBashKills;
+				GroundPound = result.rows.item(0).TotalArenaGroundPoundKills;
+				ShoulderBash = result.rows.item(0).TotalArenaShoulderBashKills;
 				
 				/*halo5Accruacy*/
 				Fired = result.rows.item(0).TotalArenaShotsFired;
@@ -154,51 +154,110 @@ function displayActiveModeStatsHalo5(Username, System, pageId, activeMode){
 				Accuracy = Fired/Landed;
 				Accuracy = Math.round(Accuracy * 100) / 100;
 				
-				if(result.rows.item(0).SpartanImage !== 'None'){
+				/*if(result.rows.item(0).SpartanImage !== 'None'){
 					$("#statsPageContent" + pageId).prepend(
 						"<div class='halo5BackgroundImage'>" +
 						"</div>"
 					);
 					$(".halo5BackgroundImage").css('background-image', 'url("' + result.rows.item(0).SpartanImage + '")');
-				}
+				}*/
 				
 				$("#statsPageContent" + pageId).append(
 					"<div class='Halo5Stats'>" +
-						"<h1 class='halo5TimePlayed Arena'>" + timePlayedFormatted + "</h1>" +
-						"<div class='halo5GamesCompleted Arena ui-grid-a'>" +
-							"<div class='ui-block-a '>Games Played<br>" + TotalGames + "</div>" +
-							"<div class='ui-block-b '>Win Ratio<br>" + WinRatio + "%</div>" +
+						"<div class='halo5Arena OverallHalo '>" +
+							"<div class = 'halo5StatsHeaderText'> " + timePlayedFormatted + "<br></div>" +
+							"<div class = 'halo5StatsInnerText'>Spartan Rank - " + result.rows.item(0).SpartanRank + "<br></div>" +
 						"</div>" +
-						"<div class='halo5GamesCompleted Arena ui-grid-b'>" +
-							"<div class='ui-block-a '>Wins<br>" + Wins + "</div>" +
-							"<div class='ui-block-b '>Ties<br>" + Ties + "</div>" +
-							"<div class='ui-block-c '>Losses<br>" + Losses + "</div>" +
+						"<div class='halo5Arena GamesCompletedTop ui-grid-a'>" +
+							"<div class='halo5Arena statColumns ui-block-a '>" +
+								"<div class = 'halo5StatsHeaderText'>Games Played<br></div>" +
+								"<div class = 'halo5StatsInnerText'>" + TotalGames + "<br></div>" +
+							"</div>" +
+							"<div class='halo5Arena statColumns ui-block-b'>" +
+								"<div class = 'halo5StatsHeaderText'>Win Ratio<br></div>" +
+								"<div class = 'halo5StatsInnerText'>" + WinRatio + "%<br></div>" +
+							"</div>" +
 						"</div>" +
-						"<div class='halo5KillsDeaths Arena ui-grid-b'>" +
-							"<div class='ui-block-a '>Kills<br>" + Kills + "</div>" +
-							"<div class='ui-block-b '>Deaths<br>" + Deaths + "</div>" +
-							"<div class='ui-block-c '>Assists<br>" + Assists + "</div>" +
+						"<div class='halo5Arena GamesCompletedBottom ui-grid-b'>" +
+							"<div class='halo5Arena statColumns ui-block-a'>" + 
+								"<div class = 'halo5StatsHeaderText'>Wins<br></div>" +
+								"<div class = 'halo5StatsInnerText'>" + Wins + "<br></div>" + 
+							"</div>" +
+							"<div class='halo5Arena statColumns ui-block-b'>" + 
+								"<div class = 'halo5StatsHeaderText'>Ties<br></div>" +
+								"<div class = 'halo5StatsInnerText'>" + Ties + "<br></div>" + 
+							"</div>" +
+							"<div class='halo5Arena statColumns ui-block-c'>" + 
+								"<div class = 'halo5StatsHeaderText'>Losses<br></div>" +
+								"<div class = 'halo5StatsInnerText'>" + Losses + "<br></div>" + 
+							"</div>" +
 						"</div>" +
-						"<div class='halo5KillsDeaths Arena ui-grid-a'>" +
-							"<div class='ui-block-a '>K/D<br>" + KD + "</div>" +
-							"<div class='ui-block-b '>Kills/Game<br>" + KG + "</div>" +
+						"<div class='halo5Arena KillsDeathsTop ui-grid-b'>" +
+							"<div class='halo5Arena statColumns ui-block-a'>" + 
+								"<div class = 'halo5StatsHeaderText'>Kills<br></div>" +
+								"<div class = 'halo5StatsInnerText'>" + Kills + "<br></div>" + 
+							"</div>" +
+							"<div class='halo5Arena statColumns ui-block-b'>" + 
+								"<div class = 'halo5StatsHeaderText'>Deaths<br></div>" +
+								"<div class = 'halo5StatsInnerText'>" + Deaths + "<br></div>" + 
+							"</div>" +
+							"<div class='halo5Arena statColumns ui-block-c'>" + 
+								"<div class = 'halo5StatsHeaderText'>Assists<br></div>" +
+								"<div class = 'halo5StatsInnerText'>" + Assists + "<br></div>" + 
+							"</div>" +
 						"</div>" +
-						"<div class='halo5KillTypes Arena ui-grid-b'>" +
-							"<div class='ui-block-a '>Grenade Kills<br>" + Grenade + "</div>" +
-							"<div class='ui-block-b '>Headshot Kills<br>" + Headshots + "</div>" +
-							"<div class='ui-block-c '>Power Weapon Kills<br>" + PowerWeapon + "</div>" +
+						"<div class='halo5Arena KillsDeathsBottom ui-grid-a'>" +
+							"<div class='halo5Arena statColumns ui-block-a'>" +
+								"<div class = 'halo5StatsHeaderText'>K/D<br></div>" +
+								"<div class = 'halo5StatsInnerText'>" + KD + "<br></div>" +
+							"</div>" +
+							"<div class='halo5Arena statColumns ui-block-b'>" +
+								"<div class = 'halo5StatsHeaderText'>Kills/Game<br></div>" +
+								"<div class = 'halo5StatsInnerText'>" + KG + "%<br></div>" +
+							"</div>" +
 						"</div>" +
-						"<div class='halo5KillTypes Arena ui-grid-b'>" +
-							"<div class='ui-block-a '>Melee Kills<br>" + Melee + "</div>" +
-							"<div class='ui-block-b '>Ground Pound Kills<br>" + ShoulderBash + "</div>" +
-							"<div class='ui-block-c '>Shoulder Bash Kills<br>" + GroundPound + "</div>" +
+						"<div class='halo5Arena KillTypesTop ui-grid-b'>" +
+							"<div class='halo5Arena statColumns ui-block-a'>" + 
+								"<div class = 'halo5StatsHeaderText'>Grenade Kills<br></div>" +
+								"<div class = 'halo5StatsInnerText'>" + Grenade + "<br></div>" + 
+							"</div>" +
+							"<div class='halo5Arena statColumns ui-block-b'>" + 
+								"<div class = 'halo5StatsHeaderText'>Headshot Kills<br></div>" +
+								"<div class = 'halo5StatsInnerText'>" + Headshots + "<br></div>" + 
+							"</div>" +
+							"<div class='halo5Arena statColumns ui-block-c'>" + 
+								"<div class = 'halo5StatsHeaderText'>Power Weapon Kills<br></div>" +
+								"<div class = 'halo5StatsInnerText'>" + PowerWeapon + "<br></div>" + 
+							"</div>" +
 						"</div>" +
-						"<div class='halo5Accuracy Arena ui-grid-b'>" +
-							"<div class='ui-block-a '>Shots Fired<br>" + Fired + "</div>" +
-							"<div class='ui-block-b '>Shots Landed<br>" + Landed + "</div>" +
-							"<div class='ui-block-c '>Accuracy<br>" + Accuracy + "</div>" +
+						"<div class='halo5Arena KillTypesBottom ui-grid-b'>" +
+							"<div class='halo5Arena statColumns ui-block-a'>" + 
+								"<div class = 'halo5StatsHeaderText'>Melee Kills<br></div>" +
+								"<div class = 'halo5StatsInnerText'>" + Melee + "<br></div>" + 
+							"</div>" +
+							"<div class='halo5Arena statColumns ui-block-b'>" + 
+								"<div class = 'halo5StatsHeaderText'>Ground Pound Kills<br></div>" +
+								"<div class = 'halo5StatsInnerText'>" + GroundPound + "<br></div>" + 
+							"</div>" +
+							"<div class='halo5Arena statColumns ui-block-c'>" + 
+								"<div class = 'halo5StatsHeaderText'>Shoulder Bash Kills<br></div>" +
+								"<div class = 'halo5StatsInnerText'>" + ShoulderBash + "<br></div>" + 
+							"</div>" +
 						"</div>" +
-						"<h1 class='halo5Rank Arena'>Spartan Rank - " + result.rows.item(0).SpartanRank + "</h1>" +
+						"<div class='halo5Arena Accuracy ui-grid-b'>" +
+							"<div class='halo5Arena statColumns ui-block-a'>" + 
+								"<div class = 'halo5StatsHeaderText'>Shots Fired<br></div>" +
+								"<div class = 'halo5StatsInnerText'>" + Fired + "<br></div>" + 
+							"</div>" +
+							"<div class='halo5Arena statColumns ui-block-b'>" + 
+								"<div class = 'halo5StatsHeaderText'>Shots Landed<br></div>" +
+								"<div class = 'halo5StatsInnerText'>" + Landed + "<br></div>" + 
+							"</div>" +
+							"<div class='halo5Arena statColumns ui-block-c'>" + 
+								"<div class = 'halo5StatsHeaderText'>Accuracy<br></div>" +
+								"<div class = 'halo5StatsInnerText'>" + Accuracy + "<br></div>" + 
+							"</div>" +
+						"</div>" +
 					"</div>"
 				);
 				
