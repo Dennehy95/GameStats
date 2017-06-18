@@ -14,7 +14,6 @@ function updateListOfGames(/*UserId,*/ Username, System, pageId, Destination, us
 			$('.ajax-loader').css("visibility", "visible");
 		},
 		complete: function(){
-			console.log('complete');
 			$('.ajax-loader').css("visibility", "hidden");
 		},
 		data: {
@@ -30,10 +29,8 @@ function updateListOfGames(/*UserId,*/ Username, System, pageId, Destination, us
 		str = response;
 		//str = str.replace(/(\r\n|\n|\r)/gm,"");
 		//str = str.replace(/\s\s+/g, '#');
-		console.log(str);
 		
 		var availability = str.split(',');
-		console.log(availability);
 		
 		var halovAvailable = availability[0];
 		var rocketLeagueAvailable = availability[1];
@@ -45,7 +42,6 @@ function updateListOfGames(/*UserId,*/ Username, System, pageId, Destination, us
 				transaction.executeSql('SELECT PlayerName FROM Halo_V WHERE PlayerName = "' + Username + '" AND System = "' + System + '";', [],
 				function(transaction, result) {
 					if(result.rows.length == 0){
-						console.log('adding');
 						transaction.executeSql('INSERT INTO Halo_V(PlayerName, System, Active, TotalArenaAssassinations, TotalArenaAssists, TotalArenaDeaths, TotalArenaGamesCompleted, TotalArenaGamesLost, TotalArenaGamesTied, TotalArenaGamesWon, TotalArenaGrenadeKills, TotalArenaGroundPoundKills, TotalArenaHeadshots, TotalArenaKills, TotalArenaMeleeKills, TotalArenaPowerWeaponKills, TotalArenaShotsFired, TotalArenaShotsLanded, TotalArenaShoulderBashKills, TotalArenaTimePlayed, SpartanRank, Emblem, SpartanImage, Time, ActiveMode)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',[Username, System, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0', 0,'None','None','Not Updated Yet','Arena'],nullHandler,errorHandler);
 					}
 				},errorHandler);
@@ -64,18 +60,16 @@ function updateListOfGames(/*UserId,*/ Username, System, pageId, Destination, us
 				transaction.executeSql('SELECT PlayerName FROM Siege WHERE PlayerName = "' + Username + '" AND System = "' + System + '";', [],
 				function(transaction, result) {
 					if(result.rows.length == 0){
-						transaction.executeSql('INSERT INTO Siege(PlayerName, System, Active, KillsCasual, DeathsCasual, kdCasual, PlaytimeCasual, WinsCasual, LossesCasual, WinPercentCasual, levelCasual, KillsRanked, DeathsRanked, kdRanked, PlaytimeRanked, WinsRanked, LossesRanked, WinPercentRanked, levelRanked, Revives, Suicides, MeleeKills, AccuracyPercent, HeadshotPercent, Assist, PenetrationKills, Time)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',[Username, System, 0, 0, 0, 0.0, '0.0H',0, 0, 0.0, 0, 0, 0, 0.0, '0.0H', 0, 0, 0.0, 0, 0, 0, 0, '0.0', '0.0', 0, 0,'Not Updated Yet'],nullHandler,errorHandler);
+						transaction.executeSql('INSERT INTO Siege(PlayerName, System, Active, KillsCasual, DeathsCasual, kdCasual, PlaytimeCasual, WinsCasual, LossesCasual, WinPercentCasual, levelCasual, KillsRanked, DeathsRanked, kdRanked, PlaytimeRanked, WinsRanked, LossesRanked, WinPercentRanked, levelRanked, Revives, Suicides, MeleeKills, AccuracyPercent, Headshots, HeadshotPercent, Assists, PenetrationKills, Time)VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',[Username, System, 0, 0, 0, 0.0, '0.0H',0, 0, 0.0, 0, 0, 0, 0.0, '0.0H', 0, 0, 0.0, 0, 0, 0, 0, '0.0', 0, '0.0', 0, 0,'Not Updated Yet'],nullHandler,errorHandler);
 					}
 				},errorHandler);
 			}
 			
 			//PlayerName, System, Active, TotalArenaAssassinations, TotalArenaAssists, TotalArenaDeaths, TotalArenaGamesCompleted, TotalArenaGamesLost, TotalArenaGamesTied, TotalArenaGamesWon, TotalArenaGrenadeKills, TotalArenaGroundPoundKills, TotalArenaHeadshots, TotalArenaKills, TotalArenaMeleeKills, TotalArenaPowerWeaponKills, TotalArenaShotsFired, TotalArenaShotsLanded, TotalArenaShoulderBashKills, TotalArenaTimePlayed, SpartanRank, Time
 			
-			console.log('recalling nav');
 			$("#statsPageUpdateGames" + pageId).html("");
 			navigationSetup(0, Username, System, pageId, Destination, 1, '');
 		},errorHandler,nullHandler);
-		console.log('done?');
 		//fillListOfGames(UserId, Username, System);
 		
 	});

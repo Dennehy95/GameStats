@@ -95,8 +95,11 @@ function displayBasics(Username, System, Game, activeSystemPage, pageId){
 				"<div class='ui-grid-a'>" +
 					"<div class='statsHeaderLeft ui-block-a'>" +
 						"<a onclick='goXbox(\"" + 'pop' + "\",\"" + activeSystemPage + "\")'>" +
-							"<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' id='Capa_1' x='0px' y='0px' viewBox='0 0 297 297' style='enable-background:new 0 0 297 297;' xml:space='preserve' width='8.6vh' height='8.6vh' transform=' scale(-1, 1)'>" +
-								"<path d='M148.5,0C66.485,0,0,66.485,0,148.5S66.485,297,148.5,297S297,230.515,297,148.5S230.515,0,148.5,0z M159.083,231.5H90.75 l74.25-84l-74.25-81h68.333l71.917,81L159.083,231.5z'/>" +
+							"<svg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 129 129' xmlns:xlink='http://www.w3.org/1999/xlink' enable-background='new 0 0 129 129' width='8.5vh' height='8.5vh' transform='scale(-1, 1)'>" +
+								"<g>" +
+									"<path d='M64.5,122.6c32,0,58.1-26,58.1-58.1S96.5,6.4,64.5,6.4S6.4,32.5,6.4,64.5S32.5,122.6,64.5,122.6z M64.5,14.6    c27.5,0,49.9,22.4,49.9,49.9S92,114.4,64.5,114.4S14.6,92,14.6,64.5S37,14.6,64.5,14.6z'/>" +
+									"<path d='m51.1,93.5c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l26.4-26.4c0.8-0.8 1.2-1.8 1.2-2.9 0-1.1-0.4-2.1-1.2-2.9l-26.4-26.4c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l23.5,23.5-23.5,23.5c-1.6,1.6-1.6,4.2 0,5.8z'/>" +
+								"</g>" +
 							"</svg>" +
 						"</a>" +
 					"</div>" +
@@ -118,7 +121,6 @@ function navigationSetup(position, Username, System, pageId, Destination, toClea
 	else if(toClear == 1){
 	//Check if User has recorded availability for each game
 		db = openDatabase(shortName, version, displayName,maxSize);
-		console.log('emptying game list');
 		var usersGameList = [];
 		
 		db.transaction(function(transaction){
@@ -145,12 +147,9 @@ function checkGameList(position, usersGameList, gameFound, Username, System, pag
 	if(isUpdating){
 		usersGameList.push(gameFound);
 	}
-	console.log(usersGameList.length);
-	console.log(gamesList.length);
 	if(typeof(usersGameList) !== 'object'){
 		usersGameList = usersGameList.split(",");
 	}
-	console.log(usersGameList.length);
 	if(usersGameList.length == gamesList.length){
 		$("#Page" + pageId).unbind('swipeleft');
 		$("#Page" + pageId).unbind('swiperight');
@@ -164,7 +163,6 @@ function checkGameList(position, usersGameList, gameFound, Username, System, pag
 					usersGameListFinal.push(gamesList[i]);
 				}
 			}
-			console.log('This' + usersGameListFinal);
 			var size = usersGameListFinal.length;
 			
 			if(size == 1){
@@ -253,8 +251,6 @@ function checkGameList(position, usersGameList, gameFound, Username, System, pag
 					navTitleLeft = usersGameListFinal[size-2];
 				}
 				else{
-					console.log('Else');
-					console.log(position);
 					$("#Page" + pageId).swipeleft(function() {
 						gameNavigation(usersGameListFinal[position],'left','multi', Username, System, position, size, activeSystemPage, pageId, usersGameList);
 					});
@@ -280,7 +276,6 @@ function checkGameList(position, usersGameList, gameFound, Username, System, pag
 					navTitleRight = 'Halo V';
 				}
 				
-				console.log('About to apopend nav');
 				$("#statsPageNavigation" + pageId).append(
 					"<div class='ui-grid-a statsPageNavigationMulti'>" +
 						"<div class='ui-block-a'>" +
@@ -325,8 +320,6 @@ function allZero(arr) {
 }
 
 function updateGamesList(position, Username, System, Destination, pageId, usersGameList){
-	console.log(usersGameList);
-	console.log('clear content')
 	$("#statsPageContent" + pageId).html("");
 	
 	if(online == true){
@@ -387,7 +380,6 @@ function updateGamesList(position, Username, System, Destination, pageId, usersG
 		);
 	}
 	if($.trim($("#statsPageNavigation3a").html())==''){
-		console.log('#updateGamesButton' + pageId)
 		$('#updateGamesButton' + pageId).css('margin', '3vh 0 0 20%');
 	}
 }
@@ -421,4 +413,62 @@ function displayStats(system, Username, activeSystemPage){
 
 function sourceNoConnection(){
 	alert('Cannot Update stats, No Internet Connection');
+}
+function timePlayedFormatter(seconds){
+	casualDays = secondsToDays(seconds);
+	casualHours = secondsToHours(seconds);
+	casualMinutes = secondsToMinutes(seconds);
+	
+	PlaytimeCasual = '';
+	if(casualDays == 0){
+		if(casualHours == 0){
+			PlaytimeCasual = casualMinutes + ' Minutes';
+		}
+		else if(casualHours == 1){
+			PlaytimeCasual = casualHours + ' Hour ' + casualMinutes + ' Minutes';
+		}
+		else{
+			PlaytimeCasual = casualHours + ' Hours ' + casualMinutes + ' Minutes';
+		}
+	}
+	else{
+		if(casualDays == 1){
+			if(casualHours == 0){
+				PlaytimeCasual = casualDays + ' Day ' + casualMinutes + ' Minutes';
+			}
+			else if(casualHours == 1){
+				PlaytimeCasual = casualDays + ' Day ' + casualHours + ' Hour ' + casualMinutes + ' Minutes';
+			}
+			else{
+				PlaytimeCasual = casualDays + ' Day ' + casualHours + ' Hours ' + casualMinutes + ' Minutes';
+			}
+		}
+		else{
+			if(casualHours == 0){
+				PlaytimeCasual = casualDays + ' Days ' + casualMinutes + ' Minutes';
+			}
+			else if(casualHours == 1){
+				PlaytimeCasual = casualDays + ' Days ' + casualHours + ' Hour ' + casualMinutes + ' Minutes';
+			}
+			else{
+				PlaytimeCasual = casualDays + ' Days ' + casualHours + ' Hours ' + casualMinutes + ' Minutes';
+			}
+		}
+	}
+	return PlaytimeCasual;
+}
+function secondsToDays(seconds){
+	var numdays = Math.floor(seconds / 86400);
+	
+	return numdays;
+}
+function secondsToHours(seconds){
+	var numhours = Math.floor((seconds % 86400) / 3600);
+
+	return numhours;
+}
+function secondsToMinutes(seconds){
+	var numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
+	
+	return numminutes;
 }

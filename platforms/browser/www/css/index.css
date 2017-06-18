@@ -204,6 +204,17 @@ h3.usernameListTitle.xbox > .ui-collapsible-heading-toggle.ui-btn.ui-btn-icon-le
 	background: linear-gradient(45deg, #47a1ef 0%,#429aed 14%,#1283ed 31%,#268bef 50%,#2188ef 65%,#085edd 82%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#47a1ef', endColorstr='#085edd',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
+
+/*psnHome
+.systemTitle.psnHome{
+	/ Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#47a1ef+0,429aed+8,1283ed+16,268bef+25,2188ef+33,085edd+44,6b6b6b+53,6b6b6b+65,636363+74,606060+83,494949+93 *
+	background: #47a1ef; * Old browsers *
+	background: -moz-linear-gradient(45deg,  #47a1ef 0%, #429aed 8%, #1283ed 16%, #268bef 25%, #2188ef 33%, #085edd 44%, #6b6b6b 53%, #6b6b6b 65%, #636363 74%, #606060 83%, #494949 93%); * FF3.6-15 *
+	background: -webkit-linear-gradient(45deg,  #47a1ef 0%,#429aed 8%,#1283ed 16%,#268bef 25%,#2188ef 33%,#085edd 44%,#6b6b6b 53%,#6b6b6b 65%,#636363 74%,#606060 83%,#494949 93%); * Chrome10-25,Safari5.1-6 *
+	background: linear-gradient(45deg,  #47a1ef 0%,#429aed 8%,#1283ed 16%,#268bef 25%,#2188ef 33%,#085edd 44%,#6b6b6b 53%,#6b6b6b 65%,#636363 74%,#606060 83%,#494949 93%); * W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ *
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#47a1ef', endColorstr='#494949',GradientType=1 ); * IE6-9 fallback on horizontal gradient *
+}
+*/
 .systemTitle.steam{
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#88d0ea+0,56c5ea+17,71ceef+33,3cbae8+55,11b0e0+74,00aae8+100 */
 	background: #88d0ea; /* Old browsers */
@@ -319,25 +330,7 @@ h3.popupHeader{
 	text-align: center;
 	text-indent: 5%;
 }
-.getStats{
-    margin: 10%;
-    padding: 0 0 0 0;
-	text-decoration: none;
-}
-.getStatsButton{
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff8307+0,ff9d35+11,ff9011+31,ffa24c+51,ff9319+73,ff9c32+87,ff7f04+100 */
-	background: #ff8307; /* Old browsers */
-	background: -moz-linear-gradient(left,  #ff8307 0%, #ff9d35 11%, #ff9011 31%, #ffa24c 51%, #ff9319 73%, #ff9c32 87%, #ff7f04 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(left,  #ff8307 0%,#ff9d35 11%,#ff9011 31%,#ffa24c 51%,#ff9319 73%,#ff9c32 87%,#ff7f04 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to right,  #ff8307 0%,#ff9d35 11%,#ff9011 31%,#ffa24c 51%,#ff9319 73%,#ff9c32 87%,#ff7f04 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8307', endColorstr='#ff7f04',GradientType=1 ); /* IE6-9 */
-	font-family: Simplifica;
-		src: local("Simplifica"),
-		url(SIMPLIFICATypeface.ttf);
-	border: none;
-	font-size: 8vh;
-	height: 10vh;
-}
+
 .navText.systems,
 .navText.games{
 	overflow: hidden;
@@ -462,7 +455,8 @@ h3.popupHeader{
 }
 
 .halo5ModeSelect{
-	border-bottom: 1vh solid #14c48a;
+	#border-bottom: 1vh solid #14c48a;
+	border-bottom: 1vh solid #333;
 	min-height: 20%;
 }
 /*
@@ -486,7 +480,7 @@ h3.popupHeader{
 .halo5Arena.KillTypesTop.ui-grid-b{
 	background-color: #14c48a;
     border-radius: 5vh 5vh 0 0;
-	border-top: 0.5vh solid #00f9a7;
+	border-top: 0.5vh solid #63f9cb;
 	display: flex;
 	margin: 0 1vh 0 1vh;
 }
@@ -496,24 +490,25 @@ h3.popupHeader{
 .halo5Arena.KillTypesBottom.ui-grid-b{
 	background-color: #14c48a;
     border-radius: 0 0 7vh 7vh;
-	border-bottom: 0.5vh solid #00f9a7;
+	border-bottom: 0.5vh solid #63f9cb;
 	display: flex;
 	margin: 0 1vh 1vh 1vh;
 }
 .halo5Arena.OverallHalo{
-	border-bottom: 0.5vh solid #00f9a7;
-	border-top: 0.5vh solid #00f9a7;
+	border-bottom: 0.5vh solid #63f9cb;
+	border-top: 0.5vh solid #63f9cb;
     border-radius: 7vh 7vh 7vh 7vh;
 	margin: 0 1vh 1vh 1vh;
 }
 .halo5Arena.Accuracy{
-	border-bottom: 0.5vh solid #00f9a7;
-	border-top: 0.5vh solid #00f9a7;
+	border-bottom: 0.5vh solid #63f9cb;
+	border-top: 0.5vh solid #63f9cb;
     border-radius: 7vh 7vh 7vh 7vh;
 	margin: 0 1vh 0 1vh;
 }
 .Halo5Stats{
-	background-color: #14c48a;
+	#background-color: #14c48a;
+	background-color: #333;
 	color: #fff;
 	font-family: "Simplifica";
 	font-size: 4vh;
@@ -527,6 +522,11 @@ h3.popupHeader{
 	color: #63f9cb;
 	text-shadow: none;
 }
+.rocketLeagueStatsInnerText{
+	color: #63f9cb;
+	text-shadow: none;
+}
+
 .halo5TimePlayed,
 .halo5Rank{
 	color: #fff;
@@ -573,23 +573,26 @@ h3.popupHeader{
 	display: block;
 }*/
 /**********			RocketLeague		**********/
-.getUpdatedStats.ui-btn.ui-btn-right.ui-corner-all{
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff670f+0,ff670f+100;Orange+Flat+%231 */
-	background: #ff670f; /* Old browsers */
-	background: -moz-linear-gradient(left,  #ff670f 0%, #ff670f 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(left,  #ff670f 0%,#ff670f 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to right,  #ff670f 0%,#ff670f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff670f', endColorstr='#ff670f',GradientType=1 ); /* IE6-9 */
-
-	#color: #ffffff;
-	font-size: 3vh;
-	margin: 0;
-	padding: 1vh;
-	text-indent: 0;
-	text-shadow: none;
-
+.RocketLeagueStats{
+	background-color: #333;
+	color: #fff;
+	font-family: "Simplifica";
+	font-size: 4vh;
+	text-align:center;
 }
-.performance{
+
+.rocketLeaguePerformanceRatings{
+	border-bottom: 0.5vh solid #63f9cb;
+	border-top: 0.5vh solid #63f9cb;
+    border-radius: 7vh 7vh 7vh 7vh;
+	margin: 0 1vh 1vh 1vh;
+}
+
+.rocketLeagueStatsHeaderText{
+	color: #fdb715;
+	text-shadow: none;
+}
+/*.performance{
 	font-family: Ubuntu;
 		src: local("ubuntu-font-family-0.83/Ubuntu-M"),
 		url(Ubuntu-M.ttf);
@@ -598,7 +601,9 @@ h3.popupHeader{
 }
 .performanceRatings.ui-grid-b{
 	height: 100%;
-}
+}*/
+
+
 .rankings{
 	font-family: Ubuntu;
 		src: local("ubuntu-font-family-0.83/Ubuntu-M"),
@@ -612,7 +617,7 @@ h3.popupHeader{
 }
 .RanksRL.ui-grid-c{
 	background-color: #333;
-	border-top: .3vh solid #000;
+	#border-top: .3vh solid #000;
 	color: #fff;
 	font-size: 3vh;
 	text-align: center;
@@ -645,9 +650,6 @@ h3.popupHeader{
 	font-size: 4vh;
 	height: 33%;
 	text-align: center;
-}
-.supportStats.ui-grid-a{
-	text-align: right;
 }
 .statsPageUpdate{
 	height: 100%;
@@ -688,13 +690,37 @@ h3.popupHeader{
 	position: relative;
 }
 /**********			Siege		**********/
-.Ranked,
-.Casual,
-.General{
-	font-family: Ubuntu;
-		src: local("ubuntu-font-family-0.83/Ubuntu-M"),
-		url(Ubuntu-M.ttf);
+.SiegeStats{
+	background-color: #333;
+	color: #fff;
+	font-family: "Simplifica";
+	font-size: 4vh;
+	text-align:center;
+}
+.siegeStatsHeaderText{
+	color: #fdb715;
 	text-shadow: none;
+}
+.siegeStatsModeHeaderText{
+	color: #fdb715;
+	font-size: 5vh;
+	text-shadow: none;
+}
+.siegeStatsRanked,
+.siegeStatsCasual,
+.siegeStatsGeneral{
+	#border-bottom: 0.5vh solid #63f9cb;
+	border-top: 0.5vh solid #63f9cb;
+    border-radius: 7vh 7vh 7vh 7vh;
+	margin: 0 1vh 1vh 1vh;
+	text-shadow: none;
+}
+.siegeStatsRanked.killsDeathsSiege,
+.siegeStatsCasual.killsDeathsSiege,
+.siegeStatsGeneral.headshotsSiege{
+	border-bottom: 0.5vh solid #63f9cb;
+	border-top: none;
+	margin: 0 1vh 3vh 1vh;
 }
 
 

@@ -13,34 +13,83 @@ function displayStatsRocketLeague(Username, System, pageId){
 			$(".updateButtonTextBottom").append(
 				"Updated: " + result.rows.item(0).Time + ""
 			);
+			
+			Ratio = result.rows.item(0).Ratio;
+			Wins = result.rows.item(0).Wins;
+			Goals = result.rows.item(0).Goals;
+			Saves = result.rows.item(0).Saves;
+			Shots = result.rows.item(0).Shots;
+			Mvps = result.rows.item(0).Mvps;
+			Assists = result.rows.item(0).Assists;
+			Mvpratio = result.rows.item(0).Mvpratio;
+			
 			$("#statsPageContent" + pageId).append(
-				"<div class='performance'>" +
-					"<div class='performanceRatings ui-grid-b'>" +
-						"<div class='offenseStats ui-grid-b '>" +
-							"<div class='ui-block-a statsText'>Goals -<br>Shots -</div>" +
-							"<div class='ui-block-b statsText statsValue'>" +result.rows.item(0).Shots + "<br>" + result.rows.item(0).Goals + "</div>" +
-							"<div class='ui-block-c'>" +
-								"<div class='statsText'>Ratio<br></div>" +
-								"<div class='statsText statsValue'>" + result.rows.item(0).Ratio +"%</div>"+
+				"<div class='RocketLeagueStats'>" +
+					"<div class='rocketLeaguePerformance'>" +
+						"<div class='rocketLeaguePerformanceRatings ui-grid-b'>" +
+							"<div class='statColumns ui-block-a '>" +
+								"<div class = 'rocketLeagueStatsHeaderText'>Goals<br></div>" +
+								"<div class = 'rocketLeagueStatsInnerText'>" + Goals + "</div>" +
+							"</div>" +
+							"<div class='statColumns ui-block-b' style='margin: 3vh 0 0 0;'>" +
+								"<div class = 'rocketLeagueStatsHeaderText'>Goals/Shots Ratio<br></div>" +
+								"<div class = 'rocketLeagueStatsInnerText'>" + Ratio + "%<br></div>" +
+							"</div>" +
+							"<div class='statColumns ui-block-c'>" +
+								"<div class = 'rocketLeagueStatsHeaderText'>Shots<br></div>" +
+								"<div class = 'rocketLeagueStatsInnerText'>" + Shots + "</div>" +
 							"</div>" +
 						"</div>" +
-						"<div class='winStats ui-grid-b'>" +
-							"<div class='ui-block-a statsText'>Wins -<br>MVPs -</div>" +
-							"<div class='ui-block-b statsText statsValue'>" + result.rows.item(0).Wins + "<br>" +result.rows.item(0).Mvps + "</div>" +
-							"<div class='ui-block-c'>" +
-								"<div class='statsText'>Ratio<br></div>" +
-								"<div class='statsText statsValue'>" + result.rows.item(0).Mvpratio +"%</div>"+
+						"<div class='rocketLeaguePerformanceRatings ui-grid-b'>" +
+							"<div class='statColumns ui-block-a '>" +
+								"<div class = 'rocketLeagueStatsHeaderText'>MVPs<br></div>" +
+								"<div class = 'rocketLeagueStatsInnerText'>" + Mvps + "</div>" +
+							"</div>" +
+							"<div class='statColumns ui-block-b' style='margin: 3vh 0 0 0;'>" +
+								"<div class = 'rocketLeagueStatsHeaderText'>MVP/Win Ratio<br></div>" +
+								"<div class = 'rocketLeagueStatsInnerText'>" + Mvpratio + "%<br></div>" +
+							"</div>" +
+							"<div class='statColumns ui-block-c '>" +
+								"<div class = 'rocketLeagueStatsHeaderText'>Wins<br></div>" +
+								"<div class = 'rocketLeagueStatsInnerText'>" + Wins + "</div>" +
 							"</div>" +
 						"</div>" +
-						"<div class='supportStats ui-grid-a'>"+
-							"<div class='ui-block-a statsText'>Saves - <br>Assists - <br></div>" +
-							"<div class='ui-block-b statsText statsValue'>" + result.rows.item(0).Saves + "<br>" + result.rows.item(0).Assists + "</div>" +
+						"<div class='rocketLeaguePerformanceRatings ui-grid-a'>" +
+							"<div class='statColumns ui-block-a '>" +
+								"<div class = 'rocketLeagueStatsHeaderText'>Assists<br></div>" +
+								"<div class = 'rocketLeagueStatsInnerText'>" + Assists + "</div>" +
+							"</div>" +
+							"<div class='statColumns ui-block-b'>" +
+								"<div class = 'rocketLeagueStatsHeaderText'>Saves<br></div>" +
+								"<div class = 'rocketLeagueStatsInnerText'>" + Saves + "</div>" +
+							"</div>" +
 						"</div>" +
 					"</div>" +
 				"</div>"
 			);
 		},errorHandler,nullHandler);
 		
+		
+		/*"<div class='offenseStats ui-grid-b '>" +
+								"<div class='ui-block-a statsText'>Goals -<br>Shots -</div>" +
+								"<div class='ui-block-b statsText statsValue'>" +result.rows.item(0).Shots + "<br>" + result.rows.item(0).Goals + "</div>" +
+								"<div class='ui-block-c'>" +
+									"<div class='statsText'>Ratio<br></div>" +
+									"<div class='statsText statsValue'>" + result.rows.item(0).Ratio +"%</div>"+
+								"</div>" +
+							"</div>" +
+							"<div class='winStats ui-grid-b'>" +
+								"<div class='ui-block-a statsText'>Wins -<br>MVPs -</div>" +
+								"<div class='ui-block-b statsText statsValue'>" + result.rows.item(0).Wins + "<br>" +result.rows.item(0).Mvps + "</div>" +
+								"<div class='ui-block-c'>" +
+									"<div class='statsText'>Ratio<br></div>" +
+									"<div class='statsText statsValue'>" + result.rows.item(0).Mvpratio +"%</div>"+
+								"</div>" +
+							"</div>" +
+							"<div class='supportStats ui-grid-a'>"+
+								"<div class='ui-block-a statsText'>Saves - <br>Assists - <br></div>" +
+								"<div class='ui-block-b statsText statsValue'>" + result.rows.item(0).Saves + "<br>" + result.rows.item(0).Assists + "</div>" +
+							"</div>" +*/
 		transaction.executeSql('SELECT DuelRank, DuelDivision, DuelRating, DuelGames, DuelStreak, DoublesRank, DoublesDivision, DoublesRating, DoublesGames, DoublesStreak, StandardRank, StandardDivision, StandardRating, StandardGames ,StandardStreak, SoloStandardRank, SoloStandardDivision, SoloStandardRating, SoloStandardGames, SoloStandardStreak FROM Rocket_League WHERE PlayerName = "'+ Username +'" AND System = "' + System +'";', [],
 		function(transaction, result) {
 			if(result.rows.item(0).DuelStreak != 0){

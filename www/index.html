@@ -49,7 +49,7 @@
 			//
 			function onDeviceReady() {
 				// Now safe to use the Cordova API
-				//onBodyLoad();
+				onBodyLoad();
 				var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
 				if ( app ) {
 					checkConnection()
@@ -282,8 +282,6 @@
 				}
 			}
 			function goSteam(direction, activeSystemPage){
-				console.log(activeSystemPage);
-				console.log('Steam');
 				getLinkedIds('steam',activeSystemPage,1);
 				if(direction == 'left'){
 					if(activeSystemPage == '2a'){
@@ -382,8 +380,6 @@
 				}
 			}
 			function goXbox(direction, activeSystemPage){
-				console.log(activeSystemPage);
-				console.log('Xbox');
 				getLinkedIds('xbox', activeSystemPage,1);
 				if(direction == 'left'){
 					if(activeSystemPage == '2a'){
@@ -485,7 +481,6 @@
 				$("#Page1").swiperight(function() {
 					goXbox('right', activeSystemPage);
 				});*/
-				console.log(activeSystemPage);
 				if(direction == 'left'){
 					$.mobile.pageContainer.pagecontainer('change', '#Page1', {
 						reverse: false,

@@ -75,7 +75,6 @@ function getLinkedIds(system, activeSystemPage, redraw) {
 			
 			$('#psnAddForm2a').on('submit', function(e) {
 				e.preventDefault();
-				console.log('moo');
 				$('#psnAddID2a').popup('close');
 				AddValueToDB('psn','2a');
 			});
